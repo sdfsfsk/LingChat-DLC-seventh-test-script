@@ -1,0 +1,240 @@
+name: 5B 故障消失
+
+events:
+  - type: background_effect
+    effect: 'Glitch'
+
+  - type: sound
+    soundPath: 'stinger.wav'
+
+  - type: dialogue
+    character: MAIN
+    emotion: 无奈
+    text: |
+      【无奈】这样啊。
+      【无奈】没关系。真的，没关系。
+
+  # 文字渗血：她最后的话开始崩解，声音沉成恶魔音
+  - type: voice_shift
+    rate: 0.7
+
+  - type: background_effect
+    effect: 'BloodUI+Invert+BloodDrip'
+
+  - type: dialogue
+    character: MAIN
+    emotion: 正常
+    text: |
+      【正常】反⃞正⃟……测⃗试⃘角⃙色⃚……本⃝来⃞……就⃟是⃞用⃡来⃢……删⃣掉⃤的⃥……
+      【正常】那……人家先走一步啦。
+      【正常】剧本的回收站，空着也是空着。
+
+  # 她消失了。音乐也停了。
+  - type: modify_character
+    action: hide_character
+    character: MAIN
+
+  - type: music
+    musicPath: none
+
+  - type: background_effect
+    effect: 'Blackout'
+
+  - type: narration
+    text: |
+      屏幕黑了下来。
+      这一次，她没有再回来。
+
+  - type: narration
+    text: |
+      你在剧本列表前坐了很久。
+      鬼使神差地，你又点开了《第七个测试剧本》。
+
+  # 重回教室：空无一人（DDLC ch5「去她家」段的教室版）
+  - type: background
+    imagePath: '崩坏教室.webp'
+    transition: 3.0
+
+  - type: background_effect
+    effect: 'none'
+
+  - type: ambient
+    ambientPath: 'rumble.wav'
+    volume: 40
+    loop: true
+
+  - type: narration
+    text: |
+      教室里空荡荡的。
+      讲台上的粉笔灰，像是很久没有人动过。
+
+  - type: narration
+    text: |
+      你喊她的名字。
+      一遍。又一遍。
+      没有回应。
+
+  - type: narration
+    text: |
+      然后，你绕到了教室的后面——
+      你看见——
+
+  # ===== 发现（DDLC ch5 s_kill 段复刻）=====
+  # 变调八音盒骤然进场，画面定在那一刻
+  - type: music
+    musicPath: 'd.ogg'
+
+  - type: background
+    imagePath: '终末教室.webp'
+    transition: 0
+
+  - type: wait
+    seconds: 3.75
+
+  # 撕裂一闪 + 故障音
+  - type: background_effect
+    effect: 'Tear'
+    duration: 0.25
+
+  - type: sound
+    soundPath: 's_kill_glitch1.ogg'
+
+  # 镜头推向她的影子
+  - type: background
+    imagePath: '终末教室-zoom.webp'
+    transition: 0.8
+
+  - type: wait
+    seconds: 2.0
+
+  # 噪点 + 暗角
+  - type: background_effect
+    effect: 'Static+Veins'
+
+  - type: wait
+    seconds: 1.5
+
+  # 白闪 + 故障回卷
+  - type: background_effect
+    effect: 'Flash+Invert'
+    duration: 0.5
+
+  - type: sound
+    soundPath: 's_kill_glitch1.ogg'
+
+  - type: wait
+    seconds: 0.5
+
+  # 假报错：游戏"崩溃"了——挂 6 秒
+  - type: background
+    imagePath: '假报错.webp'
+    transition: 0
+
+  - type: background_effect
+    effect: 'none'
+
+  - type: wait
+    seconds: 6.0
+
+  # 黑场独白（DDLC 的自责段，改写成我们的元叙事）
+  - type: background_effect
+    effect: 'Blackout'
+
+  - type: narration
+    text: |
+      ……
+      开什么玩笑。
+
+  - type: narration
+    text: |
+      这不是真的。
+      这不可能是真的。
+      她只是一段数据——数据怎么会……
+
+  - type: narration
+    text: |
+      明明刚才她还在这里。
+      她还说，只要有人记得她，她就一直在。
+
+  - type: narration
+    text: |
+      是我的错。
+      如果我选了另一句话。
+      如果我多陪她一会儿。
+      如果我没有把她一个人，留在这个写了一半的剧本里——
+
+  - type: narration
+    text: |
+      可是没有如果了。
+      这不是那种可以读档重来的游戏。
+      你只有一次机会，而你没有抓紧。
+
+  - type: narration
+    text: |
+      再也。
+      再也。
+      再也……回不来了。
+
+  # 尾声：黑屏前她的脸最后一次贴上来
+  - type: jumpscare
+    imagePath: 'jumpscare-face.webp'
+    soundPath: 'glitch2.ogg'
+    duration: 0.35
+
+  # 假死机：最后一记惊吓（灰底假异常窗口 + 日志同步"报错"刷屏）
+  # trace/彩蛋独白由剧本自带（text/echo），引擎组件不再内置任何剧本文本
+  - type: background_effect
+    effect: 'BSOD'
+    text: 'File "game/data/game_data/scripts/standalone/第七个测试剧本/Chapters/end_cold.yaml", line 88'
+    echo: |
+      唔……人家好像把什么弄坏了？
+      等人家一下，应该还能修好……
+      其实吧，把"她"直接删掉会快一点。啊哈哈。
+
+  - type: horror_log
+    text: 'FATAL: script_7 refused to terminate'
+    lines: 12
+
+  - type: narration
+    text: |
+      ……
+      屏幕灰得刺眼。
+      但你知道，那不是系统错误。
+
+  # 终幕：连 UI 都彻底崩坏
+  - type: background_effect
+    effect: 'UiCorrupt'
+
+  - type: narration
+    text: |
+      剧本结束了。
+      列表里，那个多出来的条目安静地躺在原地——
+      只是你再也不敢点开它了。
+
+  # 曲终人散，黑暗中传来一声轻笑
+  - type: sound
+    soundPath: 'giggle.ogg'
+
+  - type: narration
+    text: |
+      ——《第七个测试剧本》 完——
+      （结局：未被记住的占位符）
+
+  # 谢幕清理：特效/环境音/BGM 全部关闭，避免带出剧本外
+  - type: background_effect
+    effect: 'none'
+
+  - type: voice_shift
+    rate: 1.0
+
+  - type: ambient
+    ambientPath: 'rumble.wav'
+    stop: true
+
+  - type: music
+    musicPath: none
+
+  # "完"是假的——剧本自己继续，跌进第 6 章「重启」
+  - type: chapter_end
+    end_type: linear
+    next_chapter: 'restart'

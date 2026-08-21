@@ -1,0 +1,2 @@
+# 发布物 zip 走 GitHub Release，不进 git 历史
+*.zip
