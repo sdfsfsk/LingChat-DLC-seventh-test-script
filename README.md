@@ -16,7 +16,7 @@
 
 **方式一（推荐）：DLC 管理界面导入**
 
-1. 在 [Releases](../../releases) 下载 `第七个测试剧本-v1.1.0.zip`（无需解压）
+1. 在 [Releases](../../releases) 下载 `seventh-test-script-v1.1.0.zip`（无需解压；GitHub 资产名仅支持 ASCII，包内目录仍为中文名）
 2. 游戏内打开 **游戏配置 → 高级设置 → DLC 管理**
 3. 点「添加 DLC 包（zip）」，选择下载的 zip
 4. 识别成功后主菜单右下角会显示「已识别 DLC：第七个测试剧本」，剧本列表里直接可玩
