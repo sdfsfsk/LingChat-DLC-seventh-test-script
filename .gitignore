@@ -1,2 +1,9 @@
 # 发布物 zip 走 GitHub Release，不进 git 历史
 *.zip
+
+# 本地美术生成中间产物与 v1 迁移备份；正式素材位于 DLC Assets/。
+generated-q-sprites/
+original-q-sprites-before-unified/
+archive-v1-chapters/
+__pycache__/
+*.pyc

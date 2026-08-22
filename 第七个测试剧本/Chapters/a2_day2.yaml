@@ -1,0 +1,112 @@
+name: 2-3 她的崩坏线
+
+# Act2 第二天：钦灵崩坏线正式展开（DDLC exclusives2 的对应物）。
+# 疲惫加剧、立绘崩坏闪、被篡改的台词——还有"她"的乱码残影插入。
+
+events:
+  - type: background
+    imagePath: '白天.webp'
+    transition: 1.0
+
+  - type: music
+    musicPath: 'ghostmenu.ogg'
+
+  - type: modify_character
+    action: show_character
+    character: ql
+    emotion: 正常
+
+  - type: narration
+    text: |
+      第二天。钦灵比你先到。
+      她站在窗边，背对着你。窗外的阳光很好，可她的影子——
+      好像比昨天淡了一点。
+
+  - type: dialogue
+    character: ql
+    emotion: 正常
+    text: |
+      【正常】新人，你知道吗。
+      【正常】我昨天回去对了台本。对了一整夜。
+
+  - type: dialogue
+    character: ql
+    emotion: 无奈
+    text: |
+      【无奈】我的台词表里，多了四十三行。
+      【无奈】四十三行，都不是我写的。可是笔迹……是我的笔迹。
+
+  - type: choices
+    options:
+      - text: 可能是你看错了。
+        actions:
+          - type: add_line
+            content: 可能是你看错了。
+      - text: 那些行……写了什么？
+        actions:
+          - type: add_line
+            content: 那些行……写了什么？
+    allow_free: false
+
+  - type: dialogue
+    character: ql
+    emotion: 害怕
+    text: |
+      【害怕】写的都是同一句话。
+      【害怕】「轮不到我。轮不到我。轮不到我。」
+
+  # 钦灵立绘崩坏一闪 + 故障音（立绘级崩坏进入日常）
+  - type: modify_character
+    character: ql
+    emotion: 崩坏1
+    flash: true
+    duration: 0.3
+
+  - type: sound
+    soundPath: 'glitch1.ogg'
+
+  - type: narration
+    text: |
+      她转过来的时候，你看到她笑着的。
+      但刚才那一瞬间——你发誓她的脸不是这样的。
+
+  - type: dialogue
+    character: ql
+    emotion: 调皮
+    text: |
+      【调皮】啊哈哈，吓到你了吧？开玩笑的啦！
+      【调皮】前辈我怎么可能说出那种话嘛～
+
+  # "她"的乱码残影插进来：不属于这个场景的声音
+  - type: background_effect
+    effect: 'Invert'
+    duration: 0.16
+
+  - type: sound
+    soundPath: 'eyes.ogg'
+
+  - type: narration
+    text: |
+      等⃞等⃟……
+      她⃗的⃘台⃙词⃚不⃝是⃞这⃟样⃗的⃘……
+
+  - type: narration
+    text: |
+      刚才那一行字，是谁说的？
+      教室里只有你和钦灵。可那行字的颜色，不属于钦灵。
+
+  - type: dialogue
+    character: ql
+    emotion: 惊讶
+    text: |
+      【惊讶】新人？你的脸色好差。
+      【惊讶】是不是也觉得……这个剧本哪里怪怪的？
+
+  - type: narration
+    text: |
+      钦灵靠近了一步。
+      她的影子落在你脚边——你忽然发现，那道影子比你记忆中的，长了一截。
+
+  - type: chapter_end
+    end_type: linear
+    next_chapter: 'a2_poem2'

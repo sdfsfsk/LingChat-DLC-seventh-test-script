@@ -1,0 +1,160 @@
+name: 1-5 裂缝
+
+# Act1 第三天：异样浮上水面。
+# 她说漏嘴 meta 真相的一角；钦灵累到反常。周末约定。
+
+events:
+  - type: background
+    imagePath: '白天.webp'
+    transition: 1.0
+
+  - type: music
+    musicPath: '2.ogg'
+    playbackSpeed: 1.0
+
+  - type: music
+    musicPath: '2.ogg'
+    playbackSpeed: 0.92
+    condition: bgm_detune == true
+
+  - type: modify_character
+    action: show_character
+    character: MAIN
+    emotion: 正常
+
+  - type: narration
+    text: |
+      第三天，教室里只有她一个人。
+      钦灵的椅子空着。桌上放着一本翻开的台本。
+
+  - type: dialogue
+    character: MAIN
+    emotion: 担心
+    text: |
+      【担心】前辈今天请假了。
+      【担心】她说她"台词对不上"，要回去检查一下。
+
+  - type: choices
+    options:
+      - text: 台词对不上？什么意思？
+        actions:
+          - type: add_line
+            content: 台词对不上？什么意思？
+      - text: 她没事吧？我有点担心。
+        actions:
+          - type: add_line
+            content: 她没事吧？我有点担心。
+    allow_free: false
+
+  - type: dialogue
+    character: MAIN
+    emotion: 正常
+    text: |
+      【正常】%player%，我问你一个奇怪的问题哦。
+      【正常】你有没有觉得……我们每天说的话，好像在哪里听过？
+
+  - type: dialogue
+    character: MAIN
+    emotion: 无奈
+    text: |
+      【无奈】今天早上我想跟你打招呼，脑子里却突然蹦出来三句一模一样的"早上好"。
+      【无奈】像有人提前替我写好了一样。我选了其中一句——你听见的就是那句。
+
+  # 低概率：这句 meta 台词本身以乱码版出场
+  - type: dialogue
+    character: MAIN
+    emotion: 无奈
+    condition: garble_line == true
+    text: |
+      【无奈】我⃞选⃟了⃗其⃘中⃙一⃚句⃝——你⃞听⃟见⃗的⃘就⃙是⃚那⃝句⃞。
+
+  - type: narration
+    text: |
+      她说得很平静。
+      平静得像在讨论今天的天气。
+
+  - type: choices
+    options:
+      - text: 那只是既视感吧，别多想。
+        actions:
+          - type: add_line
+            content: 那只是既视感吧，别多想。
+          - type: set_var
+            content: 'd3_choice = deny'
+      - text: 其实……我也有点这种感觉。
+        actions:
+          - type: add_line
+            content: 其实……我也有点这种感觉。
+          - type: set_var
+            content: 'd3_choice = admit'
+      - text: （沉默地看着她）
+        actions:
+          - type: add_line
+            content: ……（沉默）
+          - type: set_var
+            content: 'd3_choice = silent'
+    allow_free: false
+
+  - type: dialogue
+    character: MAIN
+    emotion: 害羞
+    condition: d3_choice == deny
+    text: |
+      【害羞】嗯……也是啦。可能只是想太多。
+      【害羞】谢谢%player%，说出来就舒服多了。
+
+  - type: dialogue
+    character: MAIN
+    emotion: 心动
+    condition: d3_choice == admit
+    text: |
+      【心动】……果然。
+      【心动】我就知道，%player%是能感觉到"这边"的人。
+
+  - type: narration
+    condition: d3_choice == silent
+    text: |
+      你没有说话。
+      她也没有追问。但她看着你的眼神，像是确认了什么事情。
+
+  # 钦灵回来：明显不对劲
+  - type: modify_character
+    action: show_character
+    character: ql
+    emotion: 正常
+
+  - type: dialogue
+    character: ql
+    emotion: 正常
+    text: |
+      【正常】……我回来啦。
+      【正常】不好意思，让大家担心了。
+
+  - type: narration
+    text: |
+      钦灵的声音比昨天低。
+      尾巴垂着，耳朵也没有立起来。
+      她说她没事。她还说，明天是周末演出日，大家都要来。
+
+  - type: dialogue
+    character: ql
+    emotion: 调皮
+    text: |
+      【调皮】对了对了，明天可是大日子——文学测试部的"周末演出"！
+      【调皮】七号和新人都要到哦，谁都不许迟到！
+
+  - type: dialogue
+    character: MAIN
+    emotion: 高兴
+    text: |
+      【高兴】嗯！明天见，%player%。
+      【高兴】……一定要来哦。约好了。
+
+  - type: narration
+    text: |
+      她说"约好了"的时候，语气比平时重。
+      像是知道些什么，又不能说出来。
+
+  - type: chapter_end
+    end_type: linear
+    next_chapter: 'a1_poem3'

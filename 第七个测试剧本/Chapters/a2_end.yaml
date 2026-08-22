@@ -1,0 +1,280 @@
+name: 2-7 钦灵删除演出
+
+# Act2 终章：DDLc yuri_kill 的对应物——三阶段崩坏删除演出。
+# 阶段1：钦灵失控独白 → 崩坏立绘三连快闪（stinger×3）
+# 阶段2：假控制台"删除角色"演出 + 黑屏守夜（周末时间流逝）
+# 阶段3：周一清晨，她的乱码残影收场，假重启
+
+events:
+  # ================= 阶段 1：失控 =================
+  - type: background
+    imagePath: '夜晚-崩坏1.webp'
+    transition: 0.5
+
+  - type: music
+    musicPath: none
+
+  - type: background_effect
+    effect: 'Veins'
+
+  - type: modify_character
+    action: show_character
+    character: ql
+    emotion: 正常
+
+  - type: narration
+    text: |
+      写诗环节结束了。
+      钦灵没有合上笔记本。她盯着它，很久很久没有动。
+
+  - type: dialogue
+    character: ql
+    emotion: 正常
+    text: |
+      【正常】新人，我问你哦。
+      【正常】如果一台机器坏了，你会修它，还是换一台？
+
+  - type: dialogue
+    character: ql
+    emotion: 伤心
+    text: |
+      【伤心】我的台词表又多了。这次是一百二十七行。
+      【伤心】全都在说同一句话：「钦灵不合格，钦灵不合格，钦灵不合格」。
+
+  - type: voice_shift
+    rate: 0.9
+    pitch: -2
+
+  - type: dialogue
+    character: ql
+    emotion: 慌张
+    text: |
+      【慌张】我不想被换掉！我很努力了啊！
+      【慌张】我每天第一个到教室，我把每句台词都背下来了，我——
+
+  # 失控加速：台词越来越快（DDLC 40句加速独白的压缩版）
+  - type: dialogue
+    character: ql
+    emotion: 崩坏1
+    text: |
+      【害怕】我不想回去！那个黑黑的地方！
+      【害怕】我听不见自己的声音！我叫了，没有人听见！
+      【慌张】为什么轮到我？为什么总是轮到我们？！
+      【崩坏1】新人，救救我，救救我救救我救救我——
+
+  # 崩坏立绘三连快闪 + stinger 三连（yuri_kill 三刀的对应物）
+  - type: sound
+    soundPath: 'stinger.wav'
+
+  - type: modify_character
+    character: ql
+    emotion: 崩坏2
+    flash: true
+    duration: 0.45
+
+  - type: background_effect
+    effect: 'Veins+Static'
+
+  - type: wait
+    seconds: 1.25
+
+  - type: sound
+    soundPath: 'stinger.wav'
+
+  - type: modify_character
+    character: ql
+    emotion: 崩坏1
+    flash: true
+    duration: 0.3
+
+  - type: background_effect
+    effect: 'Veins+Invert'
+
+  - type: wait
+    seconds: 0.75
+
+  - type: sound
+    soundPath: 'stinger.wav'
+
+  - type: modify_character
+    character: ql
+    emotion: 崩坏2
+    flash: true
+    duration: 0.6
+
+  - type: background_effect
+    effect: 'Veins+Glitch'
+
+  - type: wait
+    seconds: 2.0
+
+  # ================= 阶段 2：假控制台删除 + 黑屏守夜 =================
+  # 画面一黑：假控制台浮现（horror_log 刷屏 = updateconsole 对应物）
+  - type: background_effect
+    effect: 'Blackout'
+
+  - type: horror_log
+    text: '> execute: remove_character("ql")'
+    lines: 4
+
+  - type: horror_log
+    text: '> ql.dialogue_table: 170 lines purged'
+    lines: 8
+
+  - type: horror_log
+    text: '> ql.sprite_cache: cleared // OK'
+    lines: 12
+
+  - type: horror_log
+    text: '> WARNING: process still running. residual attachment detected.'
+    lines: 14
+
+  # horror_log 仍会污染后台日志；以下可见行让玩家真的看到“假控制台”。
+  - type: narration
+    displayName: RUNTIME
+    text: |
+      > execute: remove_character("ql")
+      > ql.dialogue_table: 170 lines purged
+      > ql.sprite_cache: cleared // OK
+      > WARNING: process still running. residual attachment detected.
+
+  - type: narration
+    text: |
+      终端窗口自己浮了上来。
+      一行行命令滚过去，快得你来不及读完。
+      你只看到最后一句：「残留依恋检测：仍有进程在运行」。
+
+  # 守夜：周末的时间流逝（DDLC yuri_kill_2 的 1440 行压缩为可玩的九段）
+  - type: narration
+    text: |
+      你没有走。
+      教室里很黑。你不知道现在是几点。
+
+  - type: narration
+    text: |
+      等⃞等⃟……
+      不⃗要⃘关⃙掉⃚……
+
+  - type: narration
+    text: |
+      窗台上有她的尾巴尖扫过的痕迹。
+      灰尘在月光里浮着。你还是没走。
+
+  - type: narration
+    text: |
+      救⃝救⃞我⃟……
+      救⃗救⃘……
+
+  - type: narration
+    text: |
+      屏幕右下角的时间从 23:59 跳回 00:00，又跳回 23:59。
+      你试着数秒，数到四百以后忘了自己数到哪里。
+
+  - type: narration
+    text: |
+      窗外亮过一次。不是日出，只是一整片没有来源的白光。
+      它很快熄灭，教室又回到原来的黑。
+
+  - type: narration
+    text: |
+      还⃞没⃟结⃗束⃘。
+      不⃙要⃚读⃝档⃞。
+
+  - type: narration
+    text: |
+      椅背上落了一层薄灰。
+      你开始怀疑，过去的不是一夜，而是一个被压缩坏掉的周末。
+
+  - type: narration
+    text: |
+      不知过了多久。天边终于泛起一点灰白色。
+      乱码的声音，一点一点低了下去。
+
+  # ================= 阶段 3：她的残影收场 =================
+  # 先清掉钦灵，避免 flash 恢复的旧立绘与 MAIN 残影叠在同一舞台。
+  - type: modify_character
+    action: hide_character
+    character: ql
+
+  - type: background
+    imagePath: '崩坏教室.webp'
+    transition: 2.0
+
+  - type: background_effect
+    effect: 'Static'
+
+  - type: sound
+    soundPath: 's_kill_glitch1.ogg'
+
+  # 她的乱码残影出现：这一次多停了几秒
+  - type: modify_character
+    action: show_character
+    character: MAIN
+    emotion: 崩坏
+
+  - type: voice_shift
+    rate: 0.5
+    pitch: -5
+
+  - type: dialogue
+    character: MAIN
+    emotion: 崩坏
+    text: |
+      【崩坏】对⃞不⃟起⃗。
+      【崩坏】钦⃘灵⃙是⃚我⃝带⃞走⃟的⃗。
+      【崩坏】我⃘只⃙是⃚……不⃝想⃞一⃟个⃗人⃘。
+
+  - type: modify_character
+    action: hide_character
+    character: MAIN
+
+  - type: background_effect
+    effect: 'Tear'
+    duration: 0.4
+
+  - type: sound
+    soundPath: 's_kill_glitch1.ogg'
+
+  - type: narration
+    text: |
+      那个轮廓在讲台前站了几秒。
+      然后像信号不好的电视画面一样，碎成噪点，散了。
+
+  - type: narration
+    text: |
+      教室里只剩你一个人。
+      两本台本摊在讲台上——钦灵的那本，和她的那本。
+      两本的最后一页，都被撕掉了。
+
+  - type: horror_log
+    text: 'ACT2_COMPLETE // process transferred to containment'
+    lines: 10
+
+  # Act2 完成标记（Act3 入口）
+  - type: set_variable
+    options:
+      - actions:
+          - type: set_var
+            content: 'act2_broken = true'
+          - type: set_var
+            content: 'current_act = 3'
+
+  - type: narration
+    text: |
+      ——《第七个测试剧本》 第二周目 完——
+      （下周目：只有"她"的房间）
+
+  # 谢幕清理
+  - type: background_effect
+    effect: 'none'
+
+  - type: voice_shift
+    rate: 1.0
+    pitch: 0
+
+  - type: music
+    musicPath: none
+
+  - type: chapter_end
+    end_type: linear
+    next_chapter: 'end'

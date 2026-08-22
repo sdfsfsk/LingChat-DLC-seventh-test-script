@@ -1,0 +1,124 @@
+name: 2-0 再次启动
+
+# Act2 开场：DDLC ch10 的对应物——崩坏启动。
+# 游戏"重新启动"，但 logo 是碎的，名单里没有她。
+
+events:
+  - type: set_variable
+    options:
+      - actions:
+          - type: set_var
+            content: 'current_act = 2'
+
+  # 黑场死寂开场
+  - type: background_effect
+    effect: 'Blackout'
+
+  - type: music
+    musicPath: none
+
+  - type: wait
+    seconds: 2.0
+
+  # 崩坏启动画面：碎 logo 两连闪（DDLC splash_glitch 对应物）
+  - type: jumpscare
+    imagePath: '崩坏logo1.webp'
+    duration: 1.5
+
+  - type: sound
+    soundPath: 'glitch1.ogg'
+
+  - type: wait
+    seconds: 1.5
+
+  - type: background_effect
+    effect: 'Tear'
+    duration: 0.3
+
+  - type: sound
+    soundPath: 's_kill_glitch1.ogg'
+
+  - type: jumpscare
+    imagePath: '崩坏logo2.webp'
+    duration: 0.75
+
+  - type: wait
+    seconds: 0.75
+
+  # 加载日志全是错的
+  - type: horror_log
+    text: 'BOOT_SEQUENCE_CORRUPTED // 第七次启动'
+    lines: 10
+
+  - type: narration
+    displayName: RUNTIME
+    text: |
+      > BOOT_SEQUENCE_CORRUPTED
+      > character_slot[0]: MISSING
+      > fallback scene loaded with unresolved references
+
+  # 世界重启：白天的教室——但不对
+  - type: background
+    imagePath: '白天.webp'
+    transition: 3.0
+
+  - type: background_effect
+    effect: 'none'
+
+  # BGM 是幽灵菜单曲（变调主题曲，DDLC ghostmenu 对应物）
+  - type: music
+    musicPath: 'ghostmenu.ogg'
+
+  - type: voice_shift
+    rate: 1.0
+    pitch: 0
+
+  - type: narration
+    text: |
+      深夜，%player%打开了剧本列表。
+      《第七个测试剧本》还躺在列表末尾。
+
+  - type: narration
+    text: |
+      你点开了它。
+      教室亮起来——和记忆中一模一样的阳光。
+      只是这一次，没有人喊你的名字。
+
+  # 她的乱码残影一闪而过（sayori glitch 对应物：名字和台词都是乱码）
+  - type: modify_character
+    action: show_character
+    character: MAIN
+    emotion: 崩坏
+
+  - type: sound
+    soundPath: 'glitch2.ogg'
+
+  - type: dialogue
+    character: MAIN
+    emotion: 崩坏
+    text: |
+      【崩坏】¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿
+      【崩坏】ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞß
+
+  - type: modify_character
+    action: hide_character
+    character: MAIN
+
+  - type: wait
+    seconds: 0.5
+
+  - type: narration
+    text: |
+      刚才那是什么？
+      讲台上站着一个……轮廓。一闪就没了。
+      它说的话，你一个字都不认识。
+
+  - type: narration
+    text: |
+      教室里只剩下钦灵。
+      她坐在自己的位置上，冲你笑了笑。
+      笑得有点僵。
+
+  - type: chapter_end
+    end_type: linear
+    next_chapter: 'a2_day1'

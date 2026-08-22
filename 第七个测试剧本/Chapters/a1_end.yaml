@@ -1,0 +1,216 @@
+name: 1-8 她不在的教室
+
+# Act1 终章：死亡冲击。逐帧复刻 DDLC ch5 s_kill 的演出节奏：
+# 反常日常 → 台词掐断 → CG 静止 → Tear 撕裂 → 推近 → 噪点暗角 → 假报错 → 黑屏独白。
+
+events:
+  # 一切如常的开场——越正常越不对
+  - type: background
+    imagePath: '白天.webp'
+    transition: 2.0
+
+  - type: music
+    musicPath: '2.ogg'
+    playbackSpeed: 1.0
+
+  - type: narration
+    text: |
+      周一。天气很好。
+      你推开教室门，准备像往常一样和她打招呼——
+
+  - type: narration
+    text: |
+      教室里没有人。
+      她的桌椅干干净净，像是从来没有人坐过。
+      黑板上的「终场演出」四个字也被擦掉了。
+
+  - type: dialogue
+    character: ql
+    emotion: 正常
+    text: |
+      【正常】……咦，新人？你怎么来了？
+      【正常】今天没有排期哦。台本上说今天是"空场"。
+
+  - type: narration
+    text: |
+      钦灵站在讲台边，语气平静得反常。
+      她没有问"她"去哪了。
+      好像在她的台本里，从来就没有过"她"。
+
+  - type: choices
+    options:
+      - text: 她呢？她去哪里了？
+        actions:
+          - type: add_line
+            content: 她呢？她去哪里了？
+      - text: 台本？什么台本？让我看看。
+        actions:
+          - type: add_line
+            content: 台本？什么台本？让我看看。
+    allow_free: false
+
+  - type: dialogue
+    character: ql
+    emotion: 害怕
+    text: |
+      【害怕】……钦灵不知道。
+      【害怕】钦灵的台本里，这一页是空白的。
+      【害怕】新人的台本里……难道有吗？
+
+  # 你转身走向教室后面——她说过"她的台本放在最后一排"
+  - type: narration
+    text: |
+      你想起来她说过，她的台本放在最后一排那张空桌里。
+      你朝教室后面走去——
+
+  # ===== 台词掐断（DDLC 开门瞬间的 {nw} 对应物）=====
+  - type: narration
+    text: |
+      等等。
+      那是——
+
+  # ===== 发现：终末教室（静止 3.75s，帧级对齐 s_kill）=====
+  - type: music
+    musicPath: 'd.ogg'
+
+  - type: background
+    imagePath: '终末教室.webp'
+    transition: 0
+
+  - type: modify_character
+    action: hide_character
+    character: ql
+
+  - type: wait
+    seconds: 3.75
+
+  # Tear 撕裂一闪 + 故障音
+  - type: background_effect
+    effect: 'Tear'
+    duration: 0.25
+
+  - type: sound
+    soundPath: 's_kill_glitch1.ogg'
+
+  # 镜头推近
+  - type: background
+    imagePath: '终末教室-zoom.webp'
+    transition: 0.8
+
+  - type: wait
+    seconds: 2.0
+
+  # 噪点+暗角
+  - type: background_effect
+    effect: 'Static+Veins'
+
+  - type: wait
+    seconds: 1.5
+
+  # 白闪+反色回卷
+  - type: background_effect
+    effect: 'Flash+Invert'
+    duration: 0.5
+
+  - type: sound
+    soundPath: 's_kill_glitch1.ogg'
+
+  - type: wait
+    seconds: 0.5
+
+  # ===== 假报错：剧本借引擎的崩溃界面说话（DDLC report_exception 对应物）=====
+  - type: background
+    imagePath: '假报错.webp'
+    transition: 0
+
+  - type: background_effect
+    effect: 'none'
+
+  - type: wait
+    seconds: 6.0
+
+  # ===== 黑屏独白 =====
+  - type: background_effect
+    effect: 'Blackout'
+
+  - type: narration
+    text: |
+      ……
+      开什么玩笑。
+
+  - type: narration
+    text: |
+      她的台本摊开在桌上。
+      最后一页被撕掉了。
+      撕口很整齐——整齐得像是从一开始，就没有那一页。
+
+  - type: narration
+    text: |
+      教室里没有她。
+      名单上没有她。
+      连黑板上的粉笔字，都没有了她的名字。
+
+  - type: narration
+    text: |
+      明明周末她还站在灯光里。
+      她还说，想说出一句"不属于任何剧本"的话。
+
+  # 周末的选择救不了她，却会改变玩家记住自己的方式（对应原作殊途同归的差分自责）。
+  - type: narration
+    condition: weekend_choice == praise
+    text: |
+      是我的错吗。
+      如果我没有用一句好听的话，把她的不安轻轻盖过去——
+
+  - type: narration
+    condition: weekend_choice == truth
+    text: |
+      是我的错吗。
+      如果我说完真话以后，没有让她一个人留在灯光里——
+
+  - type: narration
+    condition: weekend_choice == clap
+    text: |
+      是我的错吗。
+      如果我没有鼓掌，而是冲上去拉住她——
+
+  - type: narration
+    text: |
+      可是没有如果。
+      这不是能读档重来的游戏。
+      你只有一次机会，而你没有抓紧。
+
+  # 她的乱码残影：最后一句（glitchtext 对应物，unicode 组合字符）
+  - type: sound
+    soundPath: 'eyes.ogg'
+
+  - type: narration
+    text: |
+      等⃞等⃟我⃗……
+      我⃘还⃙在⃚这⃝里⃞……
+
+  # 只在事故演出完整结束后推进到 Act 2；中途退出不会跳幕。
+  - type: set_variable
+    options:
+      - actions:
+          - type: set_var
+            content: 'current_act = 2'
+
+  - type: narration
+    text: |
+      ——《第七个测试剧本》 第一周目 完——
+
+  # 谢幕清理
+  - type: background_effect
+    effect: 'none'
+
+  - type: voice_shift
+    rate: 1.0
+    pitch: 0
+
+  - type: music
+    musicPath: none
+
+  - type: chapter_end
+    end_type: linear
+    next_chapter: 'end'

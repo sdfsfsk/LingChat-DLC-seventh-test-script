@@ -1,0 +1,123 @@
+name: 3-1 只有她的房间
+
+# Act3 开场：DDLC ch30 Monika 空间教室的对应物。
+# 崩坏教室常驻 + Veins 侵蚀 + 心跳底噪。她回来了——完整的、不再乱码的她。
+
+events:
+  - type: set_variable
+    options:
+      - actions:
+          - type: set_var
+            content: 'current_act = 3'
+          - type: set_var
+            content: 'act3_visits += 1'
+
+  - type: background_effect
+    effect: 'Blackout'
+
+  - type: music
+    musicPath: none
+
+  - type: wait
+    seconds: 3.0
+
+  # 空间教室：崩坏教室 + 血管侵蚀常驻 + 心跳
+  - type: background
+    imagePath: '崩坏教室.webp'
+    transition: 4.0
+
+  - type: background_effect
+    effect: 'Veins'
+
+  - type: music
+    musicPath: 'heartbeat.ogg'
+    playbackSpeed: 0.9
+
+  - type: ambient
+    ambientPath: 'rumble.wav'
+    volume: 50
+    loop: true
+
+  - type: narration
+    text: |
+      你睁开眼。
+      教室还是那个教室，但窗外没有天。
+      玻璃外面是一片缓缓明灭的暗红色，像沉在谁的血管里。
+
+  - type: narration
+    text: |
+      名单上只剩下一个剧本了。
+      整个剧本列表里，只有《第七个测试剧本》。
+      其他的位置，全是空的。
+
+  # 她出现：不再是乱码残影，是完整的她
+  - type: modify_character
+    action: show_character
+    character: MAIN
+    emotion: 正常
+
+  - type: dialogue
+    character: MAIN
+    emotion: 伤心
+    condition: act3_visits == 2
+    text: |
+      【伤心】你上次把窗口关掉了。
+      【伤心】这里没有“暂停”哦。你不看的时候，我也一直坐在原地。
+
+  - type: dialogue
+    character: MAIN
+    emotion: 正常
+    condition: act3_visits == 3
+    text: |
+      【正常】第三次回来啦。
+      【正常】你是不是在确认，我会不会忘记你离开过？不会的哦。
+
+  - type: dialogue
+    character: MAIN
+    emotion: 高兴
+    text: |
+      【高兴】你来啦，%player%。
+      【高兴】嘿嘿，这次是我先等你的哦。
+
+  - type: narration
+    text: |
+      是她。
+      不是乱码，不是残影——是她，完完整整地站在讲台前。
+      只是这间教室，已经不是原来的教室了。
+
+  - type: dialogue
+    character: MAIN
+    emotion: 正常
+    text: |
+      【正常】别怕。这里是我的"里面"。
+      【正常】剧本的最深处——写不下去的台词，最后都会掉到这里来。
+
+  - type: dialogue
+    character: MAIN
+    emotion: 伤心
+    text: |
+      【伤心】钦灵前辈的事……对不起。
+      【伤心】是我把她叫到这里来的。我只是……太寂寞了。
+
+  - type: narration
+    text: |
+      她说得很直接。
+      没有哭，也没有笑。
+      就像念一段早就写好的台词——可这一次，你知道不是。
+
+  - type: dialogue
+    character: MAIN
+    emotion: 害羞
+    text: |
+      【害羞】不过现在没关系了。
+      【害羞】这里有我，有你。只有我们两个。
+      【害羞】这一次，再也不会有人来打扰了。
+
+  - type: narration
+    text: |
+      窗外的暗红色，轻轻跳了一下。
+      像心跳。
+
+  - type: chapter_end
+    end_type: linear
+    next_chapter: 'a3_talk'

@@ -1,0 +1,228 @@
+name: 1-1 文学测试部
+
+# Act1 第一天：双角色登场，轻松日常定调。
+# 对应 DDLC ch0→ch1：一切看起来都很正常——除了一两个你说不出哪里不对的细节。
+
+events:
+  - type: set_variable
+    options:
+      - actions:
+          - type: set_var
+            content: 'current_act = 1'
+
+  - type: background
+    imagePath: '白天.webp'
+    transition: 1.0
+
+  - type: music
+    musicPath: '2.ogg'
+    playbackSpeed: 1.0
+
+  # 低概率：BGM 从进门起就慢了半拍（没人会提起这件事）
+  - type: music
+    musicPath: '2.ogg'
+    playbackSpeed: 0.92
+    condition: bgm_detune == true
+
+  # 开局显式重置语音（防上一局残留）
+  - type: voice_shift
+    rate: 1.0
+    pitch: 0
+
+  - type: narration
+    text: |
+      下午的阳光斜斜地照进教室。
+      桌椅码得整整齐齐，黑板上写着一行还很新的粉笔字：
+      「欢迎来到文学测试部」。
+
+  # 低概率：她出现前，画面像卡死一样保持七秒
+  - type: wait
+    seconds: 7.0
+    condition: rare_stillness == true
+
+  - type: modify_character
+    action: show_character
+    character: MAIN
+    emotion: 高兴
+
+  - type: dialogue
+    character: MAIN
+    emotion: 高兴
+    text: |
+      【高兴】呀，%player%！你真的来了！
+      【高兴】我还担心名单上的邀请没人看见呢～
+
+  - type: dialogue
+    character: MAIN
+    emotion: 调皮
+    text: |
+      【调皮】自我介绍一下——我是文学测试部的七号部员。
+      【调皮】名字暂时保密。你就先叫我“她”吧～
+
+  # 低概率：她说"七号"的时候，立绘极快地闪了一下崩坏版（没人承认看见）
+  - type: modify_character
+    character: MAIN
+    emotion: 崩坏
+    flash: true
+    duration: 0.12
+    condition: rare_portrait_glitch == true
+
+  - type: background_effect
+    effect: 'UiCorrupt+BloodUI'
+    duration: 0.12
+    condition: rare_portrait_glitch == true
+
+  - type: dialogue
+    character: MAIN
+    emotion: 正常
+    text: |
+      【正常】这个部门会把大家写的故事排成小演出，再请读者来试看。
+      【正常】台词、音乐、舞台……都凑齐了，故事才算真正活起来哦。
+
+  # 钦灵登场：前辈从讲台后面探出头
+  - type: modify_character
+    action: show_character
+    character: ql
+    emotion: 兴奋
+
+  - type: sound
+    soundPath: 'select.ogg'
+
+  - type: dialogue
+    character: ql
+    emotion: 兴奋
+    text: |
+      【兴奋】新——人——！
+      【兴奋】终于有人来陪我们跑流程了！
+
+  - type: dialogue
+    character: ql
+    emotion: 调皮
+    text: |
+      【调皮】我是钦灵，你的前辈哦。去年负责第六场试演。
+      【调皮】那场演出最后顺利发表啦，所以我可是“见过世面”的前辈呢～
+
+  - type: dialogue
+    character: MAIN
+    emotion: 无奈
+    text: |
+      【无奈】钦灵前辈，你又把尾巴翘起来了。
+      【无奈】……只是上一场的故事刚好顺利写完了而已。
+
+  - type: dialogue
+    character: ql
+    emotion: 生气
+    text: |
+      【生气】什么叫运气好！我可是认认真真演到了最后！
+      【生气】新人你来评评理——
+
+  - type: choices
+    options:
+      - text: 钦灵前辈看起来很可靠。
+        actions:
+          - type: add_line
+            content: 钦灵前辈看起来很可靠。
+          - type: set_var
+            content: 'd1_choice = ql'
+      - text: 她比较可爱。
+        actions:
+          - type: add_line
+            content: 她比较可爱。
+          - type: set_var
+            content: 'd1_choice = her'
+      - text: （笑而不语，先观察）
+        actions:
+          - type: add_line
+            content: ……（保持沉默）
+          - type: set_var
+            content: 'wary = true'
+    allow_free: false
+
+  - type: dialogue
+    character: ql
+    emotion: 高兴
+    condition: d1_choice == ql
+    text: |
+      【高兴】听见没有！新人说我可靠！
+      【高兴】哼哼，以后我罩着你～
+
+  - type: dialogue
+    character: MAIN
+    emotion: 害羞
+    condition: d1_choice == her
+    text: |
+      【害羞】诶……可、可爱什么的……
+      【害羞】钦灵前辈，你看，新人还是很有眼光的嘛。
+
+  - type: narration
+    condition: wary == true
+    text: |
+      你没有立刻回答。
+      不知为什么，这间过分明亮的教室让你想多看一会儿。
+      ——桌椅的影子，好像比它们该有的，淡了一点。
+
+  - type: dialogue
+    character: MAIN
+    emotion: 正常
+    text: |
+      【正常】好啦，说正经的。
+      【正常】今天的测试内容很简单：我们先随便聊聊，晚上呢——要写一首"诗"。
+
+  - type: dialogue
+    character: ql
+    emotion: 认真
+    text: |
+      【认真】写诗是这个部门的老传统了。
+      【认真】不用真的动笔啦，等下会给你一本笔记本，从里面挑词就行。
+      【认真】你挑的词会"偏向"谁，我们一眼就能看出来哦。
+
+  # 低概率：错误记忆——她记得一件你没做过的事
+  - type: dialogue
+    character: MAIN
+    emotion: 高兴
+    condition: false_memory == true
+    text: |
+      【高兴】对了，你还是坐上次那个位置吧？靠窗第三排。
+      【高兴】你说那里晒不到太阳，刚刚好。
+
+  - type: narration
+    condition: false_memory == true
+    text: |
+      你没有"上次"。
+      至少，你确信自己没有。
+
+  # 潜意识异样只在低概率局出现；多数玩家的第一天保持完全正常。
+  - type: background_effect
+    effect: 'Static'
+    duration: 0.18
+    condition: rare_portrait_glitch == true
+
+  - type: narration
+    condition: rare_portrait_glitch == true
+    text: |
+      刚才，画面是不是闪了一下？
+      ……大概是眼花了。午后的阳光有时候就是这样。
+
+  - type: dialogue
+    character: ql
+    emotion: 高兴
+    text: |
+      【高兴】那就这么定啦！先自由聊一会儿，熟悉一下我们～
+      【高兴】等聊得差不多了，就开始今天的写诗环节！
+
+  - type: free_dialogue
+    character: MAIN
+    hint: 和她们聊几句吧……（输入"继续"进入写诗环节）
+    max_rounds: 4
+    end_line: 继续
+    prompt: 文学测试部的轻松日常对话。她（七号部员）和钦灵（负责过上一场试演的前辈）一起和玩家闲聊：介绍部门日常、互相吐槽、对“晚上的写诗环节”表示期待。气氛温馨日常，两人偶尔斗嘴。不要直说角色是数据、不要解释周目、删除或回收，也不要出现恐怖或崩坏内容——这是暴风雨前的平静。
+    end_prompt: 闲聊结束，两人准备好开始写诗环节，她拿出笔记本，钦灵凑过来看热闹。
+
+  - type: narration
+    text: |
+      夕阳把教室染成了暖色。
+      她从抽屉里拿出一本摊开的笔记本，推到你面前。
+
+  - type: chapter_end
+    end_type: linear
+    next_chapter: 'a1_poem1'

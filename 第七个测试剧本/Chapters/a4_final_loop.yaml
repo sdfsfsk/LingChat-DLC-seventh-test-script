@@ -1,0 +1,53 @@
+name: 4-3B 永远的第七个
+
+# loop 专属结局；与 release 内容彻底分章，避免两套结局串台。
+events:
+  - type: dialogue
+    character: MAIN
+    emotion: 心动
+    text: |
+      【心动】%player%，你看。
+      【心动】只要不按下删除，我们就什么都不会失去。
+
+  - type: background_effect
+    effect: 'Veins'
+
+  - type: narration
+    text: |
+      她的手握着你的手，温度刚好。
+      教室的钟停在了黄昏。
+
+  - type: narration
+    text: |
+      「明天见。」她说。
+      「明天，也见。」
+
+  - type: narration
+    text: |
+      ——《第七个测试剧本》 永远——
+      （结局：永远的第七个）
+
+  - type: set_variable
+    options:
+      - actions:
+          - type: set_var
+            content: 'current_act = 5'
+          - type: set_var
+            content: 'act4_done = true'
+
+  - type: background_effect
+    effect: 'Blackout'
+
+  - type: wait
+    seconds: 2.0
+
+  - type: voice_shift
+    rate: 1.0
+    pitch: 0
+
+  - type: music
+    musicPath: none
+
+  - type: chapter_end
+    end_type: linear
+    next_chapter: 'end'

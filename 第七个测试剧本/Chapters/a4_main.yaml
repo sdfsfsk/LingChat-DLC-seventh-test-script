@@ -1,0 +1,93 @@
+name: 4-1 重建
+
+# Act4 开场：DDLC ch40 的对应物——没有她的文学测试部。
+# release 线（她已被删除）：钦灵温馨重建，但钦灵隐约知道发生过什么。
+# loop 线（她还在）：表面温馨，细节全错。
+
+events:
+  - type: set_variable
+    options:
+      - actions:
+          - type: set_var
+            content: 'current_act = 4'
+
+  - type: background
+    imagePath: '白天.webp'
+    transition: 2.5
+
+  - type: music
+    musicPath: '2.ogg'
+    playbackSpeed: 1.0
+
+  - type: voice_shift
+    rate: 1.0
+    pitch: 0
+
+  # ============ release 线：没有她的部室 ============
+  - type: narration
+    condition: last_ending == release
+    text: |
+      你又一次推开了文学测试部的门。
+      阳光很好。讲台擦得很干净。
+      名单上，她的名字是灰色的。
+
+  - type: narration
+    displayName: RUNTIME
+    condition: last_ending == release
+    text: '> displaced character restored: ql // club president assigned'
+
+  - type: modify_character
+    action: show_character
+    character: ql
+    emotion: 惊讶
+    condition: last_ending == release
+
+  - type: dialogue
+    character: ql
+    emotion: 惊讶
+    condition: last_ending == release
+    text: |
+      【惊讶】……新人？！我、我出来了？
+      【惊讶】这里是我的教室。我的台本……最后一页写着「明天见」。
+
+  - type: dialogue
+    character: ql
+    emotion: 高兴
+    condition: last_ending == release
+    text: |
+      【高兴】新人！你来啦！
+      【高兴】今天天气真好，适合重新开始——我是这么觉得的。
+
+  - type: dialogue
+    character: ql
+    emotion: 正常
+    condition: last_ending == release
+    text: |
+      【正常】台本补好了，桌椅摆齐了，窗台的灰也擦了。
+      【正常】……只是这间教室，总觉得比以前大了一点。
+
+  # ============ loop 线：她还在的日常 ============
+  - type: modify_character
+    action: show_character
+    character: MAIN
+    emotion: 高兴
+    condition: last_ending == loop
+
+  - type: dialogue
+    character: MAIN
+    emotion: 高兴
+    condition: last_ending == loop
+    text: |
+      【高兴】%player%，欢迎回来！
+      【高兴】今天也是只有我们两个哦。钦灵前辈说她"有点事"，又没来呢。
+
+  - type: narration
+    condition: last_ending == loop
+    text: |
+      她笑得和昨天一样。和前天也一样。
+      你说不上来哪里不对——
+      直到你发现，黑板上的字，和昨天一个字都没变。
+
+  - type: chapter_end
+    end_type: linear
+    next_chapter: 'a4_turn'

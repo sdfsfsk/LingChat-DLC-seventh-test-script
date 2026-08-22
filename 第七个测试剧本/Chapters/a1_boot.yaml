@@ -1,0 +1,71 @@
+name: 0 启动检查
+
+# 每次进入剧本都先经过这里：播种本轮的低概率异常，然后按持久 current_act 分幕。
+# DDLC splash.rpyc 的对应物——DDLC 在启动时读用户名/检测角色文件/抽特殊诗，
+# 我们在这里做"这一局会不会哪里不对劲"的播种。
+
+events:
+  # 首次进入立即钉住 Act1；避免用户在开场检查中退出后被打开次数推进到 Act2。
+  - type: set_variable
+    options:
+      - condition: playthrough == 1
+        actions:
+          - type: set_var
+            content: 'current_act = 1'
+
+  # 约 1/16：她的立绘出现前，画面像卡死一样保持七秒。后文完全不解释。
+  - type: random_var
+    variable: rare_stillness
+    chance: 0.0625
+
+  # 约 1/4：角色偶尔会记得一件玩家从未做过的事（错误记忆）。
+  - type: random_var
+    variable: false_memory
+    chance: 0.25
+
+  # 约 1/16：一张不该出现的立绘会在正常对白中闪过，但没人承认看见过。
+  - type: random_var
+    variable: rare_portrait_glitch
+    chance: 0.0625
+
+  # 约 1/8：本局 BGM 悄悄降半速变调。
+  - type: random_var
+    variable: bgm_detune
+    chance: 0.125
+
+  # 约 1/8：某句普通台词以乱码版本出场，角色本人毫无察觉。
+  - type: random_var
+    variable: garble_line
+    chance: 0.125
+
+  # 分幕路由：current_act 只在幕末推进。playthrough 仍记录打开次数，
+  # 但中途退出不会再因为“多打开一次”直接跳过整幕。
+  - type: chapter_end
+    end_type: branching
+    options:
+      - condition: current_act == 4
+        next: 'a4_main'
+      - condition: current_act == 3
+        next: 'a3_space'
+      - condition: current_act == 2
+        next: 'a2_boot'
+      - condition: current_act == 1
+        next: 'a1_day1'
+      # 旧版存档尚无 current_act：仅在上述显式幕次都未命中时兼容旧 playthrough。
+      - condition: playthrough == 4
+        next: 'a4_main'
+      - condition: playthrough == 3
+        next: 'a3_space'
+      - condition: playthrough == 2
+        next: 'a2_boot'
+      # Act 4 完成后才进入空房间。
+      - condition: act4_done == true
+        next: 'a5_lingering'
+      # 旧存档兼容：已有结局、但还没有 current_act/act4_done 的存档。
+      - condition: last_ending == release
+        next: 'a5_lingering'
+      - condition: last_ending == loop
+        next: 'a5_lingering'
+      # 首次进入或 Act 1 中途重开都从日常幕重新开始。
+      - default: true
+        next: 'a1_day1'

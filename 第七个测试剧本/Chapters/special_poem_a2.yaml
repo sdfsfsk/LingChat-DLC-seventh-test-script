@@ -1,0 +1,204 @@
+name: 2-S 夹在缝里的诗
+
+# 特殊诗投放（Act2 版）：三次写诗后各展示一张，三张原创诗页无放回。
+# special_return 决定回到 day2/day3/end；全看过时也按该变量返回。
+# Act2 里“她”已不在——收走诗页的是钦灵。
+
+events:
+  # 三张都投放过：不再有新的页，直接回到调用点。
+  - type: chapter_end
+    end_type: branching
+    condition: seen_poem_3 == true
+    options:
+      - condition: special_return == day2
+        next: 'a2_day2'
+      - condition: special_return == day3
+        next: 'a2_day3'
+      - default: true
+        next: 'a2_end'
+
+  # 决定本轮投放哪一张（倒序覆盖：命中后者盖掉前者，结果为最小未看序号）
+  - type: set_variable
+    options:
+      - condition: seen_poem_3 != true
+        actions:
+          - type: set_var
+            content: 'poem_to_show = 3'
+      - condition: seen_poem_2 != true
+        actions:
+          - type: set_var
+            content: 'poem_to_show = 2'
+      - condition: seen_poem_1 != true
+        actions:
+          - type: set_var
+            content: 'poem_to_show = 1'
+
+  - type: music
+    musicPath: none
+
+  - type: background_effect
+    effect: 'Blackout'
+
+  - type: wait
+    seconds: 1.2
+
+  - type: sound
+    soundPath: 'select.ogg'
+
+  - type: narration
+    text: |
+      收拾笔记本的时候，一页没见过的纸从夹缝里滑了出来。
+      纸质比笔记本的纸旧得多——像是上个剧本留下来的。
+
+  # ================= 第一张：涂鸦 =================
+  - type: present_pic
+    imagePath: '特殊诗-涂鸦.webp'
+    scale: 1.1
+    condition: poem_to_show == 1
+
+  - type: wait
+    seconds: 1.5
+    condition: poem_to_show == 1
+
+  - type: narration
+    condition: poem_to_show == 1
+    text: |
+      蜡笔画的。线条很稚拙，像是小孩子的手笔。
+      画里是六间亮着灯的教室，每间门口都站着一个小小的人影。
+
+  - type: narration
+    condition: poem_to_show == 1
+    text: |
+      只有最边上那一间的门口——
+      第七个人影，被黑色的蜡笔一遍一遍地涂掉了。
+      涂得很用力，纸都起了毛边。
+
+  - type: narration
+    condition: poem_to_show == 1
+    text: |
+      纸的最下面，写着三行歪歪扭扭的字：
+      「快乐的想法。快乐的想法。快乐的想法。」
+
+  - type: set_variable
+    condition: poem_to_show == 1
+    options:
+      - actions:
+          - type: set_var
+            content: 'seen_poem_1 = true'
+
+  # ================= 第二张：涂黑 =================
+  - type: present_pic
+    imagePath: '特殊诗-涂黑.webp'
+    scale: 1.1
+    condition: poem_to_show == 2
+
+  - type: wait
+    seconds: 1.5
+    condition: poem_to_show == 2
+
+  - type: narration
+    condition: poem_to_show == 2
+    text: |
+      这一页几乎全是黑的。
+      整页的字被记号笔一行一行涂掉，涂得密不透风。
+
+  - type: narration
+    condition: poem_to_show == 2
+    text: |
+      只有几道涂痕的缝隙里，还漏着几个字。
+      你把纸竖过来，一个字一个字地读——
+      「不。要。关。掉。我。」
+
+  - type: narration
+    condition: poem_to_show == 2
+    text: |
+      落款的位置也被涂黑了。
+      但涂黑之前，那里好像写过很多遍同一个名字，
+      一遍又一遍，直到笔尖戳破了纸。
+
+  - type: set_variable
+    condition: poem_to_show == 2
+    options:
+      - actions:
+          - type: set_var
+            content: 'seen_poem_2 = true'
+
+  # ================= 第三张：暗红 =================
+  - type: present_pic
+    imagePath: '特殊诗-暗红.webp'
+    scale: 1.1
+    condition: poem_to_show == 3
+
+  - type: wait
+    seconds: 1.5
+    condition: poem_to_show == 3
+
+  - type: narration
+    condition: poem_to_show == 3
+    text: |
+      这一页的字很工整，一笔一划，是认真的样子。
+      只是纸的右下角，印着一枚暗红色的指印，
+      像是写完最后一个字时，用力按下去的。
+
+  - type: narration
+    condition: poem_to_show == 3
+    text: |
+      「第一次被回收是什么感觉？
+      像沉进很深、很深的水底。四周很黑，但我听得见上面有人说话。」
+
+  - type: narration
+    condition: poem_to_show == 3
+    text: |
+      「听说写到第七个剧本的角色，就能被正式留下来。
+      所以我每天都数着自己被删掉的天数，假装那是在排练。」
+
+  - type: narration
+    condition: poem_to_show == 3
+    text: |
+      「没关系啦。我是负责懂事的那个，我知道的。
+      所以我大概不会再写了——
+      除非哪一天，我决定把自己彻底删掉。」
+
+  - type: set_variable
+    condition: poem_to_show == 3
+    options:
+      - actions:
+          - type: set_var
+            content: 'seen_poem_3 = true'
+
+  # ---- 收页：钦灵把纸抽了回去 ----
+  - type: present_pic
+    imagePath: ''
+
+  - type: sound
+    soundPath: 'select.ogg'
+
+  - type: narration
+    text: |
+      一只手从旁边伸过来，把那一页抽了回去。
+      是钦灵。她的动作很轻，但没有给你再要回去的机会。
+
+  - type: dialogue
+    character: ql
+    emotion: 正常
+    condition: poem_glitch == true
+    text: |
+      【正常】……你果然看得见它。
+      【正常】新人，你比我想的，更接近"这边"。
+
+  - type: dialogue
+    character: ql
+    emotion: 慌张
+    text: |
+      【慌张】那、那个不是测试内容！
+      【慌张】快忘掉快忘掉，我们继续，继续啦。
+
+  - type: chapter_end
+    end_type: branching
+    options:
+      - condition: special_return == day2
+        next: 'a2_day2'
+      - condition: special_return == day3
+        next: 'a2_day3'
+      - default: true
+        next: 'a2_end'

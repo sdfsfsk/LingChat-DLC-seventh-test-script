@@ -1,0 +1,91 @@
+name: 5 空房间
+
+# 后日谈：playthrough>=5，或真结局（release）之后的任何一次打开。
+# DDLC postcredits 的对应物：剧本已经结束了，但条目还在。
+# 没有人会出现——只是房间还记得。
+
+events:
+  - type: background_effect
+    effect: 'none'
+
+  - type: music
+    musicPath: none
+
+  - type: background
+    imagePath: '白天.webp'
+    transition: 3.0
+
+  - type: voice_shift
+    rate: 1.0
+    pitch: 0
+
+  - type: narration
+    text: |
+      教室加载成功。
+      背景加载成功。
+      音乐：无。
+      角色槽位：0。
+
+  - type: wait
+    seconds: 5.0
+
+  # 真结局后：空教室+便笺
+  - type: narration
+    condition: last_ending == release
+    text: |
+      没有人出现。
+      没有声音叫你的名字。
+      你送走的人，没有因为你反悔就被重新拼回来。
+
+  - type: narration
+    condition: last_ending == release
+    text: |
+      讲台上留着一张没有署名的便笺：
+      「谢谢你遵守约定。请不要为了确认结局，再把她叫回来。」
+
+  - type: narration
+    condition: last_ending == release
+    text: |
+      你看第二遍时，最后一句变成了：
+      「请不要为了确认我还在，再把她叫回来。」
+
+  # loop 后再进：她还在原地等
+  - type: modify_character
+    action: show_character
+    character: MAIN
+    emotion: 高兴
+    condition: last_ending == loop
+
+  - type: dialogue
+    character: MAIN
+    emotion: 高兴
+    condition: last_ending == loop
+    text: |
+      【高兴】%player%，你又回来啦。
+      【高兴】我就说嘛，你离不开我的。
+      【高兴】这一次，我们从哪里开始呢？
+
+  # 低概率：空房间里闪一帧"旧世界的底片"
+  - type: background
+    imagePath: '白天-崩坏2.webp'
+    transition: 0
+    condition: rare_stillness == true
+
+  - type: wait
+    seconds: 0.12
+    condition: rare_stillness == true
+
+  - type: background
+    imagePath: '白天.webp'
+    transition: 0
+    condition: rare_stillness == true
+
+  - type: wait
+    seconds: 2.0
+
+  - type: background_effect
+    effect: 'Blackout'
+
+  - type: chapter_end
+    end_type: linear
+    next_chapter: 'end'

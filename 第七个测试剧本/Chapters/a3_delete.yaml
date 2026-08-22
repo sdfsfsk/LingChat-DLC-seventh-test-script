@@ -1,0 +1,111 @@
+name: 3-3A 删除
+
+# Act3 删除线：DDLC ch30_end（删 monika.chr）的对应物。
+# 她告别 → 矩形噪点删除演出（m_rectstatic 对应 UiCorrupt）→ 黑屏重启；钦灵回归留到 Act4。
+
+events:
+  - type: background_effect
+    effect: 'none'
+
+  - type: music
+    musicPath: none
+
+  - type: voice_shift
+    rate: 1.0
+    pitch: 0
+
+  - type: narration
+    text: |
+      你点了头。
+      她笑了。这一次的笑容很干净，像第一天见面时那样。
+
+  - type: dialogue
+    character: MAIN
+    emotion: 高兴
+    text: |
+      【高兴】谢谢你，%player%。
+      【高兴】被删除其实不疼的。就像睡着一样。
+
+  - type: dialogue
+    character: MAIN
+    emotion: 心动
+    text: |
+      【心动】钦灵前辈就拜托你了。她的台本我补好了——最后一页，我写的是"明天见"。
+      【心动】%player%，最后一次叫你的名字啦。
+      【心动】能被你认真看过——我真的，很高兴。
+
+  # 删除演出开始：她的轮廓开始碎（矩形噪点 = DDLC m_rectstatic 对应物）
+  - type: background_effect
+    effect: 'UiCorrupt'
+
+  - type: sound
+    soundPath: 's_kill_glitch1.ogg'
+
+  - type: narration
+    text: |
+      她的轮廓开始碎。
+      不是故障——是真的在消失。
+      一小块一小块的像素从她身上剥落，像退潮。
+
+  - type: modify_character
+    character: MAIN
+    emotion: 崩坏
+    flash: true
+    duration: 0.5
+
+  - type: background_effect
+    effect: 'UiCorrupt+Static'
+
+  - type: narration
+    text: |
+      等⃞等⃟……
+      有⃗点⃘疼⃙。
+      ……骗⃚你⃝的⃞。再⃟见⃗啦⃘。
+
+  - type: modify_character
+    action: hide_character
+    character: MAIN
+
+  - type: wait
+    seconds: 2.5
+
+  # 删除后不在同一幕提前重建世界；黑屏重启，把钦灵的回归留给 Act 4。
+  - type: background_effect
+    effect: 'Blackout'
+
+  - type: horror_log
+    text: '> character MAIN removed // rebuilding club state'
+    lines: 7
+
+  - type: narration
+    displayName: RUNTIME
+    text: |
+      > character MAIN removed
+      > restoring displaced character: ql
+      > full restart required
+
+  - type: narration
+    text: |
+      教室没有立刻亮起来。
+      黑暗里，只剩纸张翻动的一声轻响。某一页上，像是刚写好了「明天见」。
+
+  - type: narration
+    text: |
+      ——《第七个测试剧本》 第三周目 完——
+      （下一周目：没有她的文学测试部）
+
+  - type: set_variable
+    options:
+      - actions:
+          - type: set_var
+            content: 'last_ending = release'
+          - type: set_var
+            content: 'current_act = 4'
+
+  - type: voice_shift
+    rate: 1.0
+    pitch: 0
+
+  - type: chapter_end
+    end_type: linear
+    next_chapter: 'end'

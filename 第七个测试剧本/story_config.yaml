@@ -1,32 +1,32 @@
-# 《第七个测试剧本》— 原创 meta 恐怖剧本（DLC 发行版）
-# 进入前会触发 18+ 恐怖内容警告（content_warning 字段由前端拦截）
-# 剧本编辑器不可编辑：由本文件声明的 editor_locked 自锁（路径层读取，引擎零硬编码）
-#
-# 素材说明：Assets 中的 1/2/6/g1/ghostmenu/heartbeat/d.ogg 及 glitch1-3 / mscare /
-# eyes / giggle / s_kill_glitch1.ogg 来自《Doki Doki Literature Club》（Team Salvato）。
-# DDLC 为免费游戏，其 IP Guidelines 允许非商业社区二创使用素材；本剧本为免费
-# 社区内容，遵循该准则。其余素材（崩坏教室、终末教室、假报错、*-崩坏*.webp、
-# 崩坏logo1/2、jumpscare-face、stinger、rumble）为本项目原创/生成素材。
-# 首次：boot → main → poem →(乱码词必中/否则约1/3)→ special_poem → glitch1 → glitch2
-#       → collapse →(wary 隐藏)→ watcher
-#       collapse → end_warm / end_cold → restart → end_delete → epilogue
-#                                            ↘ end_loop
-# 重进：boot → reentry；真结局后 → after_release；第七次重进 → seventh_return
+# 《第七个测试剧本》v2.0 — 原创 meta 恐怖剧本（DLC 发行版）
+# 四幕结构（映射 DDLC 玩法骨架，内容全原创）：
+#   current_act==1  Act1 日常幕：a1_day1 → 三次写诗 → a1_weekend → a1_end（她的死亡冲击）
+#   current_act==2  Act2 崩坏幕：a2_boot → 三次写诗且各投放一张特殊诗 → a2_end（钦灵三阶段删除）
+#   current_act==3  Act3 独占空间：a3_space → a3_talk → 删除/留下
+#   current_act==4  Act4 结局幕：a4_main → a4_turn → a4_final（先按 release/loop 拆章）
+#   act4_done==true 后日谈：a5_lingering（空房间/彩蛋）
+# current_act 只在幕末推进；playthrough 仅记录打开次数，退出重开不会直接跳幕。
+# 进入前触发 18+ 恐怖内容警告；剧本编辑器不可编辑（editor_locked 自锁，引擎零硬编码）
 script_name: 第七个测试剧本
-intro_chapter: boot
-description: 一个本不该出现在列表里的剧本。※ 强烈恐怖演出，含抑郁/自残/自杀暗示，建议 18 岁以上、心理承受力较强者游玩
+intro_chapter: a1_boot
+description: 欢迎来到文学测试部。※ 多周目 meta 恐怖，含抑郁/自残/自杀暗示与强烈崩坏演出，建议 18 岁以上、心理承受力较强者游玩
 recommand_start: 深夜一个人的时候
 content_warning: horror
 editor_locked: true
 
 script_settings:
   user_name: ""
-  # 仅这些变量会写入 data/script_runtime_state.json；普通分支变量不会跨局污染。
+  # 跨幕记忆（写入 data/script_runtime_state.json）：
+  # playthrough=打开次数；current_act=剧情幕（只在幕末推进）；act4_done=后日谈门；
+  # last_ending=release/loop；seen_poem_1~3=三张特殊诗；poem_winner_act1=Act1 累计倾向。
   persistent_vars:
     - playthrough
+    - current_act
+    - act4_done
+    - act3_visits
     - last_ending
-    # DDLC 式一次性彩蛋标记：眼睛闪图/三张特殊诗在同一存档维度各只投放一次
-    - seen_eyes
     - seen_poem_1
     - seen_poem_2
     - seen_poem_3
+    - poem_winner_act1
+    - act2_broken
