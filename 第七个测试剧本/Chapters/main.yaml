@@ -9,6 +9,13 @@ events:
     musicPath: '2.ogg'
     playbackSpeed: 1.0
 
+  # 低概率：BGM 从进门起就慢了半拍（DDLC 变调轨思路）。
+  # 覆盖上面的正常播放；她自己不会提起这件事。
+  - type: music
+    musicPath: '2.ogg'
+    playbackSpeed: 0.92
+    condition: bgm_detune == true
+
   # 开局显式重置语音倍率（防止上一局恶魔音残留）
   - type: voice_shift
     rate: 1.0
@@ -111,9 +118,20 @@ events:
     character: MAIN
     prompt: 角色轻快地说这个剧本是"未发布"的，能被点开纯属意外；语气开朗但隐约透出一丝不自然，像是在背台词
 
+  # 低概率（garble_line）：这句日常台词以乱码版出场——屏幕上的字错位坍塌，
+  # 她本人没有任何反应，像根本没发现（DDLC 式“台词被篡改”）。
   - type: dialogue
     character: MAIN
     emotion: 正常
+    condition: garble_line == true
+    text: |
+      【正常】今⃞天⃟天⃗气⃘真⃙好⃚呢⃝，%player%。
+      【正常】适⃞合⃟散⃗步⃘，适⃙合⃚聊⃝天⃞，适⃟合⃗……什⃘么⃙都⃚适⃝合⃞。
+
+  - type: dialogue
+    character: MAIN
+    emotion: 正常
+    condition: garble_line != true
     text: |
       【正常】今天天气真好呢，%player%。
       【正常】适合散步，适合聊天，适合……什么都适合。

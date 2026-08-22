@@ -66,10 +66,26 @@ events:
       【正常】你还是点了。为什么？
 
   # 后续周目：完成写诗后约 1/6 触发一次“画面正在看你”的短演出。
+  # 每个存档维度只投放一次（seen_eyes 持久标记，DDLC seen_eyes 同款）。
   - type: random_var
     variable: poem_eyes
     chance: 0.1666667
     condition: playthrough != 1
+
+  # 已看过的存档：把本轮的 roll 结果压回 false，永远不再触发
+  - type: set_variable
+    condition: seen_eyes == true
+    options:
+      - actions:
+          - type: set_var
+            content: 'poem_eyes = false'
+
+  - type: set_variable
+    condition: poem_eyes == true
+    options:
+      - actions:
+          - type: set_var
+            content: 'seen_eyes = true'
 
   - type: sound
     soundPath: 'eyes.ogg'
@@ -107,6 +123,19 @@ events:
     text: |
       【高兴】写完啦。我们继续测试吧。
 
+  # 特殊诗投放（DDLC special poems 机制）：
+  # 点到乱码词（poem_glitch）必掉一页——她注意到你“看得见”；
+  # 否则约 1/3 概率掉页。三张按顺序各投放一次，投完即止。
+  - type: random_var
+    variable: special_offer
+    chance: 0.34
+
   - type: chapter_end
-    end_type: linear
-    next_chapter: 'glitch1'
+    end_type: branching
+    options:
+      - condition: poem_glitch == true
+        next: 'special_poem'
+      - condition: special_offer == true
+        next: 'special_poem'
+      - default: true
+        next: 'glitch1'

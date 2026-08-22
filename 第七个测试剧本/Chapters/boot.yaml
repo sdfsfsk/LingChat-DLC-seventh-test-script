@@ -18,6 +18,17 @@ events:
     variable: rare_portrait_glitch
     chance: 0.0625
 
+  # 约 1/8：本局 BGM 悄悄降半速变调（DDLC 的 g 后缀变轨思路）。
+  # 没有任何人对此作出解释；说完几句台词后它又自己恢复。
+  - type: random_var
+    variable: bgm_detune
+    chance: 0.125
+
+  # 约 1/8：她的某一句普通台词会短暂地变成乱码版本（台词层崩坏）。
+  - type: random_var
+    variable: garble_line
+    chance: 0.125
+
   - type: chapter_end
     end_type: branching
     options:

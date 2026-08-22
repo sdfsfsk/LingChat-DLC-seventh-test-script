@@ -1,8 +1,8 @@
 {
   "name": "第七个测试剧本",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "sdfsfsk",
-  "description": "原创 meta 恐怖剧本 DLC。强烈恐怖演出（含突脸、崩坏、强制交互），建议 18 岁以上游玩。",
+  "description": "原创 meta 恐怖剧本 DLC。强烈恐怖演出（含突脸、崩坏、强制交互），含抑郁/自残/自杀的暗示性内容，建议 18 岁以上游玩。心理脆弱者请勿游玩。",
   "min_engine": "0.5.0",
   "homepage": "https://github.com/sdfsfsk/LingChat-DLC-seventh-test-script"
 }

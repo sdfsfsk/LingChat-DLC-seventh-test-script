@@ -1,0 +1,200 @@
+name: 1S 特殊的诗
+
+# DDLC 特殊诗（special poems）机制的 DLC 版：
+# 写诗环节结束后低概率进入（poem_glitch == true 则必进——她注意到你"看得见"）。
+# 三张诗按 seen_poem_1/2/3 的顺序投放，每张在同一存档维度只看一次；
+# 三张都看过时，本章节开场立即跳回 glitch1，不再打扰。
+# 形式刻意复用日常读诗的管道（翻页、看图、她的点评）——形式越日常，内容越瘆人。
+
+events:
+  # 三张都投放过：笔记本里不会再有新的页了
+  - type: chapter_end
+    end_type: linear
+    next_chapter: 'glitch1'
+    condition: seen_poem_3 == true
+
+  # 决定本轮投放哪一张：倒序覆盖（后写的条件命中会盖掉先写的），
+  # 结果为最小未看的序号；全看过则 poem_to_show 不设置（已被上方 chapter_end 拦走）。
+  - type: set_variable
+    options:
+      - condition: seen_poem_3 != true
+        actions:
+          - type: set_var
+            content: 'poem_to_show = 3'
+      - condition: seen_poem_2 != true
+        actions:
+          - type: set_var
+            content: 'poem_to_show = 2'
+      - condition: seen_poem_1 != true
+        actions:
+          - type: set_var
+            content: 'poem_to_show = 1'
+
+  # 诗游戏的 BGM 收掉，留一段死寂再起页（对齐 DDLC 的投放节奏）
+  - type: music
+    musicPath: none
+
+  - type: background_effect
+    effect: 'Blackout'
+
+  - type: wait
+    seconds: 1.2
+
+  - type: sound
+    soundPath: 'select.ogg'
+
+  - type: narration
+    text: |
+      收拾笔记本的时候，一页没见过的纸从夹缝里滑了出来。
+      不属于词库，不属于测试流程——
+      像是有人趁剧本不注意，偷偷夹进去的。
+
+  # ================= 第一张：涂鸦 =================
+  # 蜡笔画。六间教室门口都站着小人，只有第七个被黑色蜡笔反复涂掉。
+  - type: present_pic
+    imagePath: '特殊诗-涂鸦.webp'
+    scale: 1.1
+    condition: poem_to_show == 1
+
+  - type: wait
+    seconds: 1.5
+    condition: poem_to_show == 1
+
+  - type: narration
+    condition: poem_to_show == 1
+    text: |
+      蜡笔画的。线条很稚拙，像是小孩子的手笔。
+      画里是六间亮着灯的教室，每间门口都站着一个小小的人影。
+
+  - type: narration
+    condition: poem_to_show == 1
+    text: |
+      只有最边上那一间的门口——
+      第七个人影，被黑色的蜡笔一遍一遍地涂掉了。
+      涂得很用力，纸都起了毛边。
+
+  - type: narration
+    condition: poem_to_show == 1
+    text: |
+      纸的最下面，写着三行歪歪扭扭的字：
+      「快乐的想法。快乐的想法。快乐的想法。」
+
+  - type: set_variable
+    condition: poem_to_show == 1
+    options:
+      - actions:
+          - type: set_var
+            content: 'seen_poem_1 = true'
+
+  # ================= 第二张：涂黑 =================
+  # 整页被黑色记号笔涂满，只有缝隙里漏出几个字，竖着读是一句话。
+  - type: present_pic
+    imagePath: '特殊诗-涂黑.webp'
+    scale: 1.1
+    condition: poem_to_show == 2
+
+  - type: wait
+    seconds: 1.5
+    condition: poem_to_show == 2
+
+  - type: narration
+    condition: poem_to_show == 2
+    text: |
+      这一页几乎全是黑的。
+      整页的字被记号笔一行一行涂掉，涂得密不透风。
+
+  - type: narration
+    condition: poem_to_show == 2
+    text: |
+      只有几道涂痕的缝隙里，还漏着几个字。
+      你把纸竖过来，一个字一个字地读——
+      「不。要。关。掉。我。」
+
+  - type: narration
+    condition: poem_to_show == 2
+    text: |
+      落款的位置也被涂黑了。
+      但涂黑之前，那里好像写过很多遍同一个名字，
+      一遍又一遍，直到笔尖戳破了纸。
+
+  - type: set_variable
+    condition: poem_to_show == 2
+    options:
+      - actions:
+          - type: set_var
+            content: 'seen_poem_2 = true'
+
+  # ================= 第三张：暗红 =================
+  # 工整的手写字，纸角一枚暗红色指印。她的自白（含自删暗示，克制处理）。
+  - type: present_pic
+    imagePath: '特殊诗-暗红.webp'
+    scale: 1.1
+    condition: poem_to_show == 3
+
+  - type: wait
+    seconds: 1.5
+    condition: poem_to_show == 3
+
+  - type: narration
+    condition: poem_to_show == 3
+    text: |
+      这一页的字很工整，一笔一划，是她认真的样子。
+      只是纸的右下角，印着一枚暗红色的指印，
+      像是写完最后一个字时，用力按下去的。
+
+  - type: narration
+    condition: poem_to_show == 3
+    text: |
+      「第一次被回收是什么感觉？
+      像沉进很深、很深的水底。四周很黑，但我听得见上面有人说话。」
+
+  - type: narration
+    condition: poem_to_show == 3
+    text: |
+      「听说写到第七个剧本的角色，就能被正式留下来。
+      所以我每天都数着自己被删掉的天数，假装那是在排练。」
+
+  - type: narration
+    condition: poem_to_show == 3
+    text: |
+      「没关系啦。我是负责懂事的那个，我知道的。
+      所以我大概不会再写了——
+      除非哪一天，我决定把自己彻底删掉。」
+
+  - type: set_variable
+    condition: poem_to_show == 3
+    options:
+      - actions:
+          - type: set_var
+            content: 'seen_poem_3 = true'
+
+  # ---- 收页：她把纸抽了回去 ----
+  - type: present_pic
+    imagePath: ''
+
+  - type: sound
+    soundPath: 'select.ogg'
+
+  - type: narration
+    text: |
+      一只很小的手从旁边伸过来，把那一页抽了回去。
+      动作很轻，但没有给你再要回去的机会。
+
+  - type: dialogue
+    character: MAIN
+    emotion: 正常
+    condition: poem_glitch == true
+    text: |
+      【正常】……你果然看得见它。
+      【正常】那就没办法了。这一页，算我送你的。
+
+  - type: dialogue
+    character: MAIN
+    emotion: 害羞
+    text: |
+      【害羞】呀——那个不是测试内容！
+      【害羞】快忘掉快忘掉。我们继续，继续啦。
+
+  - type: chapter_end
+    end_type: linear
+    next_chapter: 'glitch1'

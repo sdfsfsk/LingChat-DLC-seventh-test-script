@@ -10,6 +10,12 @@ events:
   - type: music
     musicPath: 'ghostmenu.ogg'
 
+  # 低概率：加载日志自己报了一条没人会回应的错（DDLC 式系统层异样）
+  - type: horror_log
+    text: 'WARN: asset "characters/她.png" checksum mismatch // 和上次载入的不是同一份'
+    lines: 5
+    condition: garble_line == true
+
   # 跳变的余波：夜晚的房间"坏掉"了一帧
   - type: background
     imagePath: '夜晚-崩坏1.webp'
