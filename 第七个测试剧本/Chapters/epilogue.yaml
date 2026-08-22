@@ -65,7 +65,8 @@ events:
 
   # 无立绘、降调的声音说着她的句式——一听就不是她
   - type: voice_shift
-    rate: 0.7
+    rate: 0.5
+    pitch: -5  # 纯降调（半音，不变速），与 rate 叠加
 
   - type: dialogue
     character: MAIN

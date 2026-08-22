@@ -88,7 +88,8 @@ events:
 
   # 血色漫上 UI，她露出真面目——声音跟着低下去
   - type: voice_shift
-    rate: 0.8
+    rate: 0.6
+    pitch: -3  # 纯降调（半音，不变速），与 rate 叠加
 
   - type: modify_character
     action: show_character

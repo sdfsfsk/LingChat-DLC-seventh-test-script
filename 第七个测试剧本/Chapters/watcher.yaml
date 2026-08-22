@@ -45,7 +45,8 @@ events:
 
   # 冷恐怖：她的声音压得极低
   - type: voice_shift
-    rate: 0.75
+    rate: 0.58
+    pitch: -3  # 纯降调（半音，不变速），与 rate 叠加
 
   - type: dialogue
     character: MAIN

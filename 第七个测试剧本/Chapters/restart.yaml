@@ -158,6 +158,8 @@ events:
   # DDLC Act3 式压迫：心跳底噪渗进来，暗角开始侵蚀
   - type: music
     musicPath: 'heartbeat.ogg'
+    playbackSpeed: 0.9
+    # 心跳降半速：咚…咚…的间隔拉长，压迫感更强
 
   - type: background_effect
     effect: 'Veins'
@@ -193,7 +195,8 @@ events:
 
   # 演技撑不住的瞬间，声音低了一度
   - type: voice_shift
-    rate: 0.85
+    rate: 0.68
+    pitch: -3  # 纯降调（半音，不变速），与 rate 叠加
 
   - type: dialogue
     character: MAIN

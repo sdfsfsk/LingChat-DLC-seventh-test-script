@@ -16,7 +16,8 @@ events:
 
   # 文字渗血：她最后的话开始崩解，声音沉成恶魔音
   - type: voice_shift
-    rate: 0.7
+    rate: 0.5
+    pitch: -5  # 纯降调（半音，不变速），与 rate 叠加
 
   - type: background_effect
     effect: 'BloodUI+Invert+BloodDrip'

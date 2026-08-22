@@ -12,7 +12,8 @@ events:
 
   # 灿烂假笑下，声音已经不对了
   - type: voice_shift
-    rate: 0.8
+    rate: 0.62
+    pitch: -3  # 纯降调（半音，不变速），与 rate 叠加
 
   - type: dialogue
     character: MAIN
