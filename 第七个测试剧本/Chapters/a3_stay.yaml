@@ -86,14 +86,6 @@ events:
       ——《第七个测试剧本》 第三周目 完——
       （结局：永远的第七个）
 
-  - type: set_variable
-    options:
-      - actions:
-          - type: set_var
-            content: 'last_ending = loop'
-          - type: set_var
-            content: 'current_act = 4'
-
   - type: background_effect
     effect: 'none'
 
@@ -103,6 +95,18 @@ events:
 
   - type: music
     musicPath: none
+
+  - type: set_variable
+    options:
+      - actions:
+          - type: set_var
+            content: 'last_ending = loop'
+          - type: set_var
+            content: 'current_act = 4'
+
+  - type: main_menu_effect
+    theme: blood
+    message: 'CONTAINMENT ACTIVE // MAIN.chr PRESENT // DO NOT CLOSE THE ROOM'
 
   - type: chapter_end
     end_type: linear

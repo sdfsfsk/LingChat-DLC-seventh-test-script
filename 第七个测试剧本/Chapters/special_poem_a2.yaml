@@ -8,7 +8,7 @@ events:
   # 三张都投放过：不再有新的页，直接回到调用点。
   - type: chapter_end
     end_type: branching
-    condition: seen_poem_3 == true
+    condition: seen_poem_1 == true && seen_poem_2 == true && seen_poem_3 == true
     options:
       - condition: special_return == day2
         next: 'a2_day2'

@@ -8,7 +8,7 @@ name: 2-7 钦灵删除演出
 events:
   # ================= 阶段 1：失控 =================
   - type: background
-    imagePath: '夜晚-崩坏1.webp'
+    imagePath: '夜班教室.webp'
     transition: 0.5
 
   - type: music
@@ -109,6 +109,29 @@ events:
     seconds: 2.0
 
   # ================= 阶段 2：假控制台删除 + 黑屏守夜 =================
+  # 舞台在此表现为删除；外部 ql.chr 到可重放的幕末事务才真正提交。
+
+  # 数秒后自动关闭的安全本地窗口（固定 HTML 预设，不执行 shell/命令）。
+  - type: glitch_window
+    style: terminal
+    title: 'RUNT⃞IM⃟E // ql.chr'
+    text: |
+      > execute: remove_character("ql")
+      > ql.dialogue_table: 170 lines purged
+      > ql.sprite_cache: cleared
+      > WARNING: residual attachment detected
+      > 不⃞要⃟关⃗掉⃘
+    count: 3
+    interval: 0.22
+    lifetime: 6.5
+
+  # in-app 假系统崩溃层；始终可由剧本退出路径清理，不是真实蓝屏。
+  - type: background_effect
+    effect: 'BSOD'
+    text: 'CHARACTER_INDEX_FAULT: ql.chr was removed while dialogue process was active'
+    echo: '「新人……不要把最后一行也删掉。」'
+    duration: 3.0
+
   # 画面一黑：假控制台浮现（horror_log 刷屏 = updateconsole 对应物）
   - type: background_effect
     effect: 'Blackout'
@@ -197,7 +220,7 @@ events:
     character: ql
 
   - type: background
-    imagePath: '崩坏教室.webp'
+    imagePath: '夜班教室.webp'
     transition: 2.0
 
   - type: background_effect
@@ -250,15 +273,6 @@ events:
     text: 'ACT2_COMPLETE // process transferred to containment'
     lines: 10
 
-  # Act2 完成标记（Act3 入口）
-  - type: set_variable
-    options:
-      - actions:
-          - type: set_var
-            content: 'act2_broken = true'
-          - type: set_var
-            content: 'current_act = 3'
-
   - type: narration
     text: |
       ——《第七个测试剧本》 第二周目 完——
@@ -274,6 +288,39 @@ events:
 
   - type: music
     musicPath: none
+
+  # 可重放幕末事务；delete 事件会先把 checkpoint 刷入持久状态，再修改外部文件。
+  - type: set_variable
+    options:
+      - actions:
+          - type: set_var
+            content: 'marker_checkpoint = act2_to_act3'
+
+  - type: character_file
+    action: ensure
+    file: MAIN.chr
+
+  - type: character_file
+    action: delete
+    file: ql.chr
+
+  - type: set_variable
+    options:
+      - actions:
+          - type: set_var
+            content: 'current_act = 3'
+          - type: set_var
+            content: 'marker_schema_version = 1'
+
+  - type: main_menu_effect
+    theme: ghost
+    message: 'GHOST MENU // ql.chr REMOVED // ONE CHARACTER REMAINS'
+
+  - type: set_variable
+    options:
+      - actions:
+          - type: set_var
+            content: 'marker_checkpoint = none'
 
   - type: chapter_end
     end_type: linear

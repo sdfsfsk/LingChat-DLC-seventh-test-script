@@ -5,6 +5,57 @@ name: 5 空房间
 # 没有人会出现——只是房间还记得。
 
 events:
+  - type: character_file
+    action: exists
+    file: MAIN.chr
+    resultVar: main_file_exists
+
+  # 完结后仍尊重外部文件：loop 线迟到删除会可见地切到 release；release 线复原会再次拒绝。
+  - type: narration
+    displayName: RUNTIME
+    condition: last_ending == loop && main_file_exists == false
+    text: '> MAIN.chr disappeared after completion // converting lingering room to release state'
+
+  - type: set_variable
+    options:
+      - condition: last_ending == loop && main_file_exists == false
+        actions:
+          - type: set_var
+            content: 'last_ending = release'
+
+  - type: glitch_window
+    condition: last_ending == release && main_file_exists == true
+    style: error
+    title: 'POSTCREDITS RESTORE REJECTED'
+    text: 'MAIN.chr was restored after the ending. Please stop pulling this record back. The marker will be removed again.'
+    count: 1
+    lifetime: 5.0
+
+  - type: character_file
+    condition: last_ending == release && main_file_exists == true
+    action: delete
+    file: MAIN.chr
+
+  - type: character_file
+    condition: last_ending == release
+    action: ensure
+    file: ql.chr
+
+  - type: main_menu_effect
+    condition: last_ending == release
+    theme: ghost
+    message: 'POSTCREDITS // MAIN.chr MISSING // SCRIPT RECORD ENDED'
+
+  - type: main_menu_effect
+    condition: last_ending == loop
+    theme: blood
+    message: 'POSTCREDITS LOOP // MAIN.chr PRESENT // THE ROOM IS WAITING'
+
+  - type: main_menu_effect
+    condition: last_ending != release && last_ending != loop
+    theme: ghost
+    message: 'LEGACY ENDING RECORD // STATE PRESERVED // RESET AVAILABLE'
+
   - type: background_effect
     effect: 'none'
 
@@ -48,6 +99,14 @@ events:
     text: |
       你看第二遍时，最后一句变成了：
       「请不要为了确认我还在，再把她叫回来。」
+
+  # v1/损坏存档的旧结局键：不展示空白章节，也不擅自映射成 release/loop。
+  - type: narration
+    condition: last_ending != release && last_ending != loop
+    text: |
+      角落里压着一份旧版台本。结局键还写着陌生的名字，正文却已经迁移不回来了。
+      房间没有替你伪造发生过的事，只在最后一页盖了一枚小小的章：
+      「旧记录已安全封存。需要重演时，请从主菜单重置记忆。」
 
   # loop 后再进：她还在原地等
   - type: modify_character

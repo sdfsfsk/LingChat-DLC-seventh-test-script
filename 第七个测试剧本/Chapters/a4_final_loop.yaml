@@ -27,14 +27,6 @@ events:
       ——《第七个测试剧本》 永远——
       （结局：永远的第七个）
 
-  - type: set_variable
-    options:
-      - actions:
-          - type: set_var
-            content: 'current_act = 5'
-          - type: set_var
-            content: 'act4_done = true'
-
   - type: background_effect
     effect: 'Blackout'
 
@@ -47,6 +39,18 @@ events:
 
   - type: music
     musicPath: none
+
+  - type: set_variable
+    options:
+      - actions:
+          - type: set_var
+            content: 'current_act = 5'
+          - type: set_var
+            content: 'act4_done = true'
+
+  - type: main_menu_effect
+    theme: blood
+    message: 'LOOP LOCKED // MAIN.chr PRESENT // TOMORROW == TODAY'
 
   - type: chapter_end
     end_type: linear

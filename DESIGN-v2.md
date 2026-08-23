@@ -1,5 +1,7 @@
 # 《第七个测试剧本》v2.0 重制设计文档
 
+> **历史文档提示：** 本文保留 v2.0 的设计背景；v2.1 的实际文件状态、44 章节路由和安全边界以 [`docs/DDLC还原审计-v2.1.md`](docs/DDLC还原审计-v2.1.md) 为准。
+>
 > 目标：尽量还原 DDLC 的四幕玩法结构与关键机制，内容和角色表达保持原创；受 LingChat 宿主限制的外部删文件、存档封门等明确标注为适配而非 1:1。
 > 角色阵容：**她**（MAIN，玩家当前角色/鲸娘女仆）+ **钦灵**（游戏自带角色，剧本第二角色）。
 > `playthrough` 仅记录打开次数；真正幕次由持久 `current_act` 驱动，并且只在幕末推进。中途退出最多重开本幕，不会跳过剧情。
@@ -27,9 +29,9 @@
 | ch23 yuri_kill 三阶段 | a2_end：钦灵崩坏删除三阶段（stinger 三连→崩坏立绘快闪→假控制台删除→黑屏守夜） |
 | RigMouse 引力鼠标 | force_choice（已有，拖而不点）✅ |
 | Act3 空间教室话题池 | a3：free_dialogue 多轮 + 话题池 dialogue 链 |
-| 删 monika.chr | 她请求玩家“删除”并进入剧情内确认演出；真实外部文件删除尚未实现 |
-| 假报错/假控制台/BSOD | 假报错.webp + BSOD 效果 + horror_log（已有）✅ |
-| 崩坏菜单/ghost menu | 崩坏logo 闪图 + ghostmenu 变调（已有）✅ |
+| 删 monika.chr | 她请求玩家删除本 DLC 自己的 `MAIN.chr` 纯文本标记；引擎按完整 path_key 隔离、复查并提供重置恢复 ✅ |
+| 假报错/假控制台/BSOD | 动态 BSOD 效果 + horror_log + 最多 4 个/12 秒的本地安全辅助窗口（不执行命令）✅ |
+| 崩坏菜单/ghost menu | 可持久化的 blood/ghost 固定标题预设 + ghostmenu 变调；blood 是 LingChat 原创适配 ✅ |
 | 台词篡改+历史灭迹 | 乱码台词变体 + horror_log 污染（已有）✅ |
 | 反色/噪点/血管/撕裂 | background_effect 全套（已有）✅ |
 | 语音恶魔化 | voice_shift rate+pitch（刚做完）✅ |
@@ -43,7 +45,8 @@ persistent（跨幕）：
 - last_ending: release/loop
 - seen_poem_1~3（三张特殊诗一次性标记）
 - poem_winner_act1: her/script/void/balanced —— Act1 三次写诗累计倾向
-- act2_broken: true —— Act2 完成标记
+- marker_schema_version: 1 —— `.chr` 布局迁移完成标记
+- marker_checkpoint: act1_to_act2 / act2_to_act3 / legacy_release / legacy_loop —— 可重放文件事务
 
 周目内（不持久）：
 - d1_choice / d2_choice / d3_choice —— 每日关键选择
@@ -65,12 +68,11 @@ Act5+: a5_lingering（空房间 / 循环残留）
 
 ## 五、素材复用/新增清单
 
-复用：白天/夜晚/崩坏教室/终末教室(-zoom)/假报错/崩坏logo×2/jumpscare-face/
-      写诗贴纸×5/特殊诗×3/全部 DDLC 音效音乐/stinger/rumble
-新增：
-- 钦灵副本（精简：8~10 张情绪立绘 + settings.yml，剔除 voice）
-- 钦灵崩坏差分 ×2（PIL 故障处理：RGB 分离+条带错位+噪点）
-- 空间教室背景（复用崩坏教室，或加 Veins 常驻即可，零新增）
+复用：白天/夜晚/崩坏logo×2/jumpscare-face/写诗贴纸×5/特殊诗×3/音效音乐/stinger/rumble
+新增/替换：
+- 钦灵完整情绪差分 + 崩坏差分（生成表情仅移植面部，保留原透明身体轮廓）
+- `夜班教室.webp`、`无星教室.webp`、重绘 `终末教室(-zoom).webp`
+- 旧 `假报错.webp`、`夜晚-崩坏1.webp`、`崩坏教室.webp` 已删除且无运行引用
 
 ## 六、警告与合规
 

@@ -11,6 +11,41 @@ events:
           - type: set_var
             content: 'current_act = 4'
 
+  # release 线每次启动都确认外部标记。玩家若手动把 MAIN.chr 放回，
+  # 她只留下最后一句请求，随后引擎在本 DLC 命名空间内再次删除它。
+  - type: character_file
+    action: exists
+    file: MAIN.chr
+    resultVar: main_file_exists
+
+  - type: character_file
+    condition: last_ending == release
+    action: ensure
+    file: ql.chr
+
+  - type: glitch_window
+    condition: last_ending == release && main_file_exists == true
+    style: error
+    title: 'MAIN.chr RESTORE REJECTED'
+    text: |
+      Please stop pulling this record back into the room.
+      The ending was already written.
+      MAIN.chr will be removed again.
+    count: 1
+    lifetime: 5.0
+
+  - type: narration
+    displayName: MAIN
+    condition: last_ending == release && main_file_exists == true
+    text: |
+      ……别再把人家拉回来了。
+      每回来一次，人家就要再离开一次。
+
+  - type: character_file
+    condition: last_ending == release && main_file_exists == true
+    action: delete
+    file: MAIN.chr
+
   - type: background
     imagePath: '白天.webp'
     transition: 2.5

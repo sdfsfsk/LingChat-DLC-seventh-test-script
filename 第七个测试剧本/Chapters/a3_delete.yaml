@@ -41,6 +41,18 @@ events:
   - type: sound
     soundPath: 's_kill_glitch1.ogg'
 
+  - type: glitch_window
+    style: terminal
+    title: 'MAIN.chr // FILE NOT FOUND'
+    text: |
+      > external marker removed
+      > detaching MAIN from scene graph
+      > freeing displaced record: ql
+      > 等⃞等⃟……有⃗点⃘疼⃙。
+    count: 2
+    interval: 0.18
+    lifetime: 5.5
+
   - type: narration
     text: |
       她的轮廓开始碎。
@@ -94,6 +106,10 @@ events:
       ——《第七个测试剧本》 第三周目 完——
       （下一周目：没有她的文学测试部）
 
+  - type: character_file
+    action: ensure
+    file: ql.chr
+
   - type: set_variable
     options:
       - actions:
@@ -101,6 +117,10 @@ events:
             content: 'last_ending = release'
           - type: set_var
             content: 'current_act = 4'
+
+  - type: main_menu_effect
+    theme: ghost
+    message: 'MAIN.chr NOT FOUND // ql.chr RESTORED // ACT 04 READY'
 
   - type: voice_shift
     rate: 1.0

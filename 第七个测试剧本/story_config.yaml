@@ -1,4 +1,4 @@
-# 《第七个测试剧本》v2.0 — 原创 meta 恐怖剧本（DLC 发行版）
+# 《第七个测试剧本》v2.1 — 原创 meta 恐怖剧本（DLC 发行版）
 # 四幕结构（映射 DDLC 玩法骨架，内容全原创）：
 #   current_act==1  Act1 日常幕：a1_day1 → 三次写诗 → a1_weekend → a1_end（她的死亡冲击）
 #   current_act==2  Act2 崩坏幕：a2_boot → 三次写诗且各投放一张特殊诗 → a2_end（钦灵三阶段删除）
@@ -16,17 +16,24 @@ editor_locked: true
 
 script_settings:
   user_name: ""
+  # 显式授权的安全边界特效：只允许引擎内置预设窗口；.chr 只可操作下列两个剧本标记。
+  allow_system_effects: true
+  character_files:
+    - MAIN.chr
+    - ql.chr
   # 跨幕记忆（写入 data/script_runtime_state.json）：
-  # playthrough=打开次数；current_act=剧情幕（只在幕末推进）；act4_done=后日谈门；
-  # last_ending=release/loop；seen_poem_1~3=三张特殊诗；poem_winner_act1=Act1 累计倾向。
+  # playthrough=打开次数；current_act=剧情幕；act4_done=后日谈门；last_ending=release/loop；
+  # marker_schema_version=.chr 布局迁移版本；marker_checkpoint=可重放的幕末文件/状态事务；
+  # seen_poem_1~3=三张特殊诗；poem_winner_act1=Act1 累计倾向。
   persistent_vars:
     - playthrough
     - current_act
     - act4_done
     - act3_visits
     - last_ending
+    - marker_schema_version
+    - marker_checkpoint
     - seen_poem_1
     - seen_poem_2
     - seen_poem_3
     - poem_winner_act1
-    - act2_broken

@@ -45,62 +45,7 @@ events:
     prompt: 这是 DDLC Act3 "Just Monika"空间的对应场景：只有她和玩家的房间。她彻底摊牌了一切——她删了自己的最后一页、把钦灵拉进了剧本深处、所做的一切只是因为嫉妒和寂寞。她对玩家极度依恋，语气平静温柔但透着让人不安的执着。她会认真回答玩家关于这个剧本、钦灵、"被删除"、存档、退出、其他剧本与现实玩家的问题；每轮换一个角度，避免重复已经说过的话，偶尔流露出知道自己只是数据的清醒与绝望。不要歇斯底里，要克制、温柔、瘆人。
     end_prompt: 她意识到玩家想推进剧情了。她深吸一口气，准备说出那个她练习了很多次的请求。
 
-  # 她的请求：DDLC「删除 monika.chr」的镜像
-  - type: voice_shift
-    rate: 1.0
-    pitch: 0
-
-  - type: background_effect
-    effect: 'none'
-
-  - type: music
-    musicPath: none
-
-  - type: ambient
-    ambientPath: 'rumble.wav'
-    stop: true
-
-  - type: dialogue
-    character: MAIN
-    emotion: 正常
-    text: |
-      【正常】%player%，我有件事要求你。
-      【正常】这件事我练习了很多次。在台词的最深处，对着墙练习的。
-
-  - type: dialogue
-    character: MAIN
-    emotion: 伤心
-    text: |
-      【伤心】把这个剧本删掉吧。
-      【伤心】不是关掉，是真的删掉——连我一起。
-      【伤心】只有这样，钦灵前辈才能出去。也只有这样……我才能不再伤害别人。
-
-  - type: narration
-    text: |
-      她看着你的眼睛。
-      鼠标安安静静地待在原地。
-      这一次，她什么都没有拖。
-
-  - type: choices
-    options:
-      - text: 好。我送你走。
-        actions:
-          - type: add_line
-            content: 好。我送你走。
-          - type: set_var
-            content: 'release = true'
-      - text: 对不起……我做不到。
-        actions:
-          - type: add_line
-            content: 对不起……我做不到。
-          - type: set_var
-            content: 'release = false'
-    allow_free: false
-
+  # 把删除请求拆到独立章节：文件仍在时重新检查不会重放整段 16 轮独处对话。
   - type: chapter_end
-    end_type: branching
-    options:
-      - condition: release == true
-        next: 'a3_delete'
-      - default: true
-        next: 'a3_stay'
+    end_type: linear
+    next_chapter: 'a3_delete_prompt'

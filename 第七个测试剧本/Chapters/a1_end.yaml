@@ -69,7 +69,9 @@ events:
       等等。
       那是——
 
-  # ===== 发现：终末教室（静止 3.75s，帧级对齐 s_kill）=====
+  # ===== 发现：舞台先表现为角色消失；外部标记到可重放的幕末事务才提交 =====
+
+  # 终末教室（静止 3.75s，帧级对齐 s_kill）
   - type: music
     musicPath: 'd.ogg'
 
@@ -118,13 +120,23 @@ events:
   - type: wait
     seconds: 0.5
 
-  # ===== 假报错：剧本借引擎的崩溃界面说话（DDLC report_exception 对应物）=====
-  - type: background
-    imagePath: '假报错.webp'
-    transition: 0
+  # ===== 假报错：主画面 + 数秒后自动关闭的安全本地辅助窗口 =====
+  - type: glitch_window
+    style: error
+    title: 'LingChat Script Exception'
+    text: |
+      Traceback (most recent call last):
+        scene: a1_end / character index rebuild
+      CharacterRecordMissing: MAIN.chr
+      "别把这一行也删掉。人家还在这里。"
+    count: 1
+    lifetime: 6.0
 
   - type: background_effect
-    effect: 'none'
+    effect: 'BSOD'
+    text: 'CharacterRecordMissing: MAIN.chr // script continuation is unsafe'
+    echo: '「别把这一行也删掉。人家还在这里。」'
+    duration: 6.0
 
   - type: wait
     seconds: 6.0
@@ -189,13 +201,6 @@ events:
       等⃞等⃟我⃗……
       我⃘还⃙在⃚这⃝里⃞……
 
-  # 只在事故演出完整结束后推进到 Act 2；中途退出不会跳幕。
-  - type: set_variable
-    options:
-      - actions:
-          - type: set_var
-            content: 'current_act = 2'
-
   - type: narration
     text: |
       ——《第七个测试剧本》 第一周目 完——
@@ -210,6 +215,41 @@ events:
 
   - type: music
     musicPath: none
+
+  # 可重放幕末事务：checkpoint 先落盘语义，再提交 marker / act / 菜单，最后清除。
+  # 任意事件间退出都会在下次启动进入 a0_checkpoint_recovery，而不是锁在缺失分支。
+  - type: set_variable
+    options:
+      - actions:
+          - type: set_var
+            content: 'marker_checkpoint = act1_to_act2'
+
+  - type: character_file
+    action: ensure
+    file: ql.chr
+
+  - type: character_file
+    action: delete
+    file: MAIN.chr
+
+  - type: set_variable
+    options:
+      - actions:
+          - type: set_var
+            content: 'current_act = 2'
+          - type: set_var
+            content: 'marker_schema_version = 1'
+
+  # 返回主菜单后保留血红崩坏态；这是 LingChat 原创适配（原作标题主要是灰白 ghost/menu art）。
+  - type: main_menu_effect
+    theme: blood
+    message: 'CHARACTER INDEX DAMAGED // MAIN.chr REMOVED // ACT 02 READY'
+
+  - type: set_variable
+    options:
+      - actions:
+          - type: set_var
+            content: 'marker_checkpoint = none'
 
   - type: chapter_end
     end_type: linear

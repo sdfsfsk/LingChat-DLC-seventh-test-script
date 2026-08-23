@@ -88,6 +88,15 @@ events:
       【崩坏1】你对谁都一样温柔。
       【崩坏1】那只要把“别人”都拿走，你的温柔就只属于这里了——
 
+  # 旧/损坏存档没有 poem_winner_act1 时的完整可见回退，不再空白完成。
+  - type: dialogue
+    character: ql
+    emotion: 伤心
+    condition: poem_winner_act1 != her && poem_winner_act1 != script && poem_winner_act1 != void && poem_winner_act1 != balanced
+    text: |
+      【伤心】你的前三首诗……有一部分没能从旧存档里回来。
+      【伤心】没关系。结局不该因为一把丢失的计分钥匙，就把你留在空白页里。
+
   - type: sound
     soundPath: 's_kill_glitch1.ogg'
     condition: poem_winner_act1 != her
@@ -138,16 +147,15 @@ events:
       「不用选啦。」她轻声说，「有人读过，就已经算被留下了。」
 
   - type: narration
+    condition: poem_winner_act1 != her && poem_winner_act1 != script && poem_winner_act1 != void && poem_winner_act1 != balanced
+    text: |
+      钦灵把一张新的空白纸放在桌上。
+      「丢掉的诗就不替你伪造啦。下次想写的时候，我们再从第一个词开始。」
+      门外的阳光落进来，空白终于不再像错误。
+
+  - type: narration
     text: |
       ——《第七个测试剧本》 全剧终——
-
-  - type: set_variable
-    options:
-      - actions:
-          - type: set_var
-            content: 'current_act = 5'
-          - type: set_var
-            content: 'act4_done = true'
 
   - type: background_effect
     effect: 'Blackout'
@@ -161,6 +169,18 @@ events:
 
   - type: music
     musicPath: none
+
+  - type: set_variable
+    options:
+      - actions:
+          - type: set_var
+            content: 'current_act = 5'
+          - type: set_var
+            content: 'act4_done = true'
+
+  - type: main_menu_effect
+    theme: ghost
+    message: 'STORY COMPLETE // MAIN.chr MISSING // LINGERING RECORD AVAILABLE'
 
   - type: chapter_end
     end_type: linear

@@ -1,8 +1,8 @@
 {
   "name": "第七个测试剧本",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "author": "sdfsfsk",
-  "description": "欢迎来到文学测试部。多周目 meta 恐怖剧本：强烈崩坏演出（突脸/强制交互/假死机），含抑郁/自残/自杀的暗示性内容，建议 18 岁以上、心理承受力较强者游玩。",
-  "min_engine": "0.5.0",
+  "description": "欢迎来到文学测试部。多周目 meta 恐怖剧本：强烈崩坏演出、临时本地故障窗口与无害 .chr 剧情标记；含抑郁/自残/自杀的暗示性内容，建议 18 岁以上游玩。",
+  "min_engine": "0.5.1",
   "homepage": "https://github.com/sdfsfsk/LingChat-DLC-seventh-test-script"
 }

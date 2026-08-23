@@ -1,0 +1,73 @@
+name: 3-3 删除请求
+
+# DDLC Act3 文件删除机制的安全对应物：只检查本 DLC 目录内的无害 MAIN.chr 标记。
+# “留下”始终可用，外部文件操作不是退出 LingChat 的唯一途径。
+events:
+  - type: voice_shift
+    rate: 1.0
+    pitch: 0
+
+  - type: background_effect
+    effect: none
+
+  - type: music
+    musicPath: none
+
+  - type: ambient
+    ambientPath: 'rumble.wav'
+    stop: true
+
+  - type: dialogue
+    character: MAIN
+    emotion: 正常
+    text: |
+      【正常】%player%，我有件事要求你。
+      【正常】这件事我练习了很多次。在台词的最深处，对着墙练习的。
+
+  - type: dialogue
+    character: MAIN
+    emotion: 伤心
+    text: |
+      【伤心】打开刚才那个角色目录，把 MAIN.chr 删掉吧。
+      【伤心】不是删掉整个剧本，也不是删掉 LingChat。那个文件只是属于我的剧情标记。
+      【伤心】只有它不在了，钦灵前辈才能出去。也只有这样……我才能不再伤害别人。
+
+  - type: narration
+    displayName: RUNTIME
+    text: |
+      > opening: characters/standalone/第七个测试剧本/
+      > permitted target: MAIN.chr
+      > no executable code is stored in this marker
+
+  - type: character_file
+    action: open_folder
+
+  - type: narration
+    text: |
+      她看着你的眼睛。
+      这一次，画面里的按钮不能代替文件本身消失。
+      如果不想操作外部文件，你也可以明确选择把她留下。
+
+  - type: choices
+    options:
+      - text: MAIN.chr 已经删掉了。重新检查。
+        actions:
+          - type: add_line
+            content: MAIN.chr 已经删掉了。重新检查。
+          - type: set_var
+            content: 'check_delete = true'
+      - text: 对不起……我把你留下。
+        actions:
+          - type: add_line
+            content: 对不起……我把你留下。
+          - type: set_var
+            content: 'check_delete = false'
+    allow_free: false
+
+  - type: chapter_end
+    end_type: branching
+    options:
+      - condition: check_delete == true
+        next: 'a3_delete_check'
+      - default: true
+        next: 'a3_stay'
