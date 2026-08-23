@@ -145,6 +145,10 @@ events:
       你只有一次机会，而你没有抓紧。
 
   # 她的乱码残影：最后一句（glitchtext 对应物，unicode 组合字符）
+  # 红字场景 2/5：残影开口期间整个界面渗血（Blackout 必须保留在同一串里，否则会盖掉黑屏）
+  - type: background_effect
+    effect: 'Blackout+BloodUI'
+
   - type: sound
     soundPath: 'eyes.ogg'
 
@@ -152,6 +156,14 @@ events:
     text: |
       等⃞等⃟我⃗……
       我⃘还⃙在⃚这⃝里⃞……
+
+  # 残影消散前的短促突脸（红字 UI 由谢幕清理统一关闭）
+  - type: sound
+    soundPath: 'mscare.ogg'
+
+  - type: jumpscare
+    imagePath: 'jumpscare-face.webp'
+    duration: 0.45
 
   - type: narration
     text: |

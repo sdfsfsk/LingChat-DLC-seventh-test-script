@@ -121,6 +121,11 @@ events:
       【害羞】这里有我，有你。只有我们两个。
       【害羞】这一次，再也不会有人来打扰了。
 
+  # 红字场景 5/5：占有欲台词落地的一拍，界面随心跳渗一次血（限时，自动还原为 Veins）
+  - type: background_effect
+    effect: 'BloodUI+Flash'
+    duration: 1.2
+
   - type: narration
     text: |
       窗外的暗红色，轻轻跳了一下。

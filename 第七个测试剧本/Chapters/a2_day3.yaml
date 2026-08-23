@@ -106,6 +106,14 @@ events:
           - type: set_var
             content: 'stayed = false'
 
+  # 光标被夺走的瞬间补一记故障音+画面抖动，强化"有东西覆在手上"的体感
+  - type: sound
+    soundPath: 'glitch2.ogg'
+
+  - type: background_effect
+    effect: 'Shake'
+    duration: 0.5
+
   - type: narration
     text: |
       不管你原本准备选哪一项，光标都没有把确认权交给你。
@@ -119,13 +127,16 @@ events:
       【惊讶】刚才……你的手……
       【惊讶】不是我做的！真的不是我！是台本——台本自己在动！
 
-  # 她的乱码残影更明显的一次插入
+  # 她的乱码残影更明显的一次插入（红字场景 3/5：乱码悬停期间界面渗血）
   - type: background_effect
     effect: 'Invert'
     duration: 0.2
 
   - type: sound
     soundPath: 'eyes.ogg'
+
+  - type: background_effect
+    effect: 'BloodUI'
 
   - type: narration
     text: |
@@ -136,6 +147,9 @@ events:
     text: |
       那行乱码悬在画面中央，停了两秒。
       钦灵盯着它，脸色惨白。
+
+  - type: background_effect
+    effect: 'none'
 
   - type: dialogue
     character: ql

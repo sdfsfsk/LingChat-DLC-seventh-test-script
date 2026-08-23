@@ -24,7 +24,7 @@ events:
     voidStickerPath: '写诗Q版-空白.png'
     wordListPath: 'poem_words.yaml'
     resultVar: 'poem_tone'
-    rounds: 8
+    rounds: 20
     mode: normal
     glitch: false
 

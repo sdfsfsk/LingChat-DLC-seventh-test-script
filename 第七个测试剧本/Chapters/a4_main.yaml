@@ -125,6 +125,12 @@ events:
       【高兴】%player%，欢迎回来！
       【高兴】今天也是只有我们两个哦。钦灵前辈说她"有点事"，又没来呢。
 
+  # loop 线异样揭晓：红字一闪，提示"温馨日常"是演的（限时，自动还原）
+  - type: background_effect
+    effect: 'BloodUI+Static'
+    duration: 0.9
+    condition: last_ending == loop
+
   - type: narration
     condition: last_ending == loop
     text: |
