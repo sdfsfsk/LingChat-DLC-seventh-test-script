@@ -12,7 +12,6 @@ events:
 
   - type: main_menu_effect
     theme: ghost
-    message: 'ACT 02 ABORTED // ql.chr NOT FOUND // RESET CAN RESTORE THE MARKER'
 
   - type: narration
     displayName: RUNTIME

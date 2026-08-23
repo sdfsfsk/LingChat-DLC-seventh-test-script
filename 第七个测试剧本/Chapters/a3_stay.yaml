@@ -106,7 +106,6 @@ events:
 
   - type: main_menu_effect
     theme: blood
-    message: 'CONTAINMENT ACTIVE // MAIN.chr PRESENT // DO NOT CLOSE THE ROOM'
 
   - type: chapter_end
     end_type: linear

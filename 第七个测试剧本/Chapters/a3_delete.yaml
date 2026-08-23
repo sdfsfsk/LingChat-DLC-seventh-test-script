@@ -121,7 +121,6 @@ events:
 
   - type: main_menu_effect
     theme: ghost
-    message: 'MAIN.chr NOT FOUND // ql.chr RESTORED // ACT 04 READY'
 
   - type: voice_shift
     rate: 1.0

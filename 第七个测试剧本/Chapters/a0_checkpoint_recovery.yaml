@@ -52,17 +52,14 @@ events:
   - type: main_menu_effect
     condition: marker_checkpoint == act1_to_act2
     theme: blood
-    message: 'CHARACTER INDEX DAMAGED // MAIN.chr REMOVED // ACT 02 READY'
 
   - type: main_menu_effect
     condition: marker_checkpoint == act2_to_act3 || marker_checkpoint == legacy_release
     theme: ghost
-    message: 'GHOST MENU // CHARACTER FILE STATE RECOVERED'
 
   - type: main_menu_effect
     condition: marker_checkpoint == legacy_loop
     theme: blood
-    message: 'LOOP STATE RECOVERED // MAIN.chr PRESENT'
 
   - type: set_variable
     options:

@@ -293,7 +293,6 @@ events:
 
   - type: main_menu_effect
     theme: ghost
-    message: 'GHOST MENU // ql.chr REMOVED // ONE CHARACTER REMAINS'
 
   - type: set_variable
     options:

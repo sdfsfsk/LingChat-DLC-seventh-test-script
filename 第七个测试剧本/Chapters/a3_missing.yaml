@@ -49,7 +49,6 @@ events:
 
   - type: main_menu_effect
     theme: ghost
-    message: 'MAIN.chr NOT FOUND // OFFLINE DELETION ACCEPTED // ACT 04 READY'
 
   - type: background_effect
     effect: none

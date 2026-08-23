@@ -11,7 +11,6 @@ events:
 
   - type: main_menu_effect
     theme: blood
-    message: 'BOOT ABORTED // characters/standalone/第七个测试剧本/MAIN.chr NOT FOUND'
 
   - type: sound
     soundPath: 's_kill_glitch1.ogg'

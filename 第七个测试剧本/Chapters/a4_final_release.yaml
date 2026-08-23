@@ -180,7 +180,6 @@ events:
 
   - type: main_menu_effect
     theme: ghost
-    message: 'STORY COMPLETE // MAIN.chr MISSING // LINGERING RECORD AVAILABLE'
 
   - type: chapter_end
     end_type: linear

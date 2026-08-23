@@ -10,7 +10,6 @@ events:
 
   - type: main_menu_effect
     theme: ghost
-    message: 'BOOT ABORTED // ql.chr NOT FOUND // REQUIRED CAST INCOMPLETE'
 
   - type: sound
     soundPath: 'glitch3.ogg'

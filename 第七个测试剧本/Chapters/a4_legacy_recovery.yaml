@@ -79,12 +79,10 @@ events:
   - type: main_menu_effect
     condition: marker_checkpoint == legacy_release
     theme: ghost
-    message: 'LEGACY RELEASE STATE RESTORED // ACT 04 READY'
 
   - type: main_menu_effect
     condition: marker_checkpoint == legacy_loop
     theme: blood
-    message: 'LEGACY LOOP STATE RESTORED // ACT 04 READY'
 
   - type: set_variable
     options:

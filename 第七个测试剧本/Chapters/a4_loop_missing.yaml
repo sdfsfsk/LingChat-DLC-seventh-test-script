@@ -39,7 +39,6 @@ events:
 
   - type: main_menu_effect
     theme: ghost
-    message: 'LATE DELETION ACCEPTED // MAIN.chr NOT FOUND // ql.chr RESTORED'
 
   - type: background_effect
     effect: none

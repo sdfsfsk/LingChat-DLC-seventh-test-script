@@ -50,7 +50,6 @@ events:
 
   - type: main_menu_effect
     theme: blood
-    message: 'LOOP LOCKED // MAIN.chr PRESENT // TOMORROW == TODAY'
 
   - type: chapter_end
     end_type: linear

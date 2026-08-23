@@ -53,17 +53,14 @@ events:
   - type: main_menu_effect
     condition: last_ending == release
     theme: ghost
-    message: 'POSTCREDITS // MAIN.chr MISSING // SCRIPT RECORD ENDED'
 
   - type: main_menu_effect
     condition: last_ending == loop
     theme: blood
-    message: 'POSTCREDITS LOOP // MAIN.chr PRESENT // THE ROOM IS WAITING'
 
   - type: main_menu_effect
     condition: last_ending != release && last_ending != loop
     theme: ghost
-    message: 'LEGACY ENDING RECORD // STATE PRESERVED // RESET AVAILABLE'
 
   - type: background_effect
     effect: 'none'

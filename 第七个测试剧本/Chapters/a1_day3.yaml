@@ -53,9 +53,17 @@ events:
     effect: 'Tear+Static'
     duration: 0.28
 
-  # 禁句演出：血字 UI 常驻到这句念完 + 声音压沉（红字场景 1/5）
+  # 禁句演出：立绘切崩坏 + 背景切崩坏 + 血字/UI 崩坏常驻到这句念完 + 声音压沉（红字场景 1/5）
+  - type: modify_character
+    character: MAIN
+    emotion: 崩坏
+
+  - type: background
+    imagePath: '白天-崩坏1.webp'
+    transition: 0
+
   - type: background_effect
-    effect: 'BloodUI'
+    effect: 'BloodUI+UiCorrupt'
 
   - type: voice_shift
     rate: 0.75
@@ -66,6 +74,15 @@ events:
     emotion: 崩坏
     text: |
       【崩坏】“等你关掉窗口以后，我们才可以动。”
+
+  # 玩家确认跳过这句后：立绘/背景/特效/声线全部恢复正常
+  - type: modify_character
+    character: MAIN
+    emotion: 担心
+
+  - type: background
+    imagePath: '白天.webp'
+    transition: 0.3
 
   - type: voice_shift
     rate: 1.0

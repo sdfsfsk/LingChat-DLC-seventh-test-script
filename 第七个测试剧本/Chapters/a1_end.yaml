@@ -1,7 +1,7 @@
 name: 1-8 她不在的教室
 
-# Act1 终章：死亡冲击。逐帧复刻 DDLC ch5 s_kill 的演出节奏：
-# 反常日常 → 台词掐断 → CG 静止 → Tear 撕裂 → 推近 → 噪点暗角 → 假报错 → 黑屏独白。
+# Act1 终章：回收冲击（纯恐怖演出，无自杀暗示）。
+# 反常日常 → 台词掐断 → 崩坏教室静止 → Tear 撕裂 → 她以错误形态闪现 → 噪点暗角 → 假报错 → 黑屏独白。
 
 events:
   # 一切如常的开场——越正常越不对
@@ -41,12 +41,12 @@ events:
 
   # ===== 发现：舞台先表现为角色消失；外部标记到可重放的幕末事务才提交 =====
 
-  # 终末教室（静止 3.75s，帧级对齐 s_kill）
+  # 崩坏教室（静止 0.9s）：教室还在，但所有颜色都是错的
   - type: music
     musicPath: 'd.ogg'
 
   - type: background
-    imagePath: '终末教室.webp'
+    imagePath: '白天-崩坏2.webp'
     transition: 0
 
   - type: modify_character
@@ -64,10 +64,18 @@ events:
   - type: sound
     soundPath: 's_kill_glitch1.ogg'
 
-  # 镜头推近
-  - type: background
-    imagePath: '终末教室-zoom.webp'
-    transition: 0.8
+  # 她以错误的形态在讲台前闪了一下——比空教室更吓人
+  - type: modify_character
+    action: show_character
+    character: MAIN
+    emotion: 崩坏
+
+  - type: wait
+    seconds: 0.55
+
+  - type: modify_character
+    action: hide_character
+    character: MAIN
 
   - type: wait
     seconds: 0.45
@@ -114,24 +122,16 @@ events:
       ……
       开什么玩笑。
 
-  # 物证展示（codex 生成的终末台本页 CG）：黑屏独白时把台本摊到玩家眼前
-  - type: present_pic
-    imagePath: '终末台本页.webp'
-    scale: 1.1
+  # 空白台本：她存在过的每一页都在，只是上面什么都没有了
+  - type: narration
+    text: |
+      她的台本摊在桌上。
+      每一页都还在——每一页，都是空白。
 
   - type: narration
     text: |
-      她的台本摊在桌上，最后一页被整齐撕掉。
-      名单、黑板和所有人的记忆也一起少了一页。
-
-  - type: narration
-    text: |
-      撕口的边缘留着一行暗红色的字。
-      笔画抖得不成样子，像用最后的力气写下的——
-      你读了好几遍，始终没能读懂。
-
-  - type: present_pic
-    imagePath: ''
+      名单、黑板和所有人的记忆里，也跟着空了一格。
+      不是被涂黑。是那一格，从来没有存在过。
 
   # 周末的选择救不了她，却会改变玩家记住自己的方式（对应原作殊途同归的差分自责）。
   - type: narration
@@ -155,8 +155,8 @@ events:
   - type: narration
     text: |
       可是没有如果。
-      这不是能读档重来的游戏。
-      你只有一次机会，而你没有抓紧。
+      剧本不读档，也不重来。
+      被收回去的角色，不会自己走回来。
 
   # 她的乱码残影：最后一句（glitchtext 对应物，unicode 组合字符）
   # 红字场景 2/5：残影开口期间整个界面渗血（Blackout 必须保留在同一串里，否则会盖掉黑屏）
@@ -221,7 +221,6 @@ events:
   # 返回主菜单后保留血红崩坏态；这是 LingChat 原创适配（原作标题主要是灰白 ghost/menu art）。
   - type: main_menu_effect
     theme: blood
-    message: 'CHARACTER INDEX DAMAGED // MAIN.chr REMOVED // ACT 02 READY'
 
   - type: set_variable
     options:
