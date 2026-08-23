@@ -108,13 +108,13 @@ events:
   - type: wait
     seconds: 0.45
 
-  # v2.2 新增的短促近脸惊吓：只占 0.28 秒，不拖慢流程。
+  # v2.2 新增的短促近脸惊吓：0.6 秒足够看清，仍不会拖慢流程。
   - type: sound
     soundPath: 'mscare.ogg'
 
   - type: jumpscare
     imagePath: 'jumpscare-face.webp'
-    duration: 0.28
+    duration: 0.6
 
   # ================= 阶段 2：假控制台删除 + 黑屏守夜 =================
   # 舞台在此表现为删除；外部 ql.chr 到可重放的幕末事务才真正提交。
