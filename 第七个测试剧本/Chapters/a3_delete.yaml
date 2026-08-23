@@ -65,8 +65,9 @@ events:
     flash: true
     duration: 0.5
 
+  # 红字场景 6/6：删除演出的告别乱码期，界面一起渗血（Blackout 统一收场）
   - type: background_effect
-    effect: 'UiCorrupt+Static'
+    effect: 'UiCorrupt+Static+BloodUI'
 
   - type: narration
     text: |

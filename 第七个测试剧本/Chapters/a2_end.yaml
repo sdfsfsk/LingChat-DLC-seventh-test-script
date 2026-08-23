@@ -109,11 +109,12 @@ events:
     seconds: 0.45
 
   # v2.2 新增的短促近脸惊吓：0.6 秒足够看清，仍不会拖慢流程。
+  # v2.4 换成钦灵专属崩坏脸（白发狼耳空洞眼），与 Act1 她的脸区分开。
   - type: sound
     soundPath: 'mscare.ogg'
 
   - type: jumpscare
-    imagePath: 'jumpscare-face.webp'
+    imagePath: 'jumpscare-face-ql.webp'
     duration: 0.6
 
   # ================= 阶段 2：假控制台删除 + 黑屏守夜 =================

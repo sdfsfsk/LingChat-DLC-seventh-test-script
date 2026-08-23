@@ -1,8 +1,8 @@
 {
   "name": "第七个测试剧本",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "author": "sdfsfsk",
-  "description": "欢迎来到文学测试部。v2.3：DDLC 同款 20 页写诗回归；新增五处血红 UI 演出、残影突脸、低沉声线与夺鼠标震屏；含抑郁/自残/自杀暗示，建议 18 岁以上游玩。",
+  "description": "欢迎来到文学测试部。v2.4：DDLC 同款 20 页写诗；六处血红 UI 演出、钦灵专属崩坏突脸、终末台本页 CG 物证、被夺台词低沉声线；含抑郁/自残/自杀暗示，建议 18 岁以上游玩。",
   "min_engine": "0.5.1",
   "homepage": "https://github.com/sdfsfsk/LingChat-DLC-seventh-test-script"
 }

@@ -48,12 +48,25 @@ events:
             content: 那些行……写了什么？
     allow_free: false
 
+  # 「轮不到我」：声线压沉 + 血红 UI 随那句复读一闪而过
+  - type: voice_shift
+    rate: 0.85
+    pitch: -3
+
+  - type: background_effect
+    effect: 'BloodUI'
+    duration: 0.8
+
   - type: dialogue
     character: ql
     emotion: 害怕
     text: |
       【害怕】写的都是同一句话。
       【害怕】「轮不到我。轮不到我。轮不到我。」
+
+  - type: voice_shift
+    rate: 1.0
+    pitch: 0
 
   # 钦灵立绘崩坏一闪 + 故障音（立绘级崩坏进入日常）
   - type: modify_character

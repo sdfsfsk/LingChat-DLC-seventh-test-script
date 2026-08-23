@@ -114,10 +114,24 @@ events:
       ……
       开什么玩笑。
 
+  # 物证展示（codex 生成的终末台本页 CG）：黑屏独白时把台本摊到玩家眼前
+  - type: present_pic
+    imagePath: '终末台本页.webp'
+    scale: 1.1
+
   - type: narration
     text: |
       她的台本摊在桌上，最后一页被整齐撕掉。
       名单、黑板和所有人的记忆也一起少了一页。
+
+  - type: narration
+    text: |
+      撕口的边缘留着一行暗红色的字。
+      笔画抖得不成样子，像用最后的力气写下的——
+      你读了好几遍，始终没能读懂。
+
+  - type: present_pic
+    imagePath: ''
 
   # 周末的选择救不了她，却会改变玩家记住自己的方式（对应原作殊途同归的差分自责）。
   - type: narration

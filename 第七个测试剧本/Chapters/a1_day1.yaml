@@ -35,7 +35,7 @@ events:
     emotion: 高兴
     text: |
       【高兴】%player%，你终于来了！我是七号部员——叫我“她”就好。
-      【高兴】今天很简单：认识钦灵前辈，然后写一首八个词的诗。
+      【高兴】今天很简单：认识钦灵前辈，然后写一首二十个词的诗。
 
   - type: modify_character
     action: show_character
@@ -93,7 +93,7 @@ events:
     character: ql
     emotion: 认真
     text: |
-      【认真】从八组词里各选一个。别停太久。
+      【认真】从二十组词里各选一个。别停太久。
       【认真】这本书……不喜欢等人。
 
   - type: chapter_end

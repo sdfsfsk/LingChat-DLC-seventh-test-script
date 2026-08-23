@@ -127,7 +127,7 @@ events:
     text: |
       【正常】对了新人，明天我们继续——
 
-  # 钦灵的台词中断：一瞬间的故障（Static 闪 + 立绘微崩）
+  # 钦灵的台词中断：一瞬间的故障（Static 闪 + 立绘微崩 + 声线被压沉）
   - type: background_effect
     effect: 'Static'
     duration: 0.2
@@ -138,11 +138,19 @@ events:
     flash: true
     duration: 0.15
 
+  - type: voice_shift
+    rate: 0.85
+    pitch: -3
+
   - type: dialogue
     character: ql
     emotion: 正常
     text: |
       【正常】反正演完了，都会被收回去的啦。
+
+  - type: voice_shift
+    rate: 1.0
+    pitch: 0
 
   - type: narration
     text: |
