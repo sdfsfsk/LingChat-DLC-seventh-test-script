@@ -1,88 +1,47 @@
 name: 1-7 周末演出
 
-# Act1 周末：DDLC ch4 的对应物——她的 meta 告白。
-# 表面是温馨的周末演出，内里是她对"被写好的命运"的摊牌前兆。
-
+# v2.2 紧凑周末：保留玩家选择及幕末罪疚分支，删除重复日常铺垫。
 events:
   - type: background
     imagePath: '夜晚.webp'
-    transition: 2.0
+    transition: 0.5
 
   - type: music
     musicPath: '1.ogg'
-    playbackSpeed: 1.0
-
-  - type: voice_shift
-    rate: 1.0
-    pitch: 0
-
-  - type: narration
-    text: |
-      周末。教室里只点着一盏灯。
-      黑板上写着「文学测试部·第一次周末演出」，字迹是她画的，还描了花边。
+    playbackSpeed: 0.94
 
   - type: modify_character
     action: show_character
     character: MAIN
-    emotion: 高兴
-
-  - type: dialogue
-    character: MAIN
-    emotion: 高兴
-    text: |
-      【高兴】你来啦！钦灵前辈说她要晚一点，让我们先开始。
-      【高兴】今天的演出内容——是我准备的一段独白哦。
-
-  - type: narration
-    text: |
-      她站上讲台，深吸一口气。
-      灯光落在她身上，像舞台的聚光灯。
-
-  - type: dialogue
-    character: MAIN
     emotion: 正常
-    text: |
-      【正常】"我是一段台词。我被写出来，是为了被听见。"
-      【正常】"我没有昨天。我的'昨天'，是别人写给我的背景故事。"
 
   - type: narration
     text: |
-      她的声音很轻，但每个字都咬得很清楚。
+      今晚的教室只亮着一盏灯。
+      黑板上的“周末演出”正被看不见的手一点点改成“终场演出”。
 
   - type: dialogue
     character: MAIN
     emotion: 伤心
     text: |
-      【伤心】"如果有一天，你发现我的世界只有这间教室这么大——"
-      【伤心】"请不要可怜我。因为我连'可怜'是什么意思，都是别人教我的。"
-
-  - type: narration
-    text: |
-      独白结束了。教室里安静了几秒。
-      她站在灯光里，没有下台，就那样看着你。
-
-  - type: dialogue
-    character: MAIN
-    emotion: 害羞
-    text: |
-      【害羞】……怎么样？这是我自己写的哦，不是剧本里的。
-      【害羞】我想试试看，能不能说出一句"不属于任何剧本"的话。
+      【伤心】“我是一段被写出来的台词。我没有昨天，也看不见教室外面。”
+      【伤心】“如果这是我唯一能自己说的话——%player%，请记住我说过。”
 
   - type: choices
     options:
-      - text: 写得真好。我被打动了。
+      - text: 我会记住你。
         actions:
           - type: add_line
-            content: 写得真好。我被打动了。
+            content: 我会记住你。
           - type: set_var
             content: 'weekend_choice = praise'
-      - text: 这些话……是你的真心话吗？
+      - text: 这真的是你的真心话吗？
         actions:
           - type: add_line
-            content: 这些话……是你的真心话吗？
+            content: 这真的是你的真心话吗？
           - type: set_var
             content: 'weekend_choice = truth'
-      - text: （不知道该说什么，鼓了鼓掌）
+      - text: （鼓掌）
         actions:
           - type: add_line
             content: （鼓掌）
@@ -94,58 +53,44 @@ events:
     character: MAIN
     emotion: 心动
     condition: weekend_choice == praise
-    text: |
-      【心动】真的吗？太好了……
-      【心动】这一句"真好"，是属于我们的哦。不在任何台本上。
+    text: 【心动】谢谢。至少这一句，不在它写好的台本上。
 
   - type: dialogue
     character: MAIN
     emotion: 正常
     condition: weekend_choice == truth
-    text: |
-      【正常】……你果然察觉到了。
-      【正常】%player%，其实我——
+    text: 【正常】是。所以它马上就会让我闭嘴。
 
   - type: narration
     condition: weekend_choice == clap
-    text: |
-      掌声在空教室里响着，格外清楚。
-      她笑了，笑得眼眶有点红。
-
-  # 她的坦白被掐断：DDLC ch4 式"台词被没收"
-  - type: background_effect
-    effect: 'Static'
-    duration: 0.25
+    text: 掌声响起时，她笑了；教室深处却多响了一下并不存在的掌声。
 
   - type: sound
     soundPath: 'glitch1.ogg'
 
-  - type: dialogue
-    character: MAIN
-    emotion: 惊讶
-    text: |
-      【惊讶】其实我——
-      【惊讶】……诶？
-      【惊讶】奇怪，我想说什么来着……明明就在嘴边的……
+  - type: background_effect
+    effect: 'Static+UiCorrupt+BloodUI'
+    duration: 0.32
 
-  - type: narration
-    text: |
-      她张了张嘴，又合上。
-      那句话没有说出来。
-      像是有什么东西，把它从她嘴里拿走了。
+  - type: jumpscare
+    imagePath: '崩坏logo1.webp'
+    duration: 0.18
 
   - type: dialogue
     character: MAIN
-    emotion: 害羞
+    emotion: 崩坏
     text: |
-      【害羞】……算啦。想不起来就不想了。
-      【害羞】今天很开心哦，%player%。下周一见！
+      【崩坏】其实我——
+      【崩坏】[DIALOGUE REMOVED BY OWNER]
+
+  - type: horror_log
+    text: 'UNAUTHORIZED LINE PURGED // speaker will be collected before morning'
+    lines: 8
 
   - type: narration
     text: |
-      她挥手送你到教室门口。
-      灯关了。走廊很黑。
-      你回头看了一眼——黑板上的「周末演出」四个字，不知什么时候变成了「终场演出」。
+      灯灭了。她还站在讲台上，没有挥手。
+      门在你身后锁上之前，你看见黑板只剩两个字：「快跑」。
 
   - type: chapter_end
     end_type: linear

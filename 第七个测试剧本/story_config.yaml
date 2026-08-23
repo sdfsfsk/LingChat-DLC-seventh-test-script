@@ -1,7 +1,7 @@
-# 《第七个测试剧本》v2.1 — 原创 meta 恐怖剧本（DLC 发行版）
+# 《第七个测试剧本》v2.2 — 原创紧凑 meta 恐怖剧本（DLC 发行版）
 # 四幕结构（映射 DDLC 玩法骨架，内容全原创）：
-#   current_act==1  Act1 日常幕：a1_day1 → 三次写诗 → a1_weekend → a1_end（她的死亡冲击）
-#   current_act==2  Act2 崩坏幕：a2_boot → 三次写诗且各投放一张特殊诗 → a2_end（钦灵三阶段删除）
+#   current_act==1  Act1 快速裂缝：a1_day1 → 两次八词写诗 → a1_weekend → a1_end
+#   current_act==2  Act2 崩坏幕：a2_boot → 两次八词写诗/特殊诗 → a2_end（三阶段删除）
 #   current_act==3  Act3 独占空间：a3_space → a3_talk → 删除/留下
 #   current_act==4  Act4 结局幕：a4_main → a4_turn → a4_final（先按 release/loop 拆章）
 #   act4_done==true 后日谈：a5_lingering（空房间/彩蛋）

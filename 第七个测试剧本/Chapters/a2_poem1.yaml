@@ -1,6 +1,6 @@
 name: 2-2 腐化的诗
 
-# Act2 写诗①：她的贴纸已经消失，但词库暂时仍正常；从第二局起才可能刷出乱码词。
+# Act2 写诗①：她的贴纸已经消失，但词库暂时仍正常；第二局直接进入腐化。
 # 钦灵读诗时的黑化开始渗出来，结束后固定投放第一张特殊诗。
 
 events:
@@ -13,7 +13,7 @@ events:
     musicPath: none
 
   - type: wait
-    seconds: 1.5
+    seconds: 0.35
 
   # 第一局不生成乱码词；act2 模式隐藏“她”的贴纸，只比较钦灵/空白两轴
   - type: poem_game
@@ -25,7 +25,7 @@ events:
     voidStickerPath: '写诗Q版-空白.png'
     wordListPath: 'poem_words.yaml'
     resultVar: 'poem_tone'
-    rounds: 20
+    rounds: 8
     mode: act2
     glitch: false
 

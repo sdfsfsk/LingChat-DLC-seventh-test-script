@@ -8,7 +8,7 @@ events:
     character: MAIN
     emotion: 高兴
     text: |
-      【高兴】规则很简单：每次挑一个词，一共二十个。
+      【高兴】规则很简单：每次挑一个词，一共八个。
       【高兴】左页站着小小的我；你选的词合谁的口味，对应的标记就会跳一下哦。
 
   - type: dialogue
@@ -23,7 +23,7 @@ events:
     musicPath: none
 
   - type: wait
-    seconds: 2.0
+    seconds: 0.35
 
   - type: poem_game
     backgroundPath: '深夜诗笺-半页.png'
@@ -34,11 +34,11 @@ events:
     voidStickerPath: '写诗Q版-空白.png'
     wordListPath: 'poem_words.yaml'
     resultVar: 'poem_tone'
-    rounds: 20
+    rounds: 8
     mode: normal
     glitch: false
 
-  # 倾向累计：Act1 三次写诗的赢家会记进 poem_winner_act1（结局分流用）
+  # 倾向累计：v2.2 新流程两次写诗；旧存档落在第二首时仍可兼容三次累计。
   - type: set_variable
     options:
       - condition: poem_tone == warm
@@ -112,5 +112,10 @@ events:
       【高兴】%player%，明天见～
 
   - type: chapter_end
-    end_type: linear
-    next_chapter: 'a1_day2'
+    end_type: branching
+    options:
+      # 仅兼容状态错位的旧存档；正常 v2.2 流程 current_act 恒为 1，直接跳过重复第二天。
+      - condition: current_act != 1
+        next: 'a1_day2'
+      - default: true
+        next: 'a1_day3'

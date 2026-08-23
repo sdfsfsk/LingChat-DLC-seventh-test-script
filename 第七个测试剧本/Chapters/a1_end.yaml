@@ -15,59 +15,19 @@ events:
 
   - type: narration
     text: |
-      周一。天气很好。
-      你推开教室门，准备像往常一样和她打招呼——
-
-  - type: narration
-    text: |
-      教室里没有人。
-      她的桌椅干干净净，像是从来没有人坐过。
-      黑板上的「终场演出」四个字也被擦掉了。
-
-  - type: dialogue
-    character: ql
-    emotion: 正常
-    text: |
-      【正常】……咦，新人？你怎么来了？
-      【正常】今天没有排期哦。台本上说今天是"空场"。
-
-  - type: narration
-    text: |
-      钦灵站在讲台边，语气平静得反常。
-      她没有问"她"去哪了。
-      好像在她的台本里，从来就没有过"她"。
-
-  - type: choices
-    options:
-      - text: 她呢？她去哪里了？
-        actions:
-          - type: add_line
-            content: 她呢？她去哪里了？
-      - text: 台本？什么台本？让我看看。
-        actions:
-          - type: add_line
-            content: 台本？什么台本？让我看看。
-    allow_free: false
+      周一。你推开门，教室里没有她；桌椅、名单和黑板都像从未有过这个人。
 
   - type: dialogue
     character: ql
     emotion: 害怕
     text: |
-      【害怕】……钦灵不知道。
-      【害怕】钦灵的台本里，这一页是空白的。
-      【害怕】新人的台本里……难道有吗？
+      【害怕】新人，别找了。钦灵的台本说今天是“空场”。
+      【害怕】最后一排那本台本……千万不要翻到最后一页。
 
-  # 你转身走向教室后面——她说过"她的台本放在最后一排"
   - type: narration
     text: |
-      你想起来她说过，她的台本放在最后一排那张空桌里。
-      你朝教室后面走去——
-
-  # ===== 台词掐断（DDLC 开门瞬间的 {nw} 对应物）=====
-  - type: narration
-    text: |
-      等等。
-      那是——
+      你已经翻开了。
+      纸页里面夹着一缕不属于任何立绘的头发。
 
   # ===== 发现：舞台先表现为角色消失；外部标记到可重放的幕末事务才提交 =====
 
@@ -84,7 +44,7 @@ events:
     character: ql
 
   - type: wait
-    seconds: 3.75
+    seconds: 0.9
 
   # Tear 撕裂一闪 + 故障音
   - type: background_effect
@@ -100,14 +60,14 @@ events:
     transition: 0.8
 
   - type: wait
-    seconds: 2.0
+    seconds: 0.45
 
   # 噪点+暗角
   - type: background_effect
     effect: 'Static+Veins'
 
   - type: wait
-    seconds: 1.5
+    seconds: 0.35
 
   # 白闪+反色回卷
   - type: background_effect
@@ -130,16 +90,16 @@ events:
       CharacterRecordMissing: MAIN.chr
       "别把这一行也删掉。人家还在这里。"
     count: 1
-    lifetime: 6.0
+    lifetime: 3.5
 
   - type: background_effect
     effect: 'BSOD'
     text: 'CharacterRecordMissing: MAIN.chr // script continuation is unsafe'
     echo: '「别把这一行也删掉。人家还在这里。」'
-    duration: 6.0
+    duration: 2.4
 
   - type: wait
-    seconds: 6.0
+    seconds: 2.4
 
   # ===== 黑屏独白 =====
   - type: background_effect
@@ -152,20 +112,8 @@ events:
 
   - type: narration
     text: |
-      她的台本摊开在桌上。
-      最后一页被撕掉了。
-      撕口很整齐——整齐得像是从一开始，就没有那一页。
-
-  - type: narration
-    text: |
-      教室里没有她。
-      名单上没有她。
-      连黑板上的粉笔字，都没有了她的名字。
-
-  - type: narration
-    text: |
-      明明周末她还站在灯光里。
-      她还说，想说出一句"不属于任何剧本"的话。
+      她的台本摊在桌上，最后一页被整齐撕掉。
+      名单、黑板和所有人的记忆也一起少了一页。
 
   # 周末的选择救不了她，却会改变玩家记住自己的方式（对应原作殊途同归的差分自责）。
   - type: narration

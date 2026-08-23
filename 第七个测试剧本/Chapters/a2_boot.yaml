@@ -18,7 +18,7 @@ events:
     musicPath: none
 
   - type: wait
-    seconds: 2.0
+    seconds: 0.45
 
   # 崩坏启动画面：碎 logo 两连闪（DDLC splash_glitch 对应物）
   - type: jumpscare
@@ -29,7 +29,7 @@ events:
     soundPath: 'glitch1.ogg'
 
   - type: wait
-    seconds: 1.5
+    seconds: 0.45
 
   - type: background_effect
     effect: 'Tear'
@@ -43,7 +43,7 @@ events:
     duration: 0.75
 
   - type: wait
-    seconds: 0.75
+    seconds: 0.22
 
   # 加载日志全是错的
   - type: horror_log
@@ -60,7 +60,7 @@ events:
   # 世界重启：白天的教室——但不对
   - type: background
     imagePath: '白天.webp'
-    transition: 3.0
+    transition: 0.8
 
   - type: background_effect
     effect: 'none'
@@ -105,7 +105,7 @@ events:
     character: MAIN
 
   - type: wait
-    seconds: 0.5
+    seconds: 0.2
 
   - type: narration
     text: |

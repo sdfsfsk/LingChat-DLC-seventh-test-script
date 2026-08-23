@@ -1,6 +1,6 @@
 name: 2-4 第二首腐化诗
 
-# Act2 写诗②：每个词位有 1/401 概率出现乱码词；结束后固定投放第二张特殊诗。
+# Act2 最后一局：每个词位可出现乱码词；第二张特殊诗后直接进入删除演出。
 # 玩家结果会先显示，再被台本强行改写为钦灵轴。
 
 events:
@@ -13,7 +13,7 @@ events:
     musicPath: none
 
   - type: wait
-    seconds: 1.5
+    seconds: 0.35
 
   - type: poem_game
     backgroundPath: '深夜诗笺-半页.png'
@@ -24,7 +24,7 @@ events:
     voidStickerPath: '写诗Q版-空白.png'
     wordListPath: 'poem_words.yaml'
     resultVar: 'poem_tone'
-    rounds: 20
+    rounds: 8
     mode: act2
     glitch: true
 
@@ -77,12 +77,12 @@ events:
       【正常】你知道吗，坏掉的诗是没人读的。
       【正常】坏掉的角色也一样。
 
-  # 特殊诗在三次 Act2 写诗后各投放一张；随机性不再决定“是否出现”。
+  # v2.2 紧凑流程投放第二张后直接进入终章；第三局仍保留供旧存档续播。
   - type: set_variable
     options:
       - actions:
           - type: set_var
-            content: 'special_return = day3'
+            content: 'special_return = end'
 
   - type: chapter_end
     end_type: linear

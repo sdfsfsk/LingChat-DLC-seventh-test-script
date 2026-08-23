@@ -1,7 +1,7 @@
 name: 2-6 最后第二首诗
 
-# Act2 写诗③：从开场就使用 111…/20 进度与屏外崩坏贴纸，结束后投放第三张特殊诗。
-# 结算再次被强制改写，之后进入 a2_end 的三阶段删除演出。
+# 旧存档兼容局：从开场使用损坏进度与屏外崩坏贴纸，结束后投放第三张特殊诗。
+# v2.2 新流程不再经过本章；命中旧章节存档时仍能完整进入 a2_end。
 
 events:
   - type: narration
@@ -13,7 +13,7 @@ events:
     musicPath: none
 
   - type: wait
-    seconds: 1.5
+    seconds: 0.35
 
   - type: poem_game
     backgroundPath: '深夜诗笺-半页.png'
@@ -24,7 +24,7 @@ events:
     voidStickerPath: '写诗Q版-空白.png'
     wordListPath: 'poem_words.yaml'
     resultVar: 'poem_tone'
-    rounds: 20
+    rounds: 8
     mode: act2_final
     glitch: true
 

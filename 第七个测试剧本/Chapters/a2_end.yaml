@@ -76,7 +76,7 @@ events:
     effect: 'Veins+Static'
 
   - type: wait
-    seconds: 1.25
+    seconds: 0.35
 
   - type: sound
     soundPath: 'stinger.wav'
@@ -91,7 +91,7 @@ events:
     effect: 'Veins+Invert'
 
   - type: wait
-    seconds: 0.75
+    seconds: 0.25
 
   - type: sound
     soundPath: 'stinger.wav'
@@ -106,7 +106,15 @@ events:
     effect: 'Veins+Glitch'
 
   - type: wait
-    seconds: 2.0
+    seconds: 0.45
+
+  # v2.2 新增的短促近脸惊吓：只占 0.28 秒，不拖慢流程。
+  - type: sound
+    soundPath: 'mscare.ogg'
+
+  - type: jumpscare
+    imagePath: 'jumpscare-face.webp'
+    duration: 0.28
 
   # ================= 阶段 2：假控制台删除 + 黑屏守夜 =================
   # 舞台在此表现为删除；外部 ql.chr 到可重放的幕末事务才真正提交。
@@ -123,14 +131,14 @@ events:
       > 不⃞要⃟关⃗掉⃘
     count: 3
     interval: 0.22
-    lifetime: 6.5
+    lifetime: 3.8
 
   # in-app 假系统崩溃层；始终可由剧本退出路径清理，不是真实蓝屏。
   - type: background_effect
     effect: 'BSOD'
     text: 'CHARACTER_INDEX_FAULT: ql.chr was removed while dialogue process was active'
     echo: '「新人……不要把最后一行也删掉。」'
-    duration: 3.0
+    duration: 1.6
 
   # 画面一黑：假控制台浮现（horror_log 刷屏 = updateconsole 对应物）
   - type: background_effect
@@ -167,51 +175,20 @@ events:
       一行行命令滚过去，快得你来不及读完。
       你只看到最后一句：「残留依恋检测：仍有进程在运行」。
 
-  # 守夜：周末的时间流逝（DDLC yuri_kill_2 的 1440 行压缩为可玩的九段）
+  # v2.2 将九段守夜压成三次时间跳切，保留压迫感而不消耗耐心。
   - type: narration
     text: |
-      你没有走。
-      教室里很黑。你不知道现在是几点。
+      你没有走。时钟在 23:59 和 00:00 之间来回抽搐。
+      黑暗里一直有人贴着耳边说：「不要关掉。」
+
+  - type: background_effect
+    effect: 'Static+Invert'
+    duration: 0.24
 
   - type: narration
     text: |
-      等⃞等⃟……
-      不⃗要⃘关⃙掉⃚……
-
-  - type: narration
-    text: |
-      窗台上有她的尾巴尖扫过的痕迹。
-      灰尘在月光里浮着。你还是没走。
-
-  - type: narration
-    text: |
-      救⃝救⃞我⃟……
-      救⃗救⃘……
-
-  - type: narration
-    text: |
-      屏幕右下角的时间从 23:59 跳回 00:00，又跳回 23:59。
-      你试着数秒，数到四百以后忘了自己数到哪里。
-
-  - type: narration
-    text: |
-      窗外亮过一次。不是日出，只是一整片没有来源的白光。
-      它很快熄灭，教室又回到原来的黑。
-
-  - type: narration
-    text: |
-      还⃞没⃟结⃗束⃘。
-      不⃙要⃚读⃝档⃞。
-
-  - type: narration
-    text: |
-      椅背上落了一层薄灰。
-      你开始怀疑，过去的不是一夜，而是一个被压缩坏掉的周末。
-
-  - type: narration
-    text: |
-      不知过了多久。天边终于泛起一点灰白色。
-      乱码的声音，一点一点低了下去。
+      一次白光闪过，椅背已经落满灰；再闪一次，窗外终于泛白。
+      只有最后半句还在日志里重复：救⃞救⃟我⃗。
 
   # ================= 阶段 3：她的残影收场 =================
   # 先清掉钦灵，避免 flash 恢复的旧立绘与 MAIN 残影叠在同一舞台。
@@ -221,7 +198,7 @@ events:
 
   - type: background
     imagePath: '夜班教室.webp'
-    transition: 2.0
+    transition: 0.6
 
   - type: background_effect
     effect: 'Static'

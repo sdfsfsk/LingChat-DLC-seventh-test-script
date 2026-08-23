@@ -1,19 +1,19 @@
 name: 1-6 第三首诗
 
-# Act1 写诗③：最后一次点词。结算本周目倾向 → poem_winner_act1（持久）。
-# 钦灵今天不在，读诗只有"她"的部分。
+# Act1 最后一首诗：新流程共两局，旧存档若落在第二局仍可继续三局结算。
+# 钦灵今天不在，读诗只有“她”的部分。
 
 events:
   - type: narration
     text: |
-      笔记本第三次推到你面前。
+      笔记本最后一次推到你面前。
       今天的教室很安静——钦灵请假了，只有她坐在对面看着你。
 
   - type: music
     musicPath: none
 
   - type: wait
-    seconds: 1.5
+    seconds: 0.35
 
   - type: poem_game
     backgroundPath: '深夜诗笺-半页.png'
@@ -24,7 +24,7 @@ events:
     voidStickerPath: '写诗Q版-空白.png'
     wordListPath: 'poem_words.yaml'
     resultVar: 'poem_tone'
-    rounds: 20
+    rounds: 8
     mode: normal
     glitch: false
 
@@ -43,7 +43,7 @@ events:
           - type: set_var
             content: 'void_score += 1'
 
-  # 周目倾向结算：先写 balanced 兜底，达到 2/3 票的轴再覆盖它。
+  # 周目倾向结算：两局同轴即胜出，分票则 balanced；保留 3 分兼容旧存档。
   - type: set_variable
     options:
       - actions:
@@ -79,7 +79,7 @@ events:
     emotion: 心动
     condition: poem_tone == warm
     text: |
-      【心动】三首了。你的每一首，我都有好好收着哦。
+      【心动】两首了。你的每一首，我都有好好收着哦。
       【心动】……明天，一定要来。约好了。
 
   - type: dialogue
@@ -100,7 +100,7 @@ events:
 
   - type: narration
     text: |
-      她把三页诗都收进笔记本，抱在胸口。
+      她把两页诗都收进笔记本，抱在胸口。
       窗外的天已经完全黑了。
 
   - type: dialogue
