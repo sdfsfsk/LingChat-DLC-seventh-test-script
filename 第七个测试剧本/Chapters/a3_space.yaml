@@ -41,6 +41,8 @@ events:
     musicPath: 'heartbeat.ogg'
     playbackSpeed: 0.9
 
+  # v2.6：Veins 常驻期间窗口标题随特效联动乱码
+
   - type: ambient
     ambientPath: 'rumble.wav'
     volume: 50

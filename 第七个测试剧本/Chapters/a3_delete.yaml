@@ -35,14 +35,15 @@ events:
       【心动】能被你认真看过——我真的，很高兴。
 
   # 删除演出开始：她的轮廓开始碎（矩形噪点 = DDLC m_rectstatic 对应物）
+  # v2.6：UiCorrupt 起后窗口标题随特效联动乱码，特效清空即还原
+
   - type: background_effect
     effect: 'UiCorrupt'
 
   - type: sound
     soundPath: 's_kill_glitch1.ogg'
 
-  - type: glitch_window
-    style: terminal
+  - type: console_window
     title: 'MAIN.chr // FILE NOT FOUND'
     text: |
       > external marker removed

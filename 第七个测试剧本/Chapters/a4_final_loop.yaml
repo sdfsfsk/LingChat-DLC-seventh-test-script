@@ -12,6 +12,8 @@ events:
   - type: background_effect
     effect: 'Veins'
 
+  # v2.6：Veins 一起，窗口标题随之乱码到落幕
+
   - type: narration
     text: |
       她的手握着你的手，温度刚好。

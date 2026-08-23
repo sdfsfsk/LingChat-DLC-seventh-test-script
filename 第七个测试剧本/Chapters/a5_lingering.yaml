@@ -32,9 +32,9 @@ events:
           - type: set_var
             content: 'last_ending = release'
 
-  - type: glitch_window
-    condition: last_ending == release && main_file_exists == true
+  - type: console_window
     style: error
+    condition: last_ending == release && main_file_exists == true
     title: 'POSTCREDITS RESTORE REJECTED'
     text: 'MAIN.chr was restored after the ending. Please stop pulling this record back. The marker will be removed again.'
     count: 1

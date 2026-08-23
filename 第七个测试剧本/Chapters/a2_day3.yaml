@@ -90,6 +90,8 @@ events:
       【慌张】再……再陪我一会儿，好不好？就一会儿！
 
   # force_choice：鼠标被拖向"再陪她一会儿"（DDLC 的 RigMouse：拖而不点）
+  # v2.6：夺光标演出期间弹窗跟着求（窗口标题随特效自动乱码）
+
   - type: force_choice
     forced: 再陪她一会儿
     options:
@@ -113,6 +115,18 @@ events:
   - type: background_effect
     effect: 'Shake'
     duration: 0.5
+
+  - type: console_window
+    style: warning
+    title: '别⃞走⃟'
+    text: |
+      别走。别走。别走。
+      光标选择是自愿的。
+      你的选择已被记录。
+    count: 2
+    interval: 0.25
+    lifetime: 3.0
+
 
   - type: narration
     text: |

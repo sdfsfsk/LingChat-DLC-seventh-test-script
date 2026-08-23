@@ -19,9 +19,10 @@ events:
           - type: set_var
             content: 'current_act = 2'
 
-  # 黑场死寂开场
+  # 黑场死寂开场（v2.6：整个崩坏启动期间窗口标题保持乱码）
   - type: background_effect
     effect: 'Blackout'
+
 
   - type: music
     musicPath: none
@@ -73,6 +74,7 @@ events:
 
   - type: background_effect
     effect: 'none'
+
 
   # BGM 是幽灵菜单曲（变调主题曲，DDLC ghostmenu 对应物）
   - type: music

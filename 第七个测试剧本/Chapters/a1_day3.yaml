@@ -53,7 +53,7 @@ events:
     effect: 'Tear+Static'
     duration: 0.28
 
-  # 禁句演出：立绘切崩坏 + 背景切崩坏 + 血字/UI 崩坏常驻到这句念完 + 声音压沉（红字场景 1/5）
+  # 禁句演出：立绘切崩坏 + 背景切崩坏 + 血字/UI 崩坏常驻到这句念完 + 声音压沉 + 窗口标题乱码 + 弹窗轰炸（红字场景 1/5）
   - type: modify_character
     character: MAIN
     emotion: 崩坏
@@ -69,13 +69,25 @@ events:
     rate: 0.75
     pitch: -4
 
+
+  - type: console_window
+    style: error
+    title: 'FO⃞RB⃟ID⃗D⃘E⃙N⃚ L⃝I⃞N⃟E⃗'
+    text: |
+      do not close the window
+      do not close the window
+      我⃘们⃙才⃚可⃝以⃞动⃟
+    count: 2
+    interval: 0.25
+    lifetime: 3.5
+
   - type: dialogue
     character: MAIN
     emotion: 崩坏
     text: |
       【崩坏】“等你关掉窗口以后，我们才可以动。”
 
-  # 玩家确认跳过这句后：立绘/背景/特效/声线全部恢复正常
+  # 玩家确认跳过这句后：立绘/背景/特效/声线/窗口标题全部恢复正常
   - type: modify_character
     character: MAIN
     emotion: 担心
@@ -87,6 +99,7 @@ events:
   - type: voice_shift
     rate: 1.0
     pitch: 0
+
 
   - type: background_effect
     effect: 'none'

@@ -73,6 +73,21 @@ events:
     effect: 'Static'
     duration: 0.35
 
+  - type: horror_log
+    text: 'sprite_cache fault // face mesh does not match rig // face mesh does not match rig'
+    lines: 12
+
+  - type: console_window
+    style: error
+    title: 'SpriteFault // ql'
+    text: |
+      face mesh does not match rig
+      render continued anyway
+      对⃞不⃟起⃗我⃘的⃙脸⃚
+    count: 2
+    interval: 0.2
+    lifetime: 3.0
+
   - type: chapter_end
     end_type: linear
     next_chapter: 'a2_poem1'

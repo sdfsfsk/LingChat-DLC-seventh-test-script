@@ -11,8 +11,8 @@ events:
   - type: sound
     soundPath: 's_kill_glitch1.ogg'
 
-  - type: glitch_window
-    style: error
+  - type: console_window
+    style: warning
     title: 'LingChat Recovery'
     text: |
       MAIN.chr disappeared while the script was not running.

@@ -69,6 +69,7 @@ events:
     condition: weekend_choice == clap
     text: 掌声响起时，她笑了；教室深处却多响了一下并不存在的掌声。
 
+
   - type: sound
     soundPath: 'glitch1.ogg'
 
@@ -90,6 +91,33 @@ events:
   - type: horror_log
     text: 'UNAUTHORIZED LINE PURGED // speaker will be collected before morning'
     lines: 8
+
+  - type: horror_log
+    text: 'purge complete // purge complete // purge complete // she is still talking'
+    lines: 14
+
+  - type: console_window
+    style: error
+    title: 'PURGE F⃞A⃟I⃗L⃘E⃙D⃚'
+    text: |
+      unauthorized dialogue removed
+      speaker containment: PENDING
+      对⃝不⃞起⃟
+    count: 2
+    interval: 0.22
+    lifetime: 3.2
+
+  # 被撕掉的那句台词，以记事本残页的形式落到玩家桌面上（DDLC 式文件入侵感）
+  - type: console_window
+    style: notepad
+    title: '被撕掉的台词.txt'
+    text: |
+      其实我——
+      ※ 这一页的内容被撕掉了
+      如果你读到这行字，说明它没能拦住我全部的话。
+      明天请不要来教室。
+    count: 1
+    lifetime: 6
 
   - type: narration
     text: |

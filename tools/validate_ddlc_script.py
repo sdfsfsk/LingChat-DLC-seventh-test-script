@@ -18,6 +18,7 @@ EVENT_TYPES = {
     "background",
     "background_effect",
     "chapter_end",
+    "console_window",
     "character_file",
     "choices",
     "dialogue",
@@ -39,6 +40,7 @@ EVENT_TYPES = {
     "sound",
     "voice_shift",
     "wait",
+    "window_title",
 }
 MEDIA_FIELDS = {
     "imagePath",
@@ -429,9 +431,9 @@ def main() -> int:
                         f"{chapter_id} event {index}: menu message must be safe plain text of at most 160 characters"
                     )
 
-            if event_type == "glitch_window":
+            if event_type in ("glitch_window", "console_window"):
                 uses_glitch_windows = True
-                if event.get("style") not in {"terminal", "error"}:
+                if event_type == "glitch_window" and event.get("style") not in {"terminal", "error"}:
                     errors.append(
                         f"{chapter_id} event {index}: invalid glitch-window style {event.get('style')!r}"
                     )
@@ -651,9 +653,9 @@ def main() -> int:
 
     if uses_glitch_windows:
         if config.get("content_warning") != "horror":
-            errors.append("glitch_window requires content_warning: horror")
+            errors.append("glitch_window/console_window requires content_warning: horror")
         if settings.get("allow_system_effects") is not True:
-            errors.append("glitch_window requires script_settings.allow_system_effects: true")
+            errors.append("glitch_window/console_window requires script_settings.allow_system_effects: true")
 
     adjacency: dict[str, set[str]] = {chapter_id: set() for chapter_id in chapters}
     for source, target in references:

@@ -50,6 +50,8 @@ events:
       【调皮】选中谁喜欢的词，谁就会自己跳一下。别让“空着的位置”赢哦。
 
   # 第一次异常不再依赖低概率：玩家会在开场一分钟内看见恐怖信号。
+  # v2.6 恐怖拉满：连 OS 窗口标题一起乱码 + 日志双倍刷屏
+
   - type: sound
     soundPath: 'glitch2.ogg'
 
@@ -67,8 +69,11 @@ events:
     text: 'ROSTER_MISMATCH // expected 2 // loaded 3 // slot[0] has no name'
     lines: 6
 
-  - type: glitch_window
-    style: terminal
+  - type: horror_log
+    text: 'slot[0] is reading your input // slot[0] is reading your input'
+    lines: 14
+
+  - type: console_window
     title: 'RUNT⃞IM⃟E // roster'
     text: |
       > characters: 2
@@ -76,6 +81,7 @@ events:
       > unnamed process is already speaking
     count: 1
     lifetime: 3.2
+
 
   - type: dialogue
     character: MAIN

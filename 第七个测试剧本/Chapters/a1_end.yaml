@@ -96,7 +96,7 @@ events:
     soundPath: 's_kill_glitch1.ogg'
 
   # ===== 假报错：主画面 + 数秒后自动关闭的安全本地辅助窗口 =====
-  - type: glitch_window
+  - type: console_window
     style: error
     title: 'LingChat Script Exception'
     text: |

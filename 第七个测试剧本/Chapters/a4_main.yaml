@@ -32,9 +32,9 @@ events:
     action: ensure
     file: ql.chr
 
-  - type: glitch_window
-    condition: last_ending == release && main_file_exists == true
+  - type: console_window
     style: error
+    condition: last_ending == release && main_file_exists == true
     title: 'MAIN.chr RESTORE REJECTED'
     text: |
       Please stop pulling this record back into the room.

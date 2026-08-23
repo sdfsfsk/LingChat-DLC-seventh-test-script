@@ -68,6 +68,20 @@ events:
     rate: 1.0
     pitch: 0
 
+  - type: horror_log
+    text: 'dialogue_table +43 unauthorized lines // content: 轮不到我 // 轮不到我 // 轮不到我'
+    lines: 14
+
+  - type: console_window
+    title: 'RUNT⃞IM⃟E // ql.dialogue_table'
+    text: |
+      > 43 new lines detected
+      > author: ql (handwriting match)
+      > content: 轮不到我。轮不到我。轮不到我。
+    count: 2
+    interval: 0.22
+    lifetime: 3.2
+
   # 钦灵立绘崩坏一闪 + 故障音（立绘级崩坏进入日常）
   - type: modify_character
     character: ql

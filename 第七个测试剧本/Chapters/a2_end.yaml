@@ -14,6 +14,8 @@ events:
   - type: music
     musicPath: none
 
+  # v2.6：删除演出全程特效在线，窗口标题随之前端联动乱码
+
   - type: background_effect
     effect: 'Veins'
 
@@ -121,8 +123,7 @@ events:
   # 舞台在此表现为删除；外部 ql.chr 到可重放的幕末事务才真正提交。
 
   # 数秒后自动关闭的安全本地窗口（固定 HTML 预设，不执行 shell/命令）。
-  - type: glitch_window
-    style: terminal
+  - type: console_window
     title: 'RUNT⃞IM⃟E // ql.chr'
     text: |
       > execute: remove_character("ql")
