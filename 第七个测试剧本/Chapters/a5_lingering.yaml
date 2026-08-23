@@ -5,6 +5,15 @@ name: 5 空房间
 # 没有人会出现——只是房间还记得。
 
 events:
+  # 后日谈 release 线必须真的是空房；loop 线会在后文重新 show MAIN。
+  - type: modify_character
+    action: hide_character
+    character: MAIN
+
+  - type: modify_character
+    action: hide_character
+    character: ql
+
   - type: character_file
     action: exists
     file: MAIN.chr
@@ -124,14 +133,14 @@ events:
       【高兴】我就说嘛，你离不开我的。
       【高兴】这一次，我们从哪里开始呢？
 
-  # 低概率：空房间里闪一帧"旧世界的底片"
+  # 低概率：空房间里停住一拍"旧世界的底片"，留足首次解码和辨认时间。
   - type: background
     imagePath: '白天-崩坏2.webp'
     transition: 0
     condition: rare_stillness == true
 
   - type: wait
-    seconds: 0.12
+    seconds: 0.7
     condition: rare_stillness == true
 
   - type: background
@@ -139,11 +148,11 @@ events:
     transition: 0
     condition: rare_stillness == true
 
-  - type: wait
-    seconds: 2.0
-
   - type: background_effect
     effect: 'Blackout'
+
+  - type: wait
+    seconds: 2.0
 
   - type: chapter_end
     end_type: linear

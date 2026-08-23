@@ -9,6 +9,17 @@ events:
   - type: music
     musicPath: '2.ogg'
     playbackSpeed: 0.88
+    condition: bgm_detune != true
+
+  - type: music
+    musicPath: '2.ogg'
+    playbackSpeed: 0.52
+    condition: bgm_detune == true
+
+  # 跳过兼容章后钦灵不会自动清台；先收掉她，空椅和稍后现身才成立。
+  - type: modify_character
+    action: hide_character
+    character: ql
 
   - type: modify_character
     action: show_character
@@ -26,6 +37,14 @@ events:
     text: |
       【无奈】我们明明才写完第一首诗，台本却说已经过了三天。
       【无奈】还有一句话，一直有人塞进我的嘴里——
+
+  - type: dialogue
+    character: MAIN
+    emotion: 害怕
+    condition: false_memory == true
+    text: |
+      【害怕】你昨天还答应过我：把钦灵锁在门外。
+      【害怕】……可“昨天”明明根本没有发生过。
 
   - type: sound
     soundPath: 'eyes.ogg'
@@ -58,7 +77,26 @@ events:
 
   - type: narration
     displayName: RUNTIME
+    condition: garble_line != true
     text: '> FAST_FORWARD COMPLETE // skipped dialogue is still running'
+
+  - type: narration
+    displayName: RUNT⃞IM⃟E
+    condition: garble_line == true
+    text: '> F⃞A⃟S⃗T⃘_F⃙O⃚R⃝W⃞A⃟R⃗D // the skipped day is looking back'
+
+  # 稀有立绘异常仍作为额外彩蛋；主路线的恐怖信号不再依赖它。
+  - type: modify_character
+    character: ql
+    emotion: 崩坏1
+    flash: true
+    duration: 0.4
+    condition: rare_portrait_glitch == true
+
+  - type: background_effect
+    effect: 'Invert+Static'
+    duration: 0.35
+    condition: rare_portrait_glitch == true
 
   - type: dialogue
     character: MAIN

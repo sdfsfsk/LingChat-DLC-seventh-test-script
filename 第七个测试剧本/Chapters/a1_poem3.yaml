@@ -4,6 +4,15 @@ name: 1-6 第三首诗
 # 钦灵今天不在，读诗只有“她”的部分。
 
 events:
+  - type: modify_character
+    action: hide_character
+    character: ql
+
+  - type: modify_character
+    action: show_character
+    character: MAIN
+    emotion: 正常
+
   - type: narration
     text: |
       笔记本最后一次推到你面前。

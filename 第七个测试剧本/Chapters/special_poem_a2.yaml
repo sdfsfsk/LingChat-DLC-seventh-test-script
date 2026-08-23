@@ -193,6 +193,10 @@ events:
       【慌张】那、那个不是测试内容！
       【慌张】快忘掉快忘掉，我们继续，继续啦。
 
+  # 特殊诗黑场只属于本章，回到白天/终章前必须显式收掉。
+  - type: background_effect
+    effect: 'none'
+
   - type: chapter_end
     end_type: branching
     options:

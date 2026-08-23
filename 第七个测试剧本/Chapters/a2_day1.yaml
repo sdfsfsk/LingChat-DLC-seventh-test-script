@@ -62,18 +62,16 @@ events:
       【害羞】哈哈，没睡好没睡好。别在意！
       【害羞】来，今天也写一首诗吧。这是传统，不能断。
 
-  # 钦灵转身时立绘崩坏一闪（低概率叠加：她的乱码残影也可能出现）
+  # Act2 的第一道立绘崩坏改为必定触发，避免关键恐怖拍只靠 1/16 概率。
   - type: modify_character
     character: ql
     emotion: 崩坏1
     flash: true
-    duration: 0.18
-    condition: rare_portrait_glitch == true
+    duration: 0.35
 
   - type: background_effect
     effect: 'Static'
-    duration: 0.18
-    condition: rare_portrait_glitch == true
+    duration: 0.35
 
   - type: chapter_end
     end_type: linear

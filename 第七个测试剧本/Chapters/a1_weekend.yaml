@@ -11,6 +11,10 @@ events:
     playbackSpeed: 0.94
 
   - type: modify_character
+    action: hide_character
+    character: ql
+
+  - type: modify_character
     action: show_character
     character: MAIN
     emotion: 正常
@@ -74,7 +78,7 @@ events:
 
   - type: jumpscare
     imagePath: '崩坏logo1.webp'
-    duration: 0.18
+    duration: 0.45
 
   - type: dialogue
     character: MAIN

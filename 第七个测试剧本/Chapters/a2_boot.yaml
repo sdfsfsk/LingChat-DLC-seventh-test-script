@@ -4,6 +4,15 @@ name: 2-0 再次启动
 # 游戏"重新启动"，但 logo 是碎的，名单里没有她。
 
 events:
+  # 重启镜头先清台，避免上一幕或自由对话角色透过启动黑场。
+  - type: modify_character
+    action: hide_character
+    character: MAIN
+
+  - type: modify_character
+    action: hide_character
+    character: ql
+
   - type: set_variable
     options:
       - actions:
@@ -103,6 +112,11 @@ events:
   - type: modify_character
     action: hide_character
     character: MAIN
+
+  - type: modify_character
+    action: show_character
+    character: ql
+    emotion: 正常
 
   - type: wait
     seconds: 0.2

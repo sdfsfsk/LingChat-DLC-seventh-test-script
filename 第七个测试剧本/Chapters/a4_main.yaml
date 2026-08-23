@@ -5,6 +5,15 @@ name: 4-1 重建
 # loop 线（她还在）：表面温馨，细节全错。
 
 events:
+  # 每条结局线都从空舞台建立自己的 cast，禁止上幕角色残留。
+  - type: modify_character
+    action: hide_character
+    character: MAIN
+
+  - type: modify_character
+    action: hide_character
+    character: ql
+
   - type: set_variable
     options:
       - actions:

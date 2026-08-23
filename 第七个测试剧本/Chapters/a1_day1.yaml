@@ -57,11 +57,11 @@ events:
     character: MAIN
     emotion: 崩坏
     flash: true
-    duration: 0.12
+    duration: 0.3
 
   - type: background_effect
     effect: 'Static+UiCorrupt'
-    duration: 0.18
+    duration: 0.4
 
   - type: horror_log
     text: 'ROSTER_MISMATCH // expected 2 // loaded 3 // slot[0] has no name'

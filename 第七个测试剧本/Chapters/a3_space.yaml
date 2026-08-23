@@ -4,6 +4,14 @@ name: 3-1 只有她的房间
 # 崩坏教室常驻 + Veins 侵蚀 + 心跳底噪。她回来了——完整的、不再乱码的她。
 
 events:
+  - type: modify_character
+    action: hide_character
+    character: MAIN
+
+  - type: modify_character
+    action: hide_character
+    character: ql
+
   - type: set_variable
     options:
       - actions:
