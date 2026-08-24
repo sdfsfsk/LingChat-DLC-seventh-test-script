@@ -35,8 +35,9 @@ events:
   - type: wait
     seconds: 0.8
 
+  # 崩坏独白期间界面渗血（红字演出）
   - type: background_effect
-    effect: 'Static+Glitch'
+    effect: 'Static+Glitch+BloodUI'
 
   - type: sound
     soundPath: 's_kill_glitch1.ogg'
@@ -82,12 +83,13 @@ events:
     action: hide_character
     character: MAIN
 
+  # 黑屏塌房段同样血红 UI 收场；日志刷屏拉满（DDLC 守夜 1440 行的紧凑版）
   - type: background_effect
-    effect: 'Blackout'
+    effect: 'Blackout+BloodUI'
 
   - type: horror_log
     text: '> MAIN.chr removed externally // scene graph collapsing'
-    lines: 12
+    lines: 280
 
   - type: wait
     seconds: 0.7
