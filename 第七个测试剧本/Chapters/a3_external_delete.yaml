@@ -83,9 +83,20 @@ events:
     action: hide_character
     character: MAIN
 
-  # 黑屏塌房段同样血红 UI 收场；日志刷屏拉满（DDLC 守夜 1440 行的紧凑版）
+  # 黑屏塌房段同样血红 UI 收场；真实血红 CMD 与日志刷屏同时砸到桌面。
   - type: background_effect
     effect: 'Blackout+BloodUI'
+
+  - type: console_window
+    style: blood_cmd
+    title: 'RUNTIME // MAIN.chr'
+    text: |
+      > MAIN.chr removed externally
+      > scene graph collapsing
+      > displaced record ql: restoring
+      > DO NOT CLOSE THE LAST WINDOW
+    count: 1
+    lifetime: 5.5
 
   - type: horror_log
     text: '> MAIN.chr removed externally // scene graph collapsing'

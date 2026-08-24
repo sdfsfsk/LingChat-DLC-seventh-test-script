@@ -143,7 +143,7 @@ events:
   - type: narration
     condition: poem_winner_act1 == balanced
     text: |
-      钦灵把三张诗页并排放好，没有问哪一张最好。
+      钦灵把两张诗页并排放好，没有问哪一张最好。
       「不用选啦。」她轻声说，「有人读过，就已经算被留下了。」
 
   - type: narration

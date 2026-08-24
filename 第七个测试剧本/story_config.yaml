@@ -1,4 +1,4 @@
-# 《第七个测试剧本》v2.5 — 原创紧凑 meta 恐怖剧本（DLC 发行版，纯惊吓路线，无自杀/自残描写）
+# 《第七个测试剧本》v2.7.2 — 原创 meta 恐怖剧本（DLC 发行版，纯惊吓路线，无自杀/自残描写）
 # 四幕结构（映射 DDLC 玩法骨架，内容全原创）：
 #   current_act==1  Act1 快速裂缝：a1_day1 → 两次 20 页写诗 → a1_weekend → a1_end
 #   current_act==2  Act2 崩坏幕：a2_boot → 两次 20 页写诗/特殊诗 → a2_end（三阶段删除）
@@ -24,7 +24,7 @@ script_settings:
   # 跨幕记忆（写入 data/script_runtime_state.json）：
   # playthrough=打开次数；current_act=剧情幕；act4_done=后日谈门；last_ending=release/loop；
   # marker_schema_version=.chr 布局迁移版本；marker_checkpoint=可重放的幕末文件/状态事务；
-  # seen_poem_1~3=三张特殊诗；poem_winner_act1=Act1 累计倾向。
+  # seen_poem_1~2=现行两张特殊诗；seen_poem_3 仅供旧存档兼容；poem_winner_act1=Act1 累计倾向。
   persistent_vars:
     - playthrough
     - current_act

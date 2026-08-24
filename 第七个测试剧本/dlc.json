@@ -1,8 +1,8 @@
 {
   "name": "第七个测试剧本",
-  "version": "2.7.1",
+  "version": "2.7.2",
   "author": "sdfsfsk",
-  "description": "欢迎来到文学测试部。v2.7：空房间实时文件监视（删掉 MAIN.chr 房间当场塌落）、崩坏序列血红 UI 与日志刷屏、真实系统弹窗、强制选择磁力夺鼠标；纯恐怖惊吓路线，无自杀/自残描写；含强烈突发惊吓与画面崩坏，建议 16 岁以上游玩。",
-  "min_engine": "0.5.1",
+  "description": "欢迎来到文学测试部。v2.7.2：空房间实时文件监视、原生错误/警告框、真实记事本、蓝色与血红 CMD；无 PowerShell 宿主窗口，主动删除与不速之删稳定分流；纯恐怖惊吓路线，无自杀/自残描写，建议 16 岁以上游玩。",
+  "min_engine": "0.5.2",
   "homepage": "https://github.com/sdfsfsk/LingChat-DLC-seventh-test-script"
 }

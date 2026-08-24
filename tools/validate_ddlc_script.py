@@ -165,8 +165,8 @@ def main() -> int:
         manifest = json.loads((root / "dlc.json").read_text(encoding="utf-8"))
         min_engine = manifest.get("min_engine")
         min_parts = tuple(int(part) for part in str(min_engine).split("."))
-        if len(min_parts) != 3 or min_parts < (0, 5, 1):
-            errors.append("dlc.json.min_engine must require LingChat 0.5.1 or newer")
+        if len(min_parts) != 3 or min_parts < (0, 5, 2):
+            errors.append("dlc.json.min_engine must require LingChat 0.5.2 or newer")
     except Exception as exc:
         errors.append(f"dlc.json version gate is invalid: {exc}")
 
@@ -376,11 +376,26 @@ def main() -> int:
                             terminal_chapters.add(chapter_id)
                         else:
                             references.append((chapter_id, target))
-            # watch_file 的 on_missing 也是章节引用（文件消失时的崩坏跳转目标）
+            # watch_file 的 on_missing 也是章节引用；stop 事件可省略 file/目标。
             if event_type == "watch_file":
-                watch_target = event.get("on_missing")
-                if isinstance(watch_target, str) and watch_target:
-                    references.append((chapter_id, watch_target))
+                watch_action = event.get("action", "start")
+                if watch_action not in {"start", "stop"}:
+                    errors.append(
+                        f"{chapter_id} event {index}: invalid watch_file action {watch_action!r}"
+                    )
+                if watch_action == "start":
+                    watch_file = event.get("file")
+                    watch_target = event.get("on_missing")
+                    if watch_file not in declared_character_files:
+                        errors.append(
+                            f"{chapter_id} event {index}: watch_file marker must be declared"
+                        )
+                    if not isinstance(watch_target, str) or not watch_target:
+                        errors.append(
+                            f"{chapter_id} event {index}: watch_file start requires on_missing"
+                        )
+                    else:
+                        references.append((chapter_id, watch_target))
             for field in MEDIA_FIELDS:
                 value = event.get(field)
                 if not isinstance(value, str) or value in {"", "none", "None"}:
@@ -443,20 +458,40 @@ def main() -> int:
                     errors.append(
                         f"{chapter_id} event {index}: invalid glitch-window style {event.get('style')!r}"
                     )
+                if event_type == "console_window" and event.get("style", "console") not in {
+                    "console",
+                    "blood_cmd",
+                    "error",
+                    "warning",
+                    "notepad",
+                }:
+                    errors.append(
+                        f"{chapter_id} event {index}: invalid native-window style {event.get('style')!r}"
+                    )
                 count = event.get("count", 1)
                 lifetime = event.get("lifetime", 6.0)
                 interval = event.get("interval", 0.18)
+                window_label = "glitch-window" if event_type == "glitch_window" else "native-window"
+                min_lifetime = 0.5 if event_type == "glitch_window" else 1.0
                 if isinstance(count, bool) or not isinstance(count, int) or not 1 <= count <= 4:
                     errors.append(
-                        f"{chapter_id} event {index}: glitch-window count must be 1..4"
+                        f"{chapter_id} event {index}: {window_label} count must be 1..4"
                     )
-                if not isinstance(lifetime, (int, float)) or not 0.5 <= lifetime <= 12.0:
+                if (
+                    isinstance(lifetime, bool)
+                    or not isinstance(lifetime, (int, float))
+                    or not min_lifetime <= lifetime <= 12.0
+                ):
                     errors.append(
-                        f"{chapter_id} event {index}: glitch-window lifetime must be 0.5..12"
+                        f"{chapter_id} event {index}: {window_label} lifetime must be {min_lifetime:g}..12"
                     )
-                if not isinstance(interval, (int, float)) or not 0.05 <= interval <= 1.0:
+                if (
+                    isinstance(interval, bool)
+                    or not isinstance(interval, (int, float))
+                    or not 0.05 <= interval <= 1.0
+                ):
                     errors.append(
-                        f"{chapter_id} event {index}: glitch-window interval must be 0.05..1"
+                        f"{chapter_id} event {index}: {window_label} interval must be 0.05..1"
                     )
                 title = event.get("title", "LingChat Runtime")
                 text = event.get("text", "PROCESS STATE DESYNCHRONIZED")
@@ -469,11 +504,57 @@ def main() -> int:
                     or any(ord(char) < 32 and char not in "\n\t" for char in text)
                 ):
                     errors.append(
-                        f"{chapter_id} event {index}: glitch-window text exceeds safe engine bounds"
+                        f"{chapter_id} event {index}: {window_label} text exceeds safe engine bounds"
                     )
 
             if event_type == "poem_game":
                 poem_events.append((chapter_id, event))
+
+    # 主动请求删除与“不速之删”必须稳定分流：玩家先在阻塞选项中授权，
+    # 然后条件式停止 watcher，最后才打开角色目录。
+    prompt_events = chapters.get("a3_delete_prompt", {}).get("events", [])
+    if isinstance(prompt_events, list):
+        permission_indices = []
+        for index, event in enumerate(prompt_events):
+            if not isinstance(event, dict) or event.get("type") != "choices":
+                continue
+            for option in event.get("options", []):
+                if not isinstance(option, dict):
+                    continue
+                if any(
+                    isinstance(action, dict)
+                    and action.get("type") == "set_var"
+                    and action.get("content") == "delete_permission = true"
+                    for action in option.get("actions", [])
+                ):
+                    permission_indices.append(index)
+                    break
+        stop_indices = [
+            index
+            for index, event in enumerate(prompt_events)
+            if isinstance(event, dict)
+            and event.get("type") == "watch_file"
+            and event.get("action") == "stop"
+            and event.get("condition") == "delete_permission == true"
+        ]
+        open_indices = [
+            index
+            for index, event in enumerate(prompt_events)
+            if isinstance(event, dict)
+            and event.get("type") == "character_file"
+            and event.get("action") == "open_folder"
+            and event.get("condition") == "delete_permission == true"
+        ]
+        if (
+            not permission_indices
+            or not stop_indices
+            or not open_indices
+            or min(permission_indices) > min(stop_indices)
+            or min(stop_indices) > min(open_indices)
+        ):
+            errors.append(
+                "a3_delete_prompt must await delete permission, stop watch_file, then open the folder"
+            )
 
     def event_sets(event: dict[str, Any], assignment: str) -> bool:
         options = event.get("options")
