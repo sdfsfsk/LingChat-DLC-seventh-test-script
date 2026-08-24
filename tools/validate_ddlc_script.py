@@ -40,6 +40,7 @@ EVENT_TYPES = {
     "sound",
     "voice_shift",
     "wait",
+    "watch_file",
     "window_title",
 }
 MEDIA_FIELDS = {
@@ -375,6 +376,11 @@ def main() -> int:
                             terminal_chapters.add(chapter_id)
                         else:
                             references.append((chapter_id, target))
+            # watch_file 的 on_missing 也是章节引用（文件消失时的崩坏跳转目标）
+            if event_type == "watch_file":
+                watch_target = event.get("on_missing")
+                if isinstance(watch_target, str) and watch_target:
+                    references.append((chapter_id, watch_target))
             for field in MEDIA_FIELDS:
                 value = event.get(field)
                 if not isinstance(value, str) or value in {"", "none", "None"}:

@@ -4,6 +4,11 @@ name: 3-3A 删除
 # 她告别 → 矩形噪点删除演出（m_rectstatic 对应 UiCorrupt）→ 黑屏重启；钦灵回归留到 Act4。
 
 events:
+  # 本章是"她请求、玩家照做"的删除线：引擎自己操作标记前必须先停监视，
+  # 否则删除 MAIN.chr 会误触发"不速之删"跳转。
+  - type: watch_file
+    action: stop
+
   - type: background_effect
     effect: 'none'
 

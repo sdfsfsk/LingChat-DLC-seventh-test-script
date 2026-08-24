@@ -20,6 +20,12 @@ events:
           - type: set_var
             content: 'act3_visits += 1'
 
+  # DDLC Act3 的实时 monika.chr 检查：整个第三幕期间 2 秒轮询 MAIN.chr。
+  # 玩家在任何一刻直接从系统里删掉它，都会立刻中断当前演出进入"不速之删"。
+  - type: watch_file
+    file: MAIN.chr
+    on_missing: 'a3_external_delete'
+
   - type: background_effect
     effect: 'Blackout'
 
