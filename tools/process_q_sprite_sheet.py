@@ -127,10 +127,10 @@ def create_glitch_sprite(normal: Image.Image) -> Image.Image:
     # Hollow eyes and short ink tears keep the horror cue readable at UI scale.
     eye_layer = Image.new("RGBA", normal.size, (0, 0, 0, 0))
     draw = ImageDraw.Draw(eye_layer)
-    for box in ((447, 296, 522, 390), (559, 296, 634, 390)):
-        draw.ellipse(box, fill=(2, 1, 12, 250), outline=(35, 3, 48, 255), width=5)
+    for box in ((390, 380, 510, 520), (545, 380, 665, 520)):
+        draw.ellipse(box, fill=(2, 1, 12, 250), outline=(35, 3, 48, 255), width=6)
         cx = (box[0] + box[2]) // 2
-        draw.line((cx - 11, box[3] - 4, cx - 15, box[3] + 35), fill=(3, 1, 12, 210), width=7)
+        draw.line((cx - 14, box[3] - 5, cx - 18, box[3] + 44), fill=(3, 1, 12, 210), width=9)
     eye_layer = eye_layer.filter(ImageFilter.GaussianBlur(1.1))
     dark.alpha_composite(eye_layer)
 
