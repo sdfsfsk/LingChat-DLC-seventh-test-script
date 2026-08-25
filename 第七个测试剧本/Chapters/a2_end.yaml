@@ -36,6 +36,13 @@ events:
       【正常】新人，我问你哦。
       【正常】如果一台机器坏了，你会修它，还是换一台？
 
+  # 眼睛与嘴开始被噪点侵蚀（DDLC n_rects_ghost 同款慢炖：12s 淡入，常驻到三连快闪前。
+  # 玩家在接下来两句台词里会看着她的脸被黑噪点一点点吃掉）
+  - type: modify_character
+    character: ql
+    noise: eyes_mouth
+    noise_fade_in: 12
+
   - type: dialogue
     character: ql
     emotion: 伤心
@@ -65,6 +72,11 @@ events:
       【崩坏1】新人，救救我，救救我救救我救救我——
 
   # 崩坏立绘三连快闪 + stinger 三连（yuri_kill 三刀的对应物）
+  # 快闪是硬切特写，先清掉噪点侵蚀层避免抢戏（DDLC 也在 crack 前 hide 噪点团）
+  - type: modify_character
+    character: ql
+    noise: none
+
   - type: sound
     soundPath: 'stinger.wav'
 
