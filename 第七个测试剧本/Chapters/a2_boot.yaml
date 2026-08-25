@@ -30,16 +30,9 @@ events:
   - type: wait
     seconds: 0.45
 
-  # 崩坏启动画面：碎 logo 两连闪（DDLC splash_glitch 对应物）
-  - type: jumpscare
-    imagePath: '崩坏logo1.webp'
-    duration: 1.5
-
+  # v2.8：碎 logo 两连闪跳脸演出已移除（效果不佳），保留启动故障音与 Tear 转场
   - type: sound
     soundPath: 'glitch1.ogg'
-
-  - type: wait
-    seconds: 0.45
 
   - type: background_effect
     effect: 'Tear'
@@ -47,13 +40,6 @@ events:
 
   - type: sound
     soundPath: 's_kill_glitch1.ogg'
-
-  - type: jumpscare
-    imagePath: '崩坏logo2.webp'
-    duration: 0.75
-
-  - type: wait
-    seconds: 0.22
 
   # 加载日志全是错的
   - type: horror_log

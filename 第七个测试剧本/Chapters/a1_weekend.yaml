@@ -77,10 +77,6 @@ events:
     effect: 'Static+UiCorrupt+BloodUI'
     duration: 0.32
 
-  - type: jumpscare
-    imagePath: '崩坏logo1.webp'
-    duration: 0.45
-
   - type: dialogue
     character: MAIN
     emotion: 崩坏
