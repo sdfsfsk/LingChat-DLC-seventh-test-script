@@ -32,7 +32,7 @@
 | 删 monika.chr | 她请求玩家删除本 DLC 自己的 `MAIN.chr` 纯文本标记；引擎按完整 path_key 隔离、复查并提供重置恢复 ✅ |
 | 假报错/假控制台/BSOD | 动态 BSOD 效果 + horror_log + 最多 4 个/12 秒的本地安全辅助窗口（不执行命令）✅ |
 | 崩坏菜单/ghost menu | 可持久化的 blood/ghost 固定标题预设 + ghostmenu 变调；blood 是 LingChat 原创适配 ✅ |
-| ghost menu（删完全部 .chr） | 引擎级"幽灵锁定"：进入剧本被锁成纯黑底 + 黑白恐怖立绘（`Assets/Pics/ghost-ql-bw.webp`，codex 生成的钦灵 menu_art_m_ghost 同款空心黑眼黑白风）+ ghostmenu.ogg 循环，**不给任何文字和按钮**——唯一的出路是玩家自己把任一 .chr 放回标记目录（2 秒内轮询自动解锁），或者点窗口 X：白底放大脸突脸（DDLC `label quit` 的 zoom 3.5 同款）+ s_kill_glitch1 后真正退出 ✅ |
+| ghost menu（删完全部 .chr） | 引擎级"幽灵锁定"：进入剧本被锁成黑白崩坏教室背景（`Assets/Pics/ghost-bg-bw.webp`，codex 生成的纯灰度废弃深夜教室，压暗垫底）+ 黑白恐怖立绘（`Assets/Pics/ghost-ql-bw.webp`，codex 生成的钦灵 menu_art_m_ghost 同款空心黑眼黑白风）+ ghostmenu.ogg 循环，**不给任何文字和按钮**——唯一的出路是玩家自己把任一 .chr 放回标记目录（2 秒内轮询自动解锁），或者点窗口 X：白底放大脸突脸（DDLC `label quit` 的 zoom 3.5 同款）+ s_kill_glitch1 后真正退出 ✅ |
 | 台词篡改+历史灭迹 | 乱码台词变体 + horror_log 污染（已有）✅ |
 | 反色/噪点/血管/撕裂 | background_effect 全套（已有）✅ |
 | 语音恶魔化 | voice_shift rate+pitch（刚做完）✅ |
