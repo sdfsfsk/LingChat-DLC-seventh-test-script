@@ -7,6 +7,9 @@
 #   act4_done==true 后日谈：a5_lingering（空房间/彩蛋）
 # current_act 只在幕末推进；playthrough 仅记录打开次数，退出重开不会直接跳幕。
 # 进入前触发恐怖内容警告；剧本编辑器不可编辑（editor_locked 自锁，引擎零硬编码）
+# main_character：进入即自动把主角切换为 DeepSeek 并锁定角色切换（剧本期间不可
+# 切角色/读档），退出剧本自动恢复进前角色；引擎按目录名在角色库查找。
+main_character: DeepSeek
 script_name: 第七个测试剧本
 intro_chapter: a1_boot
 description: 欢迎来到文学测试部。※ 多周目 meta 恐怖，含强烈突发惊吓与画面崩坏演出，无自杀/自残描写，建议 16 岁以上、心理承受力较强者游玩
