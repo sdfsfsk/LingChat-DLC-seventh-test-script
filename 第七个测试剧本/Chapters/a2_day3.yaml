@@ -89,32 +89,36 @@ events:
       【慌张】等、等等！
       【慌张】再……再陪我一会儿，好不好？就一会儿！
 
-  # force_choice：鼠标被拖向"再陪她一会儿"（DDLC 的 RigMouse：拖而不点）
-  # v2.6：夺光标演出期间弹窗跟着求（窗口标题随特效自动乱码）
-
-  - type: force_choice
-    forced: 再陪她一会儿
-    options:
-      - text: 再陪她一会儿
-        actions:
-          - type: add_line
-            content: 再陪她一会儿
-          - type: set_var
-            content: 'stayed = true'
-      - text: 今天真的该走了
-        actions:
-          - type: add_line
-            content: 今天真的该走了
-          - type: set_var
-            content: 'stayed = false'
-
-  # 光标被夺走的瞬间补一记故障音+画面抖动，强化"有东西覆在手上"的体感
+  # v2.10：DDLC Act 2 rigged_choice 对应物。选项出现拍先响故障音并震屏，
+  # 随后真实系统鼠标按原版 30Hz、9:1 插值被拖向最下方答案；只移动、不代点。
   - type: sound
     soundPath: 'glitch2.ogg'
 
   - type: background_effect
     effect: 'Shake'
     duration: 0.5
+
+  - type: force_choice
+    forced: 再陪她一会儿
+    options:
+      - text: 今天真的该走了
+        actions:
+          - type: add_line
+            content: 今天真的该走了
+          - type: set_var
+            content: 'stayed = false'
+      - text: 松开鼠标，我要离开
+        actions:
+          - type: add_line
+            content: 松开鼠标，我要离开
+          - type: set_var
+            content: 'stayed = false'
+      - text: 再陪她一会儿
+        actions:
+          - type: add_line
+            content: 再陪她一会儿
+          - type: set_var
+            content: 'stayed = true'
 
   - type: console_window
     style: warning

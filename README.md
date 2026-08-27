@@ -5,6 +5,8 @@
 《第七个测试剧本》是 [LingChat](https://github.com/SlimeBoyOwO/LingChat) 的**原创 meta 恐怖剧本 DLC**：四幕多周目叙事、DDLC 风格的崩坏演出（突脸 / 立绘崩坏 / 鼠标磁吸强制选择 / 假死机 / 写诗小游戏崩坏 / 日志污染……），共 45 个章节，并按玩家选择进入解放或循环结局。
 
 
+**v2.10.0 更新**：加入参考 DDLC Act 2 `rigged_choice` 的三选项鼠标抢夺演出；故障音和震屏会在选项出现时触发，真实系统指针按原版 30Hz、`current×0.9 + target×0.1` 被牵向最下方答案，但不会自动点击；按 Esc、切出窗口或超过 5 秒都会停止牵引，玩家仍需亲自确认强制项。
+
 **v2.9.0 更新**：适配最新 LingChat `dev` 与 Live2D 角色舞台；剧本进入时按 `main_character: DeepSeek` 自动切换并锁定主角/读档，退出后按队列顺序恢复原主角；静态角色的崩坏闪现与噪点侵蚀改为挂载到新版共享舞台 effects layer，组合背景特效、扩展事件和条件表达式也已与最新版编辑器校验规则对齐。
 
 **v2.8.0 更新**：幽灵锁定全面黑白化，加入黑白崩坏教室与幽灵钦灵立绘；失控独白增加眼睛/嘴部噪点慢炖侵蚀，重绘写诗 Q 版贴纸，并移除效果不佳的崩坏 logo 两连闪。
@@ -15,7 +17,7 @@
 
 - **建议 16 岁以上游玩**。本 DLC 包含：强烈恐怖演出、突脸惊吓（jumpscare）、画面崩坏与闪烁、血色 UI。**不含自杀/自残描写**。
 - 光敏性癫痫患者、易受惊吓者请勿游玩。
-- 经你确认内容警告后，部分场景会在桌面上弹出**真实系统窗口**（Windows 原生错误/警告 TaskDialog、直接打开的 Notepad 残页、蓝色或血红背景的真实 CMD；不会出现 PowerShell/pwsh 宿主），全局最多 4 个、最长 12 秒并在退出剧本时统一关闭；同时会在 `data` 同级的 `characters/standalone/第七个测试剧本/` 写入两个无害 `.chr` 剧情标记。窗口文本为剧本预设的固定纯文本，不会执行剧本文字、模拟真实系统崩溃或修改 LingChat 角色模型。
+- 经你确认内容警告后，部分场景会在桌面上弹出**真实系统窗口**（Windows 原生错误/警告 TaskDialog、直接打开的 Notepad 残页、蓝色或血红背景的真实 CMD；不会出现 PowerShell/pwsh 宿主），并在主窗口聚焦时短暂牵引系统鼠标（只移动、不代点，按 Esc、切出窗口或 5 秒后立即停止）；同时会在 `data` 同级的 `characters/standalone/第七个测试剧本/` 写入两个无害 `.chr` 剧情标记。所有能力均由当前剧本票据约束，不会执行剧本文字、模拟真实系统崩溃或修改 LingChat 角色模型。
 - 游玩过程中如感到不适，请立即退出。
 
 ## 安装
@@ -40,10 +42,10 @@
 
 ## 引擎要求
 
-本 DLC 使用了剧本引擎的扩展事件（`jumpscare` / `force_choice` / `poem_game` / `voice_shift` / `character_file` / `main_menu_effect` / `glitch_window` / `console_window` / `watch_file` 等）、组合背景特效、DLC 包管理与 `main_character` 主角锁定。文件、菜单和系统窗口能力均由引擎做剧本归属、固定样式、数量/时长与路径白名单校验，旧引擎无法完整运行 v2.9.0：
+本 DLC 使用了剧本引擎的扩展事件（`jumpscare` / `force_choice` / `poem_game` / `voice_shift` / `character_file` / `main_menu_effect` / `glitch_window` / `console_window` / `watch_file` 等）、组合背景特效、DLC 包管理与 `main_character` 主角锁定。文件、菜单和系统窗口能力均由引擎做剧本归属、固定样式、数量/时长与路径白名单校验，旧引擎无法完整运行 v2.10.0：
 
 - 上游支持 PR：[SlimeBoyOwO/LingChat#677](https://github.com/SlimeBoyOwO/LingChat/pull/677) 当前仍为 Draft；在合并发版前必须使用包含该 PR 最新提交的定制构建
-- 最低版本：LingChat `0.5.2`；导入/扫描会强制校验 `dlc.json.min_engine`，0.5.1 及更早构建没有完整的原生系统窗口、实时文件监视、幽灵锁定和主角切换能力
+- 最低版本：LingChat `0.5.3`；导入/扫描会强制校验 `dlc.json.min_engine`，旧构建没有带活动票据、焦点/边界校验、Esc/失焦取消和后端 forced 校验的安全鼠标抢夺能力
 - `main_character: DeepSeek` 要求全局角色库中保留 `data/game_data/characters/DeepSeek/settings.yml`；进入剧本后角色切换和读档会暂时锁定，退出时恢复原主角
 - 新版导入会在 `data/.dlc-import/` 扫描区外做有界解压（条目数、文件/总量、路径与压缩比限制），校验并刷盘后才用同盘原子重命名提交
 
