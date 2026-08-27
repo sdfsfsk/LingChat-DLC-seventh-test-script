@@ -163,8 +163,8 @@ def main() -> int:
 
     try:
         manifest = json.loads((root / "dlc.json").read_text(encoding="utf-8"))
-        if manifest.get("version") != "2.10.1":
-            errors.append("dlc.json.version must be 2.10.1 for the red roster CMD patch")
+        if manifest.get("version") != "2.10.2":
+            errors.append("dlc.json.version must be 2.10.2 for the persistent weekend BloodUI patch")
         min_engine = manifest.get("min_engine")
         min_parts = tuple(int(part) for part in str(min_engine).split("."))
         if len(min_parts) != 3 or min_parts < (0, 5, 3):
@@ -205,6 +205,20 @@ def main() -> int:
     )
     if not roster_console or roster_console.get("style") != "blood_cmd":
         errors.append("a1_day1 RUNTIME roster console must use style: blood_cmd")
+
+    weekend_effects = [
+        event
+        for event in chapters.get("a1_weekend", {}).get("events", [])
+        if isinstance(event, dict) and event.get("type") == "background_effect"
+    ]
+    persistent_blood = next(
+        (event for event in weekend_effects if "BloodUI" in str(event.get("effect", ""))),
+        None,
+    )
+    if not persistent_blood or "duration" in persistent_blood:
+        errors.append("a1_weekend BloodUI must stay persistent through the final narration")
+    if not weekend_effects or str(weekend_effects[-1].get("effect", "")).lower() != "none":
+        errors.append("a1_weekend must clear BloodUI before chapter_end")
 
     boot_events = chapters.get("a1_boot", {}).get("events", [])
     boot_route = next(

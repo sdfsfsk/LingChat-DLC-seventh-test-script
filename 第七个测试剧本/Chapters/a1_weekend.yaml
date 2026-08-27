@@ -73,9 +73,9 @@ events:
   - type: sound
     soundPath: 'glitch1.ogg'
 
+  # 血红 UI 必须常驻到本章最后一句；旧版 0.32 秒 duration 会在玩家看到后文前恢复蓝色。
   - type: background_effect
     effect: 'Static+UiCorrupt+BloodUI'
-    duration: 0.32
 
   - type: dialogue
     character: MAIN
@@ -119,6 +119,9 @@ events:
     text: |
       灯灭了。她还站在讲台上，没有挥手。
       门在你身后锁上之前，你看见黑板只剩两个字：「快跑」。
+
+  - type: background_effect
+    effect: none
 
   - type: chapter_end
     end_type: linear
