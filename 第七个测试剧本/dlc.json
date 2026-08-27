@@ -1,8 +1,8 @@
 {
   "name": "第七个测试剧本",
-  "version": "2.10.0",
+  "version": "2.10.1",
   "author": "sdfsfsk",
-  "description": "欢迎来到文学测试部。v2.10.0：加入参考 DDLC Act 2 RigMouse 的三选项鼠标抢夺演出，系统指针会以原版 30Hz、9:1 插值被牵向最下方答案；只移动不代点，Esc、失焦或 5 秒时限会立即停止。纯恐怖惊吓路线，无自杀/自残描写，建议 16 岁以上游玩。",
+  "description": "欢迎来到文学测试部。v2.10.1：首日 RUNTIME roster 真实 CMD 改为血红背景；保留参考 DDLC Act 2 RigMouse 的三选项鼠标抢夺演出，只移动不代点，Esc、失焦或 5 秒时限会立即停止。纯恐怖惊吓路线，无自杀/自残描写，建议 16 岁以上游玩。",
   "min_engine": "0.5.3",
   "homepage": "https://github.com/sdfsfsk/LingChat-DLC-seventh-test-script"
 }

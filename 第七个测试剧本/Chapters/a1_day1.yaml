@@ -74,6 +74,7 @@ events:
     lines: 14
 
   - type: console_window
+    style: blood_cmd
     title: 'RUNT⃞IM⃟E // roster'
     text: |
       > characters: 2

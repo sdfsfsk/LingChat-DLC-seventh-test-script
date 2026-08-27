@@ -163,8 +163,8 @@ def main() -> int:
 
     try:
         manifest = json.loads((root / "dlc.json").read_text(encoding="utf-8"))
-        if manifest.get("version") != "2.10.0":
-            errors.append("dlc.json.version must be 2.10.0 for the DDLC RigMouse adaptation")
+        if manifest.get("version") != "2.10.1":
+            errors.append("dlc.json.version must be 2.10.1 for the red roster CMD patch")
         min_engine = manifest.get("min_engine")
         min_parts = tuple(int(part) for part in str(min_engine).split("."))
         if len(min_parts) != 3 or min_parts < (0, 5, 3):
@@ -192,6 +192,19 @@ def main() -> int:
                 "global character required by main_character is missing: "
                 f"{deepseek_settings}"
             )
+
+    roster_console = next(
+        (
+            event
+            for event in chapters.get("a1_day1", {}).get("events", [])
+            if isinstance(event, dict)
+            and event.get("type") == "console_window"
+            and "characters: 2" in str(event.get("text", ""))
+        ),
+        None,
+    )
+    if not roster_console or roster_console.get("style") != "blood_cmd":
+        errors.append("a1_day1 RUNTIME roster console must use style: blood_cmd")
 
     boot_events = chapters.get("a1_boot", {}).get("events", [])
     boot_route = next(
