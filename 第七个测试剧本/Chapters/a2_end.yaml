@@ -304,8 +304,15 @@ events:
           - type: set_var
             content: 'marker_schema_version = 1'
 
+  # ql 的舞台角色仍被驱逐，但外部标记立即作为隐藏恢复锚点重新落盘；这样 Act 3
+  # 删除 MAIN.chr 后仍有一个 .chr，不会与“玩家把所有标记全删”的 GhostScriptLock 撞车。
+  - type: character_file
+    action: ensure
+    file: ql.chr
+
   - type: main_menu_effect
     theme: ghost
+    message: 'ql.chr recovery anchor staged // MAIN.chr remains'
 
   - type: set_variable
     options:

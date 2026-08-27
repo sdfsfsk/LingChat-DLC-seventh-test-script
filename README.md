@@ -5,6 +5,8 @@
 《第七个测试剧本》是 [LingChat](https://github.com/SlimeBoyOwO/LingChat) 的**原创 meta 恐怖剧本 DLC**：四幕多周目叙事、DDLC 风格的崩坏演出（突脸 / 立绘崩坏 / 鼠标磁吸强制选择 / 假死机 / 写诗小游戏崩坏 / 日志污染……），共 45 个章节，并按玩家选择进入解放或循环结局。
 
 
+**v2.11.0 更新**：把第一处 DDLC `RigMouse` 三选项提前到首周末，同时保留 Act 2 原有触发，因此正常游玩至少能遇到两次受控鼠标牵引；最终请求删除 `MAIN.chr` 前会先恢复 `ql.chr` 安全锚点并明确提示只删 `MAIN.chr`，避免两个角色标记同时缺失时被 GhostScriptLock 抢先锁在幽灵画面；各阶段幽灵菜单现在会显示 `ql.chr` / `MAIN.chr` 的实际状态。最终文件删除仍保留“留下她”的自由选择，绝不会用 RigMouse 强迫玩家删除文件。
+
 **v2.10.2 更新**：周末终场的 `Static+UiCorrupt+BloodUI` 改为常驻到最后一句台词，修复血红 UI 只显示 0.32 秒便恢复蓝色的问题；离开本章前会显式清除，不污染下一章。
 
 **v2.10.1 更新**：把首日 `RUNTIME // roster` 异常名单窗口从默认蓝色 CMD 改为血红背景 CMD，让 `characters: 2 / observers: 3` 的首次越界提示更符合恐怖演出。
@@ -46,7 +48,7 @@
 
 ## 引擎要求
 
-本 DLC 使用了剧本引擎的扩展事件（`jumpscare` / `force_choice` / `poem_game` / `voice_shift` / `character_file` / `main_menu_effect` / `glitch_window` / `console_window` / `watch_file` 等）、组合背景特效、DLC 包管理与 `main_character` 主角锁定。文件、菜单和系统窗口能力均由引擎做剧本归属、固定样式、数量/时长与路径白名单校验，旧引擎无法完整运行 v2.10.2：
+本 DLC 使用了剧本引擎的扩展事件（`jumpscare` / `force_choice` / `poem_game` / `voice_shift` / `character_file` / `main_menu_effect` / `glitch_window` / `console_window` / `watch_file` 等）、组合背景特效、DLC 包管理与 `main_character` 主角锁定。文件、菜单和系统窗口能力均由引擎做剧本归属、固定样式、数量/时长与路径白名单校验，旧引擎无法完整运行 v2.11.0：
 
 - 上游支持 PR：[SlimeBoyOwO/LingChat#677](https://github.com/SlimeBoyOwO/LingChat/pull/677) 当前仍为 Draft；在合并发版前必须使用包含该 PR 最新提交的定制构建
 - 最低版本：LingChat `0.5.3`；导入/扫描会强制校验 `dlc.json.min_engine`，旧构建没有带活动票据、焦点/边界校验、Esc/失焦取消和后端 forced 校验的安全鼠标抢夺能力

@@ -1,8 +1,8 @@
 {
   "name": "第七个测试剧本",
-  "version": "2.10.2",
+  "version": "2.11.0",
   "author": "sdfsfsk",
-  "description": "欢迎来到文学测试部。v2.10.2：周末终场的 BloodUI 改为常驻到最后一句，修复血红 UI 仅闪现 0.32 秒后恢复蓝色；首日 roster CMD 继续使用血红背景。纯恐怖惊吓路线，无自杀/自残描写，建议 16 岁以上游玩。",
+  "description": "欢迎来到文学测试部。v2.11.0：首周末提前加入一次 DDLC RigMouse 三选项，Act 2 原触发继续保留；最终删除 MAIN.chr 前会先恢复 ql.chr 安全锚点，避免全角色标记为空时误锁进幽灵模式，并为各阶段幽灵菜单显示明确文件状态。纯恐怖惊吓路线，无自杀/自残描写，建议 16 岁以上游玩。",
   "min_engine": "0.5.3",
   "homepage": "https://github.com/sdfsfsk/LingChat-DLC-seventh-test-script"
 }

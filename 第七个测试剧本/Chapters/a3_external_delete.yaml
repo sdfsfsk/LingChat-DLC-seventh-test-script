@@ -136,6 +136,7 @@ events:
 
   - type: main_menu_effect
     theme: ghost
+    message: 'MAIN.chr removed // ql.chr restored // restart to continue'
 
   - type: chapter_end
     end_type: linear

@@ -163,8 +163,8 @@ def main() -> int:
 
     try:
         manifest = json.loads((root / "dlc.json").read_text(encoding="utf-8"))
-        if manifest.get("version") != "2.10.2":
-            errors.append("dlc.json.version must be 2.10.2 for the persistent weekend BloodUI patch")
+        if manifest.get("version") != "2.11.0":
+            errors.append("dlc.json.version must be 2.11.0 for the early RigMouse and safe deletion flow")
         min_engine = manifest.get("min_engine")
         min_parts = tuple(int(part) for part in str(min_engine).split("."))
         if len(min_parts) != 3 or min_parts < (0, 5, 3):
@@ -219,6 +219,89 @@ def main() -> int:
         errors.append("a1_weekend BloodUI must stay persistent through the final narration")
     if not weekend_effects or str(weekend_effects[-1].get("effect", "")).lower() != "none":
         errors.append("a1_weekend must clear BloodUI before chapter_end")
+
+    force_choices = [
+        (chapter_id, event)
+        for chapter_id, chapter in chapters.items()
+        for event in chapter.get("events", [])
+        if isinstance(event, dict) and event.get("type") == "force_choice"
+    ]
+    if len(force_choices) < 2 or not any(
+        chapter_id == "a1_weekend" for chapter_id, _ in force_choices
+    ):
+        errors.append("RigMouse must appear in a1_weekend and at least one later chapter")
+    for chapter_id, event in force_choices:
+        forced = event.get("forced")
+        options = event.get("options")
+        matching = (
+            [option for option in options if isinstance(option, dict) and option.get("text") == forced]
+            if isinstance(options, list)
+            else []
+        )
+        if not isinstance(options, list) or len(options) < 3 or len(matching) != 1:
+            errors.append(
+                f"{chapter_id}: force_choice needs 3+ options and exactly one forced text match"
+            )
+
+    delete_prompt_events = chapters.get("a3_delete_prompt", {}).get("events", [])
+    anchor_indexes = [
+        index
+        for index, event in enumerate(delete_prompt_events)
+        if isinstance(event, dict)
+        and event.get("type") == "character_file"
+        and event.get("action") == "ensure"
+        and event.get("file") == "ql.chr"
+        and event.get("condition") == "delete_permission == true"
+    ]
+    stop_indexes = [
+        index
+        for index, event in enumerate(delete_prompt_events)
+        if isinstance(event, dict)
+        and event.get("type") == "watch_file"
+        and event.get("action") == "stop"
+    ]
+    open_indexes = [
+        index
+        for index, event in enumerate(delete_prompt_events)
+        if isinstance(event, dict)
+        and event.get("type") == "character_file"
+        and event.get("action") == "open_folder"
+    ]
+    if not all([anchor_indexes, stop_indexes, open_indexes]) or not (
+        min(anchor_indexes) < min(stop_indexes) < min(open_indexes)
+    ):
+        errors.append(
+            "a3_delete_prompt must stage ql.chr before stopping MAIN.chr watch and opening the folder"
+        )
+
+    a2_end_events = chapters.get("a2_end", {}).get("events", [])
+    ql_delete_indexes = [
+        index
+        for index, event in enumerate(a2_end_events)
+        if isinstance(event, dict)
+        and event.get("type") == "character_file"
+        and event.get("action") == "delete"
+        and event.get("file") == "ql.chr"
+    ]
+    ql_anchor_indexes = [
+        index
+        for index, event in enumerate(a2_end_events)
+        if isinstance(event, dict)
+        and event.get("type") == "character_file"
+        and event.get("action") == "ensure"
+        and event.get("file") == "ql.chr"
+    ]
+    a2_menu_indexes = [
+        index
+        for index, event in enumerate(a2_end_events)
+        if isinstance(event, dict) and event.get("type") == "main_menu_effect"
+    ]
+    if not all([ql_delete_indexes, ql_anchor_indexes, a2_menu_indexes]) or not (
+        min(ql_delete_indexes) < max(ql_anchor_indexes) < min(a2_menu_indexes)
+    ):
+        errors.append(
+            "a2_end must restage ql.chr after the deletion beat and before the Act 3 menu"
+        )
 
     boot_events = chapters.get("a1_boot", {}).get("events", [])
     boot_route = next(

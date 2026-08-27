@@ -49,6 +49,7 @@ events:
 
   - type: main_menu_effect
     theme: ghost
+    message: 'MAIN.chr missing // ql.chr recovery staged'
 
   - type: background_effect
     effect: none
