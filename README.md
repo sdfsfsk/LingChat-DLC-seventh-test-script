@@ -5,6 +5,10 @@
 《第七个测试剧本》是 [LingChat](https://github.com/SlimeBoyOwO/LingChat) 的**原创 meta 恐怖剧本 DLC**：四幕多周目叙事、DDLC 风格的崩坏演出（突脸 / 立绘崩坏 / 鼠标磁吸强制选择 / 假死机 / 写诗小游戏崩坏 / 日志污染……），共 45 个章节，并按玩家选择进入解放或循环结局。
 
 
+**v2.9.0 更新**：适配最新 LingChat `dev` 与 Live2D 角色舞台；剧本进入时按 `main_character: DeepSeek` 自动切换并锁定主角/读档，退出后按队列顺序恢复原主角；静态角色的崩坏闪现与噪点侵蚀改为挂载到新版共享舞台 effects layer，组合背景特效、扩展事件和条件表达式也已与最新版编辑器校验规则对齐。
+
+**v2.8.0 更新**：幽灵锁定全面黑白化，加入黑白崩坏教室与幽灵钦灵立绘；失控独白增加眼睛/嘴部噪点慢炖侵蚀，重绘写诗 Q 版贴纸，并移除效果不佳的崩坏 logo 两连闪。
+
 **v2.7.2 更新**：修复角色明确请求删除 `MAIN.chr` 时仍被实时监视器误判为“不速之删”的竞态；桌面演出彻底移除 PowerShell/pwsh 宿主，错误/警告改为 Windows 原生 TaskDialog，残页直接由 Notepad 打开，控制台改为真实 CMD，并新增血红背景 CMD；所有窗口受全局 4 个、最长 12 秒与剧本退出清理约束。
 
 ## ⚠️ 内容警告（务必阅读）
@@ -36,12 +40,12 @@
 
 ## 引擎要求
 
-本 DLC 使用了剧本引擎的扩展事件（`jumpscare` / `force_choice` / `poem_game` / `voice_shift` / `character_file` / `main_menu_effect` / `glitch_window` / `console_window` / `watch_file` 等）与 DLC 识别功能。文件、菜单和系统窗口能力均由引擎做剧本归属、固定样式、数量/时长与路径白名单校验，旧引擎无法完整运行 v2.7.2：
+本 DLC 使用了剧本引擎的扩展事件（`jumpscare` / `force_choice` / `poem_game` / `voice_shift` / `character_file` / `main_menu_effect` / `glitch_window` / `console_window` / `watch_file` 等）、组合背景特效、DLC 包管理与 `main_character` 主角锁定。文件、菜单和系统窗口能力均由引擎做剧本归属、固定样式、数量/时长与路径白名单校验，旧引擎无法完整运行 v2.9.0：
 
-- 上游支持 PR：[SlimeBoyOwO/LingChat#677](https://github.com/SlimeBoyOwO/LingChat/pull/677)（合并发版后，标注此处需要的最低版本）
-- 最低版本：LingChat `0.5.2`；导入/扫描会强制校验 `dlc.json.min_engine`，0.5.1 及更早构建没有完整的原生系统窗口和实时文件监视能力
-- 新版导入会在 `data/.dlc-import/` 扫描区外做有界解压（条目数、文件/总量、路径与压缩比限制），校验并刷盘后才用同盘原子重命名提交。
-- 在上游正式发版前，需要使用包含该 PR 最新提交的构建游玩
+- 上游支持 PR：[SlimeBoyOwO/LingChat#677](https://github.com/SlimeBoyOwO/LingChat/pull/677) 当前仍为 Draft；在合并发版前必须使用包含该 PR 最新提交的定制构建
+- 最低版本：LingChat `0.5.2`；导入/扫描会强制校验 `dlc.json.min_engine`，0.5.1 及更早构建没有完整的原生系统窗口、实时文件监视、幽灵锁定和主角切换能力
+- `main_character: DeepSeek` 要求全局角色库中保留 `data/game_data/characters/DeepSeek/settings.yml`；进入剧本后角色切换和读档会暂时锁定，退出时恢复原主角
+- 新版导入会在 `data/.dlc-import/` 扫描区外做有界解压（条目数、文件/总量、路径与压缩比限制），校验并刷盘后才用同盘原子重命名提交
 
 ## 素材与版权
 

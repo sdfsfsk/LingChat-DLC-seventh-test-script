@@ -163,6 +163,8 @@ def main() -> int:
 
     try:
         manifest = json.loads((root / "dlc.json").read_text(encoding="utf-8"))
+        if manifest.get("version") != "2.9.0":
+            errors.append("dlc.json.version must be 2.9.0 for the latest-LingChat adaptation")
         min_engine = manifest.get("min_engine")
         min_parts = tuple(int(part) for part in str(min_engine).split("."))
         if len(min_parts) != 3 or min_parts < (0, 5, 2):
@@ -180,6 +182,16 @@ def main() -> int:
     intro = config.get("intro_chapter")
     if intro not in chapters:
         errors.append(f"intro_chapter does not exist: {intro!r}")
+
+    if config.get("main_character") != "DeepSeek":
+        errors.append("story_config.main_character must be DeepSeek")
+    if args.global_data:
+        deepseek_settings = args.global_data / "characters" / "DeepSeek" / "settings.yml"
+        if not deepseek_settings.is_file():
+            errors.append(
+                "global character required by main_character is missing: "
+                f"{deepseek_settings}"
+            )
 
     boot_events = chapters.get("a1_boot", {}).get("events", [])
     boot_route = next(
