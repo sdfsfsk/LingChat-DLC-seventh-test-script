@@ -186,7 +186,10 @@ def main() -> int:
     if config.get("main_character") != "DeepSeek":
         errors.append("story_config.main_character must be DeepSeek")
     if args.global_data:
-        deepseek_settings = args.global_data / "characters" / "DeepSeek" / "settings.yml"
+        # 主角色库在 <bin>/data/game_data/characters/ 下（与引擎 characters_dir() 一致）
+        deepseek_settings = (
+            args.global_data / "game_data" / "characters" / "DeepSeek" / "settings.yml"
+        )
         if not deepseek_settings.is_file():
             errors.append(
                 "global character required by main_character is missing: "
