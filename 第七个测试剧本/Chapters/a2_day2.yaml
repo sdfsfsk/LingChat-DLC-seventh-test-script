@@ -48,7 +48,11 @@ events:
             content: 那些行……写了什么？
     allow_free: false
 
-  # 「轮不到我」：声线压沉 + 血红 UI 随那句复读一闪而过
+  # 「轮不到我」：BGM 坠入半速变调（DDLC y_glitch_head 降速手法）+ 声线压沉 + 血红 UI 随那句复读一闪而过
+  - type: music
+    musicPath: '9g.ogg'
+    playbackSpeed: 0.5
+
   - type: voice_shift
     rate: 0.85
     pitch: -3
@@ -122,6 +126,11 @@ events:
       刚才那一行字，是谁说的？
       教室里只有你和钦灵。可那行字的颜色，不属于钦灵。
 
+  # 她"恢复正常"的瞬间，BGM 也若无其事地回到原速（降速段结束）
+  - type: music
+    musicPath: 'ghostmenu.ogg'
+    playbackSpeed: 1.0
+
   - type: dialogue
     character: ql
     emotion: 惊讶
@@ -133,6 +142,14 @@ events:
     text: |
       钦灵靠近了一步。
       她的影子落在你脚边——你忽然发现，那道影子比你记忆中的，长了一截。
+
+  # v2.12 收尾贴脸：影子不对的定格瞬间，半张崩坏脸一闪（DDLC yuri half + crack 对应物）
+  - type: sound
+    soundPath: 'crack.ogg'
+
+  - type: jumpscare
+    imagePath: 'jumpscare-half-ql.webp'
+    duration: 0.35
 
   - type: chapter_end
     end_type: linear

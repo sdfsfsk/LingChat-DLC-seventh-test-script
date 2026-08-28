@@ -35,9 +35,9 @@ events:
   - type: wait
     seconds: 0.8
 
-  # 崩坏独白期间界面渗血（红字演出）
+  # 崩坏独白期间界面渗血（红字演出 + 血滴粒子）
   - type: background_effect
-    effect: 'Static+Glitch+BloodUI'
+    effect: 'Static+Glitch+BloodUI+BloodDrip'
 
   - type: sound
     soundPath: 's_kill_glitch1.ogg'
@@ -84,8 +84,15 @@ events:
     character: MAIN
 
   # 黑屏塌房段同样血红 UI 收场；真实血红 CMD 与日志刷屏同时砸到桌面。
+  # DDLC ch30_end 房间消失的原版干扰音一并压上。
   - type: background_effect
     effect: 'Blackout+BloodUI'
+
+  - type: window_title
+    title: 'F̷i̷l̷e̷ ̷n̷o̷t̷ ̷f̷o̷u̷n̷d̷'
+
+  - type: sound
+    soundPath: 'interference.ogg'
 
   - type: console_window
     style: blood_cmd
@@ -119,6 +126,7 @@ events:
     seconds: 1.2
 
   # 与 a3_delete 同归的解放结局事务（文件是玩家删的，这里不再重复 delete）
+  # 特效清空后窗口标题由前端自动复原
   - type: background_effect
     effect: 'none'
 

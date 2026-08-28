@@ -85,7 +85,7 @@ events:
       【高兴】永远。
 
   - type: background_effect
-    effect: 'Veins'
+    effect: 'Veins+BloodDrip'
     condition: last_ending == loop
 
   - type: narration

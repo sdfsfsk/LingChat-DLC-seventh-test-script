@@ -47,7 +47,7 @@ events:
     musicPath: 'heartbeat.ogg'
     playbackSpeed: 0.9
 
-  # v2.6：Veins 常驻期间窗口标题随特效联动乱码
+  # v2.6：Veins 常驻期间窗口标题随特效联动乱码（前端 HorrorEffectsLayer 自动联动，无需脚本事件）
 
   - type: ambient
     ambientPath: 'rumble.wav'
@@ -128,6 +128,46 @@ events:
       【害羞】不过现在没关系了。
       【害羞】这里有我，有你。只有我们两个。
       【害羞】这一次，再也不会有人来打扰了。
+
+  # DDLC ch30 假死机 + monika_scare 对应：心跳与底噪骤然全停，死寂五秒后贴脸
+  - type: music
+    musicPath: none
+
+  - type: ambient
+    stop: true
+
+  - type: wait
+    seconds: 5.0
+
+  - type: sound
+    soundPath: 'mscare.ogg'
+
+  - type: jumpscare
+    imagePath: 'jumpscare-face.webp'
+    duration: 0.5
+
+  - type: background_effect
+    effect: 'Tear'
+    duration: 0.4
+
+  - type: sound
+    soundPath: 's_kill_glitch1.ogg'
+
+  - type: music
+    musicPath: 'heartbeat.ogg'
+    playbackSpeed: 0.9
+
+  - type: ambient
+    ambientPath: 'rumble.wav'
+    volume: 50
+    loop: true
+
+  - type: dialogue
+    character: MAIN
+    emotion: 高兴
+    text: |
+      【高兴】……欸嘿嘿，吓到了吗？
+      【高兴】只是想让你知道——在这里，连"暂停"都是我的哦。
 
   # 红字场景 5/5：占有欲台词落地的一拍，界面随心跳渗一次血（限时，自动还原为 Veins）
   - type: background_effect

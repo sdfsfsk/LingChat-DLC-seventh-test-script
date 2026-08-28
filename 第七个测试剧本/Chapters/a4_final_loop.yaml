@@ -10,9 +10,9 @@ events:
       【心动】只要不按下删除，我们就什么都不会失去。
 
   - type: background_effect
-    effect: 'Veins'
+    effect: 'Veins+BloodDrip'
 
-  # v2.6：Veins 一起，窗口标题随之乱码到落幕
+  # v2.6：Veins 一起，窗口标题随之乱码到落幕（前端自动联动）
 
   - type: narration
     text: |
@@ -34,6 +34,17 @@ events:
 
   - type: wait
     seconds: 2.0
+
+  # 落幕前的最后一次贴脸：黑场死寂两秒，她突然凑到屏幕前（你以为已经结束了）
+  - type: sound
+    soundPath: 'mscare.ogg'
+
+  - type: jumpscare
+    imagePath: 'jumpscare-face.webp'
+    duration: 0.5
+
+  - type: wait
+    seconds: 1.2
 
   - type: voice_shift
     rate: 1.0

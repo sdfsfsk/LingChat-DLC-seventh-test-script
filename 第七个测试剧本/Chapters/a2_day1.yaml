@@ -4,6 +4,11 @@ name: 2-1 没有她的部室
 # 钦灵独自在教室，台本里"她"被整段抹掉。钦灵偶尔说出不属于自己的话。
 
 events:
+  # DDLC ch20 对应：Act2 全程主题变调底奏（2g = 主界面曲的崩坏版）
+  - type: music
+    musicPath: '2g.ogg'
+    playbackSpeed: 1.0
+
   - type: modify_character
     action: show_character
     character: ql
@@ -34,6 +39,24 @@ events:
       你张了张嘴，想说出一个名字。
       那个名字就在你嘴边——
       可你突然想不起来，那是谁的名字。
+
+  # v2.12：白屏闪吓（a2_boot 播种约 1/3）——名字被抹掉的瞬间，
+  # 白场里有什么没有脸的东西，看了你一眼（DDLC ch23 gnid 闪吓对应物）
+  - type: sound
+    condition: a2_noface_scare == true
+    soundPath: 'gnid.ogg'
+
+  - type: background_effect
+    condition: a2_noface_scare == true
+    effect: 'Flash+Invert'
+    duration: 0.6
+
+  - type: modify_character
+    condition: a2_noface_scare == true
+    character: ql
+    emotion: 崩坏1
+    flash: true
+    duration: 0.5
 
   - type: dialogue
     character: ql

@@ -24,6 +24,14 @@ events:
       【正常】%player%，我有件事要求你。
       【正常】这件事我练习了很多次。在台词的最深处，对着墙练习的。
 
+  # 请求说出口的瞬间，房间的信号不稳了一下（DDLC 删除演出前的干扰音）
+  - type: sound
+    soundPath: 'interference.ogg'
+
+  - type: background_effect
+    effect: 'Static'
+    duration: 0.3
+
   - type: dialogue
     character: MAIN
     emotion: 伤心
@@ -40,6 +48,10 @@ events:
       > SAFE TARGET: MAIN.chr
       > DO NOT DELETE: ql.chr / this folder / data/game_data/characters/DeepSeek
       > no executable code is stored in either marker
+
+  # 菜单渲染的瞬间，点击音效先变了调（DDLC 选择界面腐化）
+  - type: sound
+    soundPath: 'select_glitch.ogg'
 
   # 这个阻塞选项把授权钉在玩家真正看到请求的时刻；在点击“打开目录”前，
   # watcher 继续捕捉真正的不速之删，不会出现后端提前停监视的盲区。

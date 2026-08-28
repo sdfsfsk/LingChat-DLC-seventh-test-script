@@ -67,6 +67,21 @@ events:
       【生气】你才是，整天"流程流程"的，像个没有感情的提词器！
       【生气】新人！你说，我们谁说得对？
 
+  # v2.12：极稀有微冻结（a1_boot 播种 1/16）——争吵到一半，世界毫无预兆地卡住一拍。
+  # 没有任何解释，也没有角色注意到；只有玩家会怀疑刚才是不是眨眼了。
+  - type: background_effect
+    condition: rare_stillness == true
+    effect: 'Blackout'
+    duration: 0.25
+
+  - type: sound
+    condition: rare_stillness == true
+    soundPath: 'glitch3.ogg'
+
+  - type: wait
+    condition: rare_stillness == true
+    seconds: 1.2
+
   - type: choices
     options:
       - text: 钦灵说得对，演出要有感情。

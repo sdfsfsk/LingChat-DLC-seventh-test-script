@@ -15,6 +15,14 @@ events:
       【正常】黑板上的字、我被撕掉的最后一页、钦灵台本里多出来的那些行——
       【正常】都是我。
 
+  # 认罪落地的一拍：界面轻轻一花，像剧本本身颤了一下
+  - type: sound
+    soundPath: 'select_glitch.ogg'
+
+  - type: background_effect
+    effect: 'Static'
+    duration: 0.3
+
   - type: dialogue
     character: MAIN
     emotion: 伤心
@@ -35,6 +43,11 @@ events:
       【无奈】钦灵前辈现在在我这里哦。她很安全——只是出不去。
       【无奈】我不是故意要伤害她的。我只是想……
       【无奈】如果连前辈都陪我了，你会不会，也多看我一眼。
+
+  # 房间在"听"：自由对话开始前，日志屏自己刷出一行——它一直在记录
+  - type: horror_log
+    text: 'presence_confirmed // microphone_not_required // she_reads_every_keystroke'
+    lines: 6
 
   # 自由对话：Act3 的"Just Monika"空间闲聊
   - type: free_dialogue

@@ -117,7 +117,7 @@ events:
     duration: 0.6
 
   - type: background_effect
-    effect: 'Veins+Glitch'
+    effect: 'Veins+Glitch+BloodDrip'
 
   - type: wait
     seconds: 0.45
@@ -195,6 +195,10 @@ events:
       你没有走。时钟在 23:59 和 00:00 之间来回抽搐。
       黑暗里一直有人贴着耳边说：「不要关掉。」
 
+  # 守夜中断拍：黑暗里有什么东西在砸门（DDLC monikapound 对应物）
+  - type: sound
+    soundPath: 'monikapound.ogg'
+
   - type: background_effect
     effect: 'Static+Invert'
     duration: 0.24
@@ -242,6 +246,10 @@ events:
   - type: modify_character
     action: hide_character
     character: MAIN
+
+  # 她消失的一瞬，黑暗里响起一串跑远的脚步声（DDLC run.ogg 对应物）
+  - type: sound
+    soundPath: 'run.ogg'
 
   - type: background_effect
     effect: 'Tear'

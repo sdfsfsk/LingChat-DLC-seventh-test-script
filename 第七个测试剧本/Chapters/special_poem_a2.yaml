@@ -46,6 +46,11 @@ events:
       收拾笔记本的时候，一页没见过的纸从夹缝里滑了出来。
       纸质比笔记本的纸旧得多——像是上个剧本留下来的。
 
+  # 特殊诗展开时，一缕走调的旧主题曲贴着纸页响起（DDLC 3g 对应物）
+  - type: music
+    musicPath: '3g.ogg'
+    playbackSpeed: 0.9
+
   # ================= 第一张：涂鸦 =================
   - type: present_pic
     imagePath: '特殊诗-涂鸦.webp'
@@ -147,6 +152,10 @@ events:
       【慌张】快忘掉快忘掉，我们继续，继续啦。
 
   # 特殊诗黑场只属于本章，回到白天/终章前必须显式收掉。
+  # 纸被抽走的同时，那缕走调的旋律也一起断掉。
+  - type: music
+    musicPath: none
+
   - type: background_effect
     effect: 'none'
 

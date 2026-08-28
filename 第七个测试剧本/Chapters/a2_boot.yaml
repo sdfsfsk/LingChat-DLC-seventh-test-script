@@ -19,6 +19,11 @@ events:
           - type: set_var
             content: 'current_act = 2'
 
+  # v2.12：Act2 专用惊吓播种——白屏闪吓（约 1/3，DDLC Act2 的标志性概率）
+  - type: random_var
+    variable: a2_noface_scare
+    chance: 0.34
+
   # 黑场死寂开场（v2.6：整个崩坏启动期间窗口标题保持乱码）
   - type: background_effect
     effect: 'Blackout'

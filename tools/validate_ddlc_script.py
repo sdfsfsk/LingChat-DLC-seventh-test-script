@@ -163,8 +163,8 @@ def main() -> int:
 
     try:
         manifest = json.loads((root / "dlc.json").read_text(encoding="utf-8"))
-        if manifest.get("version") != "2.11.0":
-            errors.append("dlc.json.version must be 2.11.0 for the early RigMouse and safe deletion flow")
+        if manifest.get("version") != "2.12.0":
+            errors.append("dlc.json.version must be 2.12.0 for the DDLC horror-mechanics completion pass")
         min_engine = manifest.get("min_engine")
         min_parts = tuple(int(part) for part in str(min_engine).split("."))
         if len(min_parts) != 3 or min_parts < (0, 5, 3):

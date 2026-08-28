@@ -86,6 +86,12 @@ events:
   - type: wait
     seconds: 5.0
 
+  # 房间报告"音乐：无"之后，一缕不该存在的旋律自己响了起来（DDLC 5_ghost 对应物）——
+  # 这间空教室在说谎。
+  - type: music
+    musicPath: '5_ghost.ogg'
+    playbackSpeed: 0.9
+
   # 真结局后：空教室+便笺
   - type: narration
     condition: last_ending == release
@@ -150,6 +156,20 @@ events:
 
   - type: wait
     seconds: 2.0
+
+  - type: music
+    musicPath: none
+
+  # postcredits_loop 对应物：落幕之后，"系统"还在报错（安全本地窗口，数秒自动关闭）
+  - type: console_window
+    style: error
+    title: 'LingChat Runtime'
+    text: |
+      Error: Script file is missing or corrupt.
+      Please reinstall the script.
+      （剧本已完结。本窗口会自行关闭，无需操作。）
+    count: 1
+    lifetime: 4.0
 
   - type: chapter_end
     end_type: linear

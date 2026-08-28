@@ -5,7 +5,7 @@ name: 3-3B 永远
 
 events:
   - type: background_effect
-    effect: 'Veins'
+    effect: 'Veins+BloodDrip'
 
   - type: narration
     text: |
@@ -38,6 +38,19 @@ events:
       【心动】你也一样。我们都一样。
       【心动】——第 七 次，见。
 
+  # 你的对话框自己动了一下：这行字不是你打的（DDLC 菜单劫持的台词级对应）
+  - type: player
+    text: 我愿意。我想永远留在这里。
+
+  - type: background_effect
+    effect: 'Invert'
+    duration: 0.18
+
+  - type: narration
+    text: |
+      ——这句话，不是你打的。
+      它就这样躺在你的对话框里，像你亲手敲下的一样。
+
   # 世界"咔"地倒回（Glitch + 白天教室一闪）
   - type: sound
     soundPath: 'glitch2.ogg'
@@ -49,6 +62,10 @@ events:
   - type: background
     imagePath: '白天.webp'
     transition: 0.1
+
+  # 世界倒回"正常"：特效也一并清空——窗口标题随之自动复原（干净的假象比一直乱码更瘆人）
+  - type: background_effect
+    effect: 'none'
 
   - type: music
     musicPath: '2.ogg'

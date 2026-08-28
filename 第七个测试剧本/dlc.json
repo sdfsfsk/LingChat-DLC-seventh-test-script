@@ -1,8 +1,8 @@
 {
   "name": "第七个测试剧本",
-  "version": "2.11.0",
+  "version": "2.12.0",
   "author": "sdfsfsk",
-  "description": "欢迎来到文学测试部。v2.11.0：首周末提前加入一次 DDLC RigMouse 三选项，Act 2 原触发继续保留；最终删除 MAIN.chr 前会先恢复 ql.chr 安全锚点，避免全角色标记为空时误锁进幽灵模式，并为各阶段幽灵菜单显示明确文件状态。纯恐怖惊吓路线，无自杀/自残描写，建议 16 岁以上游玩。",
+  "description": "欢迎来到文学测试部。v2.12.0：DDLC 恐怖机制补完——新移植变调 BGM×5（2g/3g/5_ghost/7g/9g）与音效×5（interference/monikapound/gnid/crack/run）；新增 Act3 假死机贴脸杀、Act2 白屏闪吓（约 1/3 随机）、a2_day2 收尾半脸贴脸、loop 结局落幕贴脸、a3_stay 假玩家台词、BloodDrip 血滴粒子多处接入、空房间幽灵旋律与落幕假报错。纯恐怖惊吓路线，无自杀/自残描写，建议 16 岁以上游玩。",
   "min_engine": "0.5.3",
   "homepage": "https://github.com/sdfsfsk/LingChat-DLC-seventh-test-script"
 }

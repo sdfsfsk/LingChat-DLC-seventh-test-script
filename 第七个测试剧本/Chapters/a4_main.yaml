@@ -63,6 +63,12 @@ events:
     musicPath: '2.ogg'
     playbackSpeed: 1.0
 
+  # loop 线专属：同一首主题曲换成变调版——"温馨日常"的配乐本身就不对（DDLC 2g 对应物）
+  - type: music
+    condition: last_ending == loop
+    musicPath: '2g.ogg'
+    playbackSpeed: 0.97
+
   - type: voice_shift
     rate: 1.0
     pitch: 0
@@ -137,6 +143,18 @@ events:
       她笑得和昨天一样。和前天也一样。
       你说不上来哪里不对——
       直到你发现，黑板上的字，和昨天一个字都没变。
+
+  # loop 线追加拍：旁白点破的瞬间，她的脸先一步"穿帮"了
+  - type: modify_character
+    condition: last_ending == loop
+    character: MAIN
+    emotion: 崩坏
+    flash: true
+    duration: 0.4
+
+  - type: sound
+    condition: last_ending == loop
+    soundPath: 'glitch3.ogg'
 
   - type: chapter_end
     end_type: linear

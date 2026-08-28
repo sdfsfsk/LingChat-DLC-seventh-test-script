@@ -47,6 +47,15 @@ events:
       【无奈】新人，你说……没被发布的剧本，里面的角色会去哪里？
       【无奈】第六个剧本发布了，所以我还在。那没写完的呢？
 
+  # 她问出这句话时，BGM 悄悄换成更不对的一层（DDLC 7g 变调接入）
+  - type: music
+    musicPath: '7g.ogg'
+    playbackSpeed: 0.95
+
+  # 选择菜单渲染的一拍，点击音先变了调
+  - type: sound
+    soundPath: 'select_glitch.ogg'
+
   - type: choices
     options:
       - text: 我会想办法的。一定有办法。
@@ -76,6 +85,11 @@ events:
     text: |
       钦灵点了点头，没有怪你。
       她看起来反而松了一口气，好像"不知道"才是诚实的答案。
+
+  # 房间轻轻脉动了一下，像在预习第三幕
+  - type: background_effect
+    effect: 'Veins+Static'
+    duration: 0.4
 
   # 你起身想走——
   - type: narration
