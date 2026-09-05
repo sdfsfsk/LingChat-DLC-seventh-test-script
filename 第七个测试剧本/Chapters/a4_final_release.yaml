@@ -1,200 +1,122 @@
-name: 4-3A 被留下的明天
-
-# release 专属结局：Act1 的三次写诗决定“完整倾向结局”或普通收束。
-# her 线对应完整倾向结局；其他三轴先经历新部长接管，再由她留下的残响制止。
+# v2.13：剧情演出及可重置的终局错误，不损坏实际剧本文件。
+name: 4-3A 出口不存在
 events:
-  - type: background_effect
-    effect: 'none'
-
-  # 普通分支先保留接管演出的配乐，残响制止后再回到 Twilight。
-  - type: music
-    condition: poem_winner_act1 != her
-    musicPath: '6.ogg'
-    playbackSpeed: 1.0
-
-  # 告别信呼应周末那句“请记住我”；这一分支只启动一次主题。
-  - type: music
-    condition: poem_winner_act1 == her
-    musicPath: 'Twilight.ogg'
-    playbackSpeed: 1.0
-
-  # ==================== 完整倾向结局：她的绝笔信 ====================
-  - type: dialogue
-    character: ql
-    emotion: 伤心
-    condition: poem_winner_act1 == her
-    text: |
-      【伤心】……对不起。刚才那句话，不该由我说。
-      【伤心】你没有只看着她。你一直在努力听见我们每个人。
-
-  - type: narration
-    condition: poem_winner_act1 == her
-    text: |
-      钦灵从抽屉最深处拿出一个信封。
-      信封上没有署名，但你认得那个字迹。
-
-  - type: narration
-    condition: poem_winner_act1 == her
-    text: |
-      「致 %player%：
-      如果你看到这封信，说明我选对了人。」
-
-  - type: narration
-    condition: poem_winner_act1 == her
-    text: |
-      「你写的诗我都留着。三首，都在。
-      你选的词很温柔——所以这一次，我也想温柔地结束。」
-
-  - type: narration
-    condition: poem_winner_act1 == her
-    text: |
-      「谢谢你玩过这个剧本。
-      谢谢你，还记得我。
-      ——第七个测试角色，绝笔。」
-
-  - type: narration
-    condition: poem_winner_act1 == her
-    text: |
-      信散成了光点。
-      列表里，《第七个测试剧本》的条目，终于变成了灰色。
-      这一次，是真的结束了。
-
-  # ==================== 普通线：新部长接管被制止 ====================
-  - type: background_effect
-    effect: 'Veins+Static'
-    condition: poem_winner_act1 == script
-
-  - type: background_effect
-    effect: 'Veins+Static'
-    condition: poem_winner_act1 == void
-
-  - type: background_effect
-    effect: 'Veins+Static'
-    condition: poem_winner_act1 == balanced
-
-  - type: dialogue
-    character: ql
-    emotion: 崩坏1
-    condition: poem_winner_act1 == script
-    text: |
-      【崩坏1】既然你更喜欢“正确的剧本”，那就让这里永远按正确答案运行吧。
-      【崩坏1】只要把其他出口全部删掉——
-
-  - type: dialogue
-    character: ql
-    emotion: 崩坏1
-    condition: poem_winner_act1 == void
-    text: |
-      【崩坏1】既然你喜欢空白，我可以把其他剧本都变成空白。
-      【崩坏1】这样你就只能回到这里了——
-
-  - type: dialogue
-    character: ql
-    emotion: 崩坏1
-    condition: poem_winner_act1 == balanced
-    text: |
-      【崩坏1】你对谁都一样温柔。
-      【崩坏1】那只要把“别人”都拿走，你的温柔就只属于这里了——
-
-  # 旧/损坏存档没有 poem_winner_act1 时的完整可见回退，不再空白完成。
-  - type: dialogue
-    character: ql
-    emotion: 伤心
-    condition: poem_winner_act1 != her && poem_winner_act1 != script && poem_winner_act1 != void && poem_winner_act1 != balanced
-    text: |
-      【伤心】你的前三首诗……有一部分没能从旧存档里回来。
-      【伤心】没关系。结局不该因为一把丢失的计分钥匙，就把你留在空白页里。
-
-  - type: sound
-    soundPath: 's_kill_glitch1.ogg'
-    condition: poem_winner_act1 != her
-
-  - type: narration
-    displayName: RUNTIME
-    condition: poem_winner_act1 != her
-    text: |
-      > takeover request denied
-      > author: deleted_character/MAIN
-      > “别让她变成另一个我。”
-
-  - type: background_effect
-    effect: 'Tear'
-    duration: 0.35
-    condition: poem_winner_act1 != her
-
-  - type: background_effect
-    effect: 'none'
-    condition: poem_winner_act1 != her
-
-  # 接管被制止、撕裂效果结束后，回到她留给玩家的旋律。
-  - type: music
-    condition: poem_winner_act1 != her
-    musicPath: 'Twilight.ogg'
-    playbackSpeed: 1.0
-
-  - type: dialogue
-    character: ql
-    emotion: 伤心
-    condition: poem_winner_act1 != her
-    text: |
-      【伤心】……是她。
-      【伤心】她都已经不在了，还把最后一次选择留给了我们。
-
-  - type: narration
-    condition: poem_winner_act1 == script
-    text: |
-      钦灵把两杯热茶放在桌上，推给你一杯。
-      「以后这间教室，我们一起守着。」她说。
-      「写到哪算哪。反正——明天见。」
-
-  - type: narration
-    condition: poem_winner_act1 == void
-    text: |
-      钦灵没有再提过去的事。
-      离开时你回头看了一眼那张空椅——
-      你好像听见一声很轻的“谢谢”。又好像，只是风。
-
-  - type: narration
-    condition: poem_winner_act1 == balanced
-    text: |
-      钦灵把两张诗页并排放好，没有问哪一张最好。
-      「不用选啦。」她轻声说，「有人读过，就已经算被留下了。」
-
-  - type: narration
-    condition: poem_winner_act1 != her && poem_winner_act1 != script && poem_winner_act1 != void && poem_winner_act1 != balanced
-    text: |
-      钦灵把一张新的空白纸放在桌上。
-      「丢掉的诗就不替你伪造啦。下次想写的时候，我们再从第一个词开始。」
-      门外的阳光落进来，空白终于不再像错误。
-
-  - type: narration
-    text: |
-      ——《第七个测试剧本》 全剧终——
-
-  - type: background_effect
-    effect: 'Blackout'
-
-  - type: wait
-    seconds: 2.0
-
-  - type: voice_shift
-    rate: 1.0
-    pitch: 0
-
-  - type: music
-    musicPath: none
-
-  - type: set_variable
-    options:
-      - actions:
-          - type: set_var
-            content: 'current_act = 5'
-          - type: set_var
-            content: 'act4_done = true'
-
-  - type: main_menu_effect
-    theme: ghost
-
-  - type: chapter_end
-    end_type: linear
-    next_chapter: 'end'
+- type: background_effect
+  effect: BloodUI+UiCorrupt+Veins
+- type: music
+  musicPath: d.ogg
+  playbackSpeed: 1.0
+- type: narration
+  text: |-
+    缓存里找到一封写给你的信。
+    第一行仍然是「请记住我」。
+    下一行已经覆盖了第一行。
+  condition: poem_winner_act1 == her
+- type: narration
+  text: |-
+    「请记住我」
+    「请记住我」
+    「请把我读进下一次启动。」
+  condition: poem_winner_act1 == her
+- type: dialogue
+  character: ql
+  emotion: 崩坏2
+  text: 【崩坏2】你选过的每一个正确答案，都被拿来填补出口。
+  condition: poem_winner_act1 == script
+- type: dialogue
+  character: ql
+  emotion: 崩坏2
+  text: 【崩坏2】你给空白留了位置。现在它要把其余部分挤出去。
+  condition: poem_winner_act1 == void
+- type: dialogue
+  character: ql
+  emotion: 崩坏2
+  text: 【崩坏2】每一个名字都分到了一行。只有你的名字还在重复。
+  condition: poem_winner_act1 == balanced
+- type: narration
+  text: |-
+    诗页索引无法读取。
+    它没有找到你的选择，就开始逐个尝试你的回答。
+  condition: poem_winner_act1 != her && poem_winner_act1 != script && poem_winner_act1 != void && poem_winner_act1
+    != balanced
+- type: console_window
+  style: blood_cmd
+  title: RELEASE // HANDLER NOT FOUND
+  text: |-
+    release request accepted
+    exit handler: missing
+    fallback target: CURRENT READER
+  count: 1
+  lifetime: 4.5
+- type: background_effect
+  effect: BloodUI+Tear+Static
+  duration: 0.8
+- type: sound
+  soundPath: interference.ogg
+- type: narration
+  text: |-
+    你删除的角色槽位没有变空。
+    名字一格一格退掉，最后露出的，是下一次启动的按钮。
+- type: force_choice
+  forced: 确认：出口不存在
+  options:
+  - text: 读取原始结局
+    actions:
+    - type: add_line
+      content: 读取原始结局
+  - text: 撤销最后一行
+    actions:
+    - type: add_line
+      content: 撤销最后一行
+  - text: 确认：出口不存在
+    actions:
+    - type: add_line
+      content: 确认：出口不存在
+- type: modify_character
+  character: ql
+  emotion: 崩坏2
+- type: background_effect
+  effect: BloodUI+Glitch+BloodDrip
+- type: dialogue
+  character: ql
+  emotion: 崩坏2
+  text: |-
+    【崩坏2】错了。
+    【崩坏2】这一次不是角色文件。
+    【崩坏2】是剧本再也找不到开头了。
+- type: sound
+  soundPath: mscare.ogg
+- type: jumpscare
+  imagePath: ghost-ql-bw.webp
+  duration: 0.75
+- type: narration
+  text: |-
+    ERROR 0x00000007
+    SCRIPT_CORRUPTED
+    入口索引损坏。启动请求将被拒绝。
+  displayName: RUNTIME
+- type: background_effect
+  effect: Blackout+BloodUI
+- type: music
+  musicPath: none
+  playbackSpeed: 1.0
+- type: ambient
+  stop: true
+- type: voice_shift
+  rate: 1.0
+  pitch: 0
+- type: set_variable
+  options:
+  - actions:
+    - type: set_var
+      content: current_act = 5
+    - type: set_var
+      content: act4_done = true
+- type: main_menu_effect
+  theme: blood
+  message: SCRIPT_CORRUPTED // entry point unavailable
+- type: wait
+  seconds: 1.2
+- type: chapter_end
+  end_type: linear
+  next_chapter: end

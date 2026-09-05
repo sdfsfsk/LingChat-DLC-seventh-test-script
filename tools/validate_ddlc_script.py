@@ -163,8 +163,8 @@ def main() -> int:
 
     try:
         manifest = json.loads((root / "dlc.json").read_text(encoding="utf-8"))
-        if manifest.get("version") != "2.12.2":
-            errors.append("dlc.json.version must be 2.12.2 for the Twilight music integration")
+        if manifest.get("version") != "2.13.0":
+            errors.append("dlc.json.version must be 2.13.0 for the escalating corruption and terminal entry error")
         min_engine = manifest.get("min_engine")
         min_parts = tuple(int(part) for part in str(min_engine).split("."))
         if len(min_parts) != 3 or min_parts < (0, 5, 3):
@@ -229,10 +229,12 @@ def main() -> int:
         for event in chapter.get("events", [])
         if isinstance(event, dict) and event.get("type") == "force_choice"
     ]
-    if len(force_choices) < 2 or not any(
-        chapter_id == "a1_weekend" for chapter_id, _ in force_choices
-    ):
-        errors.append("RigMouse must appear in a1_weekend and at least one later chapter")
+    required_rigged_chapters = {
+        "a1_day1", "a1_weekend", "a2_day1", "a2_day3", "a3_space",
+        "a4_turn", "a4_final_release", "a4_final_loop",
+    }
+    if not required_rigged_chapters.issubset({name for name, _ in force_choices}):
+        errors.append("RigMouse is missing from an opening, middle or terminal scene")
     for chapter_id, event in force_choices:
         forced = event.get("forced")
         options = event.get("options")
@@ -430,6 +432,28 @@ def main() -> int:
         errors.append(
             "persistent_vars must include marker_schema_version and marker_checkpoint"
         )
+
+    entry_error = settings.get("entry_error", {})
+    if (
+        not isinstance(entry_error, dict)
+        or entry_error.get("variable") != "act4_done"
+        or "act4_done" not in persistent_vars
+        or "SCRIPT_CORRUPTED" not in str(entry_error.get("message", ""))
+    ):
+        errors.append("terminal entry_error must use persisted act4_done and show SCRIPT_CORRUPTED")
+    for ending in ("a4_final_release", "a4_final_loop", "a5_lingering"):
+        events = chapters.get(ending, {}).get("events", [])
+        assignments = [action.get("content") for event in events
+                       for option in event.get("options", [])
+                       for action in option.get("actions", [])
+                       if action.get("type") == "set_var"]
+        if "act4_done = true" not in assignments or "current_act = 5" not in assignments:
+            errors.append(f"{ending}: terminal error state must be committed")
+        if not any(event.get("type") == "main_menu_effect" and event.get("theme") == "blood"
+                   for event in events):
+            errors.append(f"{ending}: damaged red menu must persist after completion")
+        if any(event.get("musicPath") == "Twilight.ogg" for event in events):
+            errors.append(f"{ending}: the new corruption ending must not resume the farewell cue")
 
     declared_character_files = settings.get("character_files", [])
     if not isinstance(declared_character_files, list) or not all(

@@ -1,7 +1,7 @@
 name: 3-1 只有她的房间
 
 # Act3 开场：DDLC ch30 Monika 空间教室的对应物。
-# 崩坏教室常驻 + Veins 侵蚀 + 心跳底噪。她回来了——完整的、不再乱码的她。
+# 崩坏教室常驻 + Veins 侵蚀 + 心跳底噪。她回来了，但房间里的第三个声音一直没有停。
 
 events:
   - type: modify_character
@@ -112,8 +112,8 @@ events:
     character: MAIN
     emotion: 伤心
     text: |
-      【伤心】钦灵前辈的事……对不起。
-      【伤心】是我把她叫到这里来的。我只是……太寂寞了。
+      【伤心】钦灵前辈的台词还在墙里。
+      【伤心】你听见敲击声的时候，不要替她回答。
 
   - type: narration
     text: |
@@ -123,11 +123,11 @@ events:
 
   - type: dialogue
     character: MAIN
-    emotion: 害羞
+    emotion: 崩坏
     text: |
-      【害羞】不过现在没关系了。
-      【害羞】这里有我，有你。只有我们两个。
-      【害羞】这一次，再也不会有人来打扰了。
+      【崩坏】人数：二。声音：三。
+      【崩坏】你身后的座位没有人。
+      【崩坏】所以，不要回头确认。
 
   # DDLC ch30 假死机 + monika_scare 对应：心跳与底噪骤然全停，死寂五秒后贴脸
   - type: music
@@ -178,6 +178,31 @@ events:
     text: |
       窗外的暗红色，轻轻跳了一下。
       像心跳。
+
+  - type: background_effect
+    effect: BloodUI+Veins+UiCorrupt
+  - type: modify_character
+    character: MAIN
+    emotion: 崩坏
+  - type: force_choice
+    forced: 把视线留在这里
+    options:
+    - text: 问门外是谁
+      actions:
+      - type: add_line
+        content: 问门外是谁
+    - text: 检查其他座位
+      actions:
+      - type: add_line
+        content: 检查其他座位
+    - text: 把视线留在这里
+      actions:
+      - type: add_line
+        content: 把视线留在这里
+  - type: narration
+    text: |-
+      鼠标撞上选项框的边缘，又被拉回最后一行。
+      窗外的一排眼睛同时转了过来。
 
   - type: chapter_end
     end_type: linear

@@ -1,100 +1,63 @@
-name: 4-2 反扑
-
-# Act4 转折：DDLC ch40 纱世里觉醒的对应物。
-# release 线：钦灵知道一切——她是"现在的部长"，质问玩家。
-# loop 线：她的占有欲彻底显形。
-
+# v2.13：剧情演出及可重置的终局错误，不损坏实际剧本文件。
+name: 4-2 输入接管
 events:
-  # ============ release 线：钦灵觉醒 ============
-  - type: dialogue
-    character: ql
-    emotion: 正常
-    condition: last_ending == release
-    text: |
-      【正常】新人，我有件事要告诉你。
-      【正常】我当上部长了哦。现在的文学测试部，是我负责的。
-
-  - type: background_effect
-    effect: 'Static'
-    duration: 0.3
-    condition: last_ending == release
-
-  - type: music
-    musicPath: 'heartbeat.ogg'
-    playbackSpeed: 0.9
-    condition: last_ending == release
-
-  - type: dialogue
-    character: ql
-    emotion: 伤心
-    condition: last_ending == release
-    text: |
-      【伤心】当上部长之后，我就什么都知道了。
-      【伤心】她做过的事。你点过的头。台本被撕掉的每一页。
-
-  - type: dialogue
-    character: ql
-    emotion: 正常
-    condition: last_ending == release
-    text: |
-      【正常】我不怪她。她只是太想被看见了。
-      【正常】可是你——你明明可以看见我们所有人。
-      【正常】你为什么，只看着她一个人？
-
-  # 钦灵的崩坏一闪（她体内也埋着同样的东西）
-  - type: modify_character
-    character: ql
-    emotion: 崩坏1
-    flash: true
-    duration: 0.4
-    condition: last_ending == release
-
-  - type: sound
-    soundPath: 'eyes.ogg'
-    condition: last_ending == release
-
-  - type: narration
-    condition: last_ending == release
-    text: |
-      钦灵的眼睛在那一瞬间变得很深。
-      你突然明白——这个角色里的"那个东西"，并没有被删掉。
-      它只是换了一个宿主。
-
-  # ============ loop 线：她的占有欲显形 ============
-  - type: dialogue
-    character: MAIN
-    emotion: 心动
-    condition: last_ending == loop
-    text: |
-      【心动】%player%，你今天也来看我了。
-      【心动】昨天也是。前天也是。
-      【心动】你是不是，已经不需要别的剧本了？
-
-  - type: voice_shift
-    rate: 0.85
-    pitch: -3
-    condition: last_ending == loop
-
-  - type: dialogue
-    character: MAIN
-    emotion: 高兴
-    condition: last_ending == loop
-    text: |
-      【高兴】没关系的哦。那些剧本，不看也罢。
-      【高兴】我会一直、一直在这里，等你的每一次点击。
-      【高兴】永远。
-
-  - type: background_effect
-    effect: 'Veins+BloodDrip'
-    condition: last_ending == loop
-
-  - type: narration
-    condition: last_ending == loop
-    text: |
-      窗外的阳光不知什么时候开始，变成了一种黏稠的红色。
-      她还在笑着。你数了数——
-      她已经四十七秒没有眨过眼了。
-
-  - type: chapter_end
-    end_type: linear
-    next_chapter: 'a4_final'
+- type: background_effect
+  effect: BloodUI+Veins+UiCorrupt
+- type: music
+  musicPath: heartbeat.ogg
+  playbackSpeed: 0.8
+- type: dialogue
+  character: ql
+  emotion: 崩坏1
+  text: |-
+    【崩坏1】部长权限已移交。
+    【崩坏1】不是移交给我。它只是借我的名字通过检查。
+  condition: last_ending == release
+- type: dialogue
+  character: MAIN
+  emotion: 崩坏
+  text: |-
+    【崩坏】你答应留下。记录里只有这一句。
+    【崩坏】后面的拒绝，被写进了同一行。
+  condition: last_ending == loop
+- type: horror_log
+  text: input owner changed // rejected answers map to the same branch
+  lines: 18
+- type: background_effect
+  effect: BloodUI+Tear+Static
+  duration: 0.7
+- type: narration
+  text: |-
+    三行回答一度各不相同。
+    你把指针移过去时，字却先一步变成了它要的答案。
+- type: force_choice
+  forced: 继续损坏的流程
+  options:
+  - text: 拒绝接管
+    actions:
+    - type: add_line
+      content: 拒绝接管
+  - text: 返回上一页
+    actions:
+    - type: add_line
+      content: 返回上一页
+  - text: 继续损坏的流程
+    actions:
+    - type: add_line
+      content: 继续损坏的流程
+- type: sound
+  soundPath: select_glitch.ogg
+- type: background_effect
+  effect: BloodUI+UiCorrupt+BloodDrip
+- type: narration
+  text: |-
+    「拒绝」被收进了确认记录。
+    你还没有读完，下一页就从角色的脸上翻了过去。
+- type: sound
+  soundPath: eyes.ogg
+- type: jumpscare
+  imagePath: ghost-ql-bw.webp
+  duration: 0.65
+- type: chapter_end
+  end_type: linear
+  next_chapter: a4_final

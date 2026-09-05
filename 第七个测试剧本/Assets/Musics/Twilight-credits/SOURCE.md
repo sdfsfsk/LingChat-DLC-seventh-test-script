@@ -17,8 +17,7 @@ This track retains its own copyright and license; the repository's CC BY-NC lice
 
 ## Placement
 
-- `a1_weekend`: her unaltered weekend confession; switch back to the original detuned theme before the glitch and forced-choice sequence.
-- `a4_final_release`, `her` route: the farewell letter, recalling the weekend confession.
-- `a4_final_release`, all other routes including old-save fallback: start after the takeover is denied and the Tear effect ends, leading into the final conversation and epilogue text.
+- `a1_weekend`: the early confession; switch back to the original detuned theme before the glitch and forced-choice sequence.
+- Since v2.13.0, the final act stays in a horror/corruption state, so its former Twilight farewell cues have been removed.
 
-All Twilight cues use `playbackSpeed: 1.0`; the existing ending music-stop event remains in place.
+The remaining Twilight cue uses `playbackSpeed: 1.0`. The source audio and CC BY-ND 4.0 attribution remain unchanged.

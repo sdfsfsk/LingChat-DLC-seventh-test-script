@@ -49,6 +49,34 @@ events:
       【调皮】新人好呀，我是钦灵。左页两个小标记里，右边那个就是我～
       【调皮】选中谁喜欢的词，谁就会自己跳一下。别让“空着的位置”赢哦。
 
+  - type: narration
+    text: |-
+      黑板下浮出三个选项。
+      你的指针先是停顿，随后像被一根看不见的线拖进选项框。
+  - type: background_effect
+    effect: BloodUI+UiCorrupt
+  - type: force_choice
+    forced: 开始第七次测试
+    options:
+    - text: 先核对人数
+      actions:
+      - type: add_line
+        content: 先核对人数
+    - text: 让钦灵先开始
+      actions:
+      - type: add_line
+        content: 让钦灵先开始
+    - text: 开始第七次测试
+      actions:
+      - type: add_line
+        content: 开始第七次测试
+  - type: narration
+    text: |-
+      「开始」还没有被按下，名单上却已经出现了你的名字。
+      旁边的小字是：本次输入已提前接收。
+  - type: background_effect
+    effect: none
+
   # 第一次异常不再依赖低概率：玩家会在开场一分钟内看见恐怖信号。
   # v2.6 恐怖拉满：连 OS 窗口标题一起乱码 + 日志双倍刷屏
 

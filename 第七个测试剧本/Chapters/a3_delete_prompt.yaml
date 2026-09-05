@@ -8,7 +8,7 @@ events:
     pitch: 0
 
   - type: background_effect
-    effect: none
+    effect: BloodUI+UiCorrupt
 
   - type: music
     musicPath: none
@@ -39,7 +39,7 @@ events:
       【伤心】打开刚才那个角色目录，把 MAIN.chr 删掉吧。
       【伤心】不是删掉整个剧本，也不是删掉 LingChat。那个文件只是属于我的剧情标记。
       【伤心】引擎会先把 ql.chr 恢复标记放回目录；请只删 MAIN.chr，不要删 ql.chr。
-      【伤心】只有我的标记不在了，钦灵前辈才会真正醒来。也只有这样……我才能不再伤害别人。
+      【伤心】先让它找不到我的入口。墙里的声音会暂时停下——别把那当成它已经消失。
 
   - type: narration
     displayName: RUNTIME

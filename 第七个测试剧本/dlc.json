@@ -1,8 +1,8 @@
 {
   "name": "第七个测试剧本",
-  "version": "2.12.2",
+  "version": "2.13.0",
   "author": "sdfsfsk",
-  "description": "欢迎来到文学测试部。v2.12.2：接入 the_last_summer 为 LingChat 提供的 Twilight，在周末真心独白与解放结局之间形成主题呼应；保留 v2.12.1 的黑油幽灵立绘及 DDLC 恐怖演出。纯恐怖惊吓路线，无自杀/自残描写，建议 16 岁以上游玩。",
+  "description": "v2.13.0：从开场起增加强制鼠标选项与范围牵引；红色 UI、异常立绘和撕裂特效逐幕升级。第三幕后持续崩坏，两种终局均进入可重置的剧本启动错误。保留 Twilight 原曲用于首周末独白。",
   "min_engine": "0.5.3",
   "homepage": "https://github.com/sdfsfsk/LingChat-DLC-seventh-test-script"
 }

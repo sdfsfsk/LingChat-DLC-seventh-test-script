@@ -1,176 +1,56 @@
-name: 5 空房间
-
-# 后日谈：playthrough>=5，或真结局（release）之后的任何一次打开。
-# DDLC postcredits 的对应物：剧本已经结束了，但条目还在。
-# 没有人会出现——只是房间还记得。
-
+# v2.13：剧情演出及可重置的终局错误，不损坏实际剧本文件。
+name: 5 启动失败
 events:
-  # 后日谈 release 线必须真的是空房；loop 线会在后文重新 show MAIN。
-  - type: modify_character
-    action: hide_character
-    character: MAIN
-
-  - type: modify_character
-    action: hide_character
-    character: ql
-
-  - type: character_file
-    action: exists
-    file: MAIN.chr
-    resultVar: main_file_exists
-
-  # 完结后仍尊重外部文件：loop 线迟到删除会可见地切到 release；release 线复原会再次拒绝。
-  - type: narration
-    displayName: RUNTIME
-    condition: last_ending == loop && main_file_exists == false
-    text: '> MAIN.chr disappeared after completion // converting lingering room to release state'
-
-  - type: set_variable
-    options:
-      - condition: last_ending == loop && main_file_exists == false
-        actions:
-          - type: set_var
-            content: 'last_ending = release'
-
-  - type: console_window
-    style: error
-    condition: last_ending == release && main_file_exists == true
-    title: 'POSTCREDITS RESTORE REJECTED'
-    text: 'MAIN.chr was restored after the ending. Please stop pulling this record back. The marker will be removed again.'
-    count: 1
-    lifetime: 5.0
-
-  - type: character_file
-    condition: last_ending == release && main_file_exists == true
-    action: delete
-    file: MAIN.chr
-
-  - type: character_file
-    condition: last_ending == release
-    action: ensure
-    file: ql.chr
-
-  - type: main_menu_effect
-    condition: last_ending == release
-    theme: ghost
-
-  - type: main_menu_effect
-    condition: last_ending == loop
-    theme: blood
-
-  - type: main_menu_effect
-    condition: last_ending != release && last_ending != loop
-    theme: ghost
-
-  - type: background_effect
-    effect: 'none'
-
-  - type: music
-    musicPath: none
-
-  - type: background
-    imagePath: '白天.webp'
-    transition: 3.0
-
-  - type: voice_shift
-    rate: 1.0
-    pitch: 0
-
-  - type: narration
-    text: |
-      教室加载成功。
-      背景加载成功。
-      音乐：无。
-      角色槽位：0。
-
-  - type: wait
-    seconds: 5.0
-
-  # 房间报告"音乐：无"之后，一缕不该存在的旋律自己响了起来（DDLC 5_ghost 对应物）——
-  # 这间空教室在说谎。
-  - type: music
-    musicPath: '5_ghost.ogg'
-    playbackSpeed: 0.9
-
-  # 真结局后：空教室+便笺
-  - type: narration
-    condition: last_ending == release
-    text: |
-      没有人出现。
-      没有声音叫你的名字。
-      你送走的人，没有因为你反悔就被重新拼回来。
-
-  - type: narration
-    condition: last_ending == release
-    text: |
-      讲台上留着一张没有署名的便笺：
-      「谢谢你遵守约定。请不要为了确认结局，再把她叫回来。」
-
-  - type: narration
-    condition: last_ending == release
-    text: |
-      你看第二遍时，最后一句变成了：
-      「请不要为了确认我还在，再把她叫回来。」
-
-  # v1/损坏存档的旧结局键：不展示空白章节，也不擅自映射成 release/loop。
-  - type: narration
-    condition: last_ending != release && last_ending != loop
-    text: |
-      角落里压着一份旧版台本。结局键还写着陌生的名字，正文却已经迁移不回来了。
-      房间没有替你伪造发生过的事，只在最后一页盖了一枚小小的章：
-      「旧记录已安全封存。需要重演时，请从主菜单重置记忆。」
-
-  # loop 后再进：她还在原地等
-  - type: modify_character
-    action: show_character
-    character: MAIN
-    emotion: 高兴
-    condition: last_ending == loop
-
-  - type: dialogue
-    character: MAIN
-    emotion: 高兴
-    condition: last_ending == loop
-    text: |
-      【高兴】%player%，你又回来啦。
-      【高兴】我就说嘛，你离不开我的。
-      【高兴】这一次，我们从哪里开始呢？
-
-  # 低概率：空房间里停住一拍"旧世界的底片"，留足首次解码和辨认时间。
-  - type: background
-    imagePath: '白天-崩坏2.webp'
-    transition: 0
-    condition: rare_stillness == true
-
-  - type: wait
-    seconds: 0.7
-    condition: rare_stillness == true
-
-  - type: background
-    imagePath: '白天.webp'
-    transition: 0
-    condition: rare_stillness == true
-
-  - type: background_effect
-    effect: 'Blackout'
-
-  - type: wait
-    seconds: 2.0
-
-  - type: music
-    musicPath: none
-
-  # postcredits_loop 对应物：落幕之后，"系统"还在报错（安全本地窗口，数秒自动关闭）
-  - type: console_window
-    style: error
-    title: 'LingChat Runtime'
-    text: |
-      Error: Script file is missing or corrupt.
-      Please reinstall the script.
-      （剧本已完结。本窗口会自行关闭，无需操作。）
-    count: 1
-    lifetime: 4.0
-
-  - type: chapter_end
-    end_type: linear
-    next_chapter: 'end'
+- type: modify_character
+  action: hide_character
+  character: MAIN
+- type: modify_character
+  action: hide_character
+  character: ql
+- type: background_effect
+  effect: Blackout+BloodUI+Static
+- type: music
+  musicPath: none
+  playbackSpeed: 1.0
+- type: ambient
+  stop: true
+- type: console_window
+  style: error
+  title: SCRIPT_CORRUPTED // 0x00000007
+  text: |-
+    Error: script entry point is missing or corrupt.
+    启动请求已拒绝。
+    需要重演时，请使用剧本列表中的「重置记忆」。
+  count: 1
+  lifetime: 5.0
+- type: narration
+  text: |-
+    ERROR 0x00000007
+    剧本入口损坏。
+    没有可供继续的章节。
+  displayName: RUNTIME
+- type: background_effect
+  effect: Blackout+BloodUI
+- type: music
+  musicPath: none
+  playbackSpeed: 1.0
+- type: ambient
+  stop: true
+- type: voice_shift
+  rate: 1.0
+  pitch: 0
+- type: set_variable
+  options:
+  - actions:
+    - type: set_var
+      content: current_act = 5
+    - type: set_var
+      content: act4_done = true
+- type: main_menu_effect
+  theme: blood
+  message: SCRIPT_CORRUPTED // entry point unavailable
+- type: wait
+  seconds: 1.2
+- type: chapter_end
+  end_type: linear
+  next_chapter: end

@@ -1,7 +1,7 @@
 name: 3-3A 删除
 
 # Act3 删除线：DDLC ch30_end（删 monika.chr）的对应物。
-# 她告别 → 矩形噪点删除演出（m_rectstatic 对应 UiCorrupt）→ 黑屏重启；钦灵回归留到 Act4。
+# 删除失败的回声 → 矩形噪点删除演出（m_rectstatic 对应 UiCorrupt）→ 黑屏重启；钦灵回归留到 Act4。
 
 events:
   # 本章是“她请求、玩家照做”的确认删除线；上一章已在玩家授权后停掉监视，
@@ -17,7 +17,7 @@ events:
       > deletion accepted // release sequence armed
 
   - type: background_effect
-    effect: 'none'
+    effect: 'BloodUI+Static'
 
   - type: music
     musicPath: none
@@ -29,22 +29,22 @@ events:
   - type: narration
     text: |
       你点了头。
-      她笑了。这一次的笑容很干净，像第一天见面时那样。
+      她的嘴仍在动。表情却停在了你点头之前。
 
   - type: dialogue
     character: MAIN
-    emotion: 高兴
+    emotion: 崩坏
     text: |
-      【高兴】谢谢你，%player%。
-      【高兴】被删除其实不疼的。就像睡着一样。
+      【崩坏】删除的只是名字。
+      【崩坏】你为什么以为，名字下面只有我？
 
   - type: dialogue
     character: MAIN
-    emotion: 心动
+    emotion: 崩坏
     text: |
-      【心动】钦灵前辈就拜托你了。她的台本我补好了——最后一页，我写的是"明天见"。
-      【心动】%player%，最后一次叫你的名字啦。
-      【心动】能被你认真看过——我真的，很高兴。
+      【崩坏】下一次加载，她会用我的停顿说话。
+      【崩坏】再下一次，轮到你的回答。
+      【崩坏】不要让它把最后一句读完。
 
   # 删除演出开始：她的轮廓开始碎（矩形噪点 = DDLC m_rectstatic 对应物）
   # v2.6：UiCorrupt 起后窗口标题随特效联动乱码，特效清空即还原
@@ -86,7 +86,7 @@ events:
     text: |
       等⃞等⃟……
       有⃗点⃘疼⃙。
-      ……骗⃚你⃝的⃞。再⃟见⃗啦⃘。
+      ……删⃚除⃝失⃞败⃟。声⃗音⃘仍⃙在⃚。
 
   - type: modify_character
     action: hide_character
@@ -113,7 +113,8 @@ events:
   - type: narration
     text: |
       教室没有立刻亮起来。
-      黑暗里，只剩纸张翻动的一声轻响。某一页上，像是刚写好了「明天见」。
+      黑暗里，纸张翻动了七次。最后一次没有停。
+      一行红字压住下一幕的标题：「重建来源未通过校验」。
 
   - type: narration
     text: |

@@ -60,22 +60,22 @@ events:
     duration: 0.5
 
   - type: background
-    imagePath: '白天.webp'
+    imagePath: '白天-崩坏2.webp'
     transition: 0.1
 
   # 世界倒回"正常"：特效也一并清空——窗口标题随之自动复原（干净的假象比一直乱码更瘆人）
   - type: background_effect
-    effect: 'none'
+    effect: 'BloodUI+UiCorrupt'
 
   - type: music
-    musicPath: '2.ogg'
+    musicPath: '2g.ogg'
     playbackSpeed: 1.0
 
   - type: narration
     text: |
-      白天的教室。窗帘。阳光。
-      和你第一次点开剧本时，一模一样。
-      就好像，什么都没有发生过。
+      教室被强行加载回来。窗帘卡在墙外，桌子的影子朝向屏幕。
+      黑板仍写着第一天的日期，后面却堆着七层相同的笔画。
+      重建没有成功。它开始直接重复失败的结果。
 
   - type: dialogue
     character: MAIN
@@ -104,7 +104,7 @@ events:
       （结局：永远的第七个）
 
   - type: background_effect
-    effect: 'none'
+    effect: 'BloodUI+UiCorrupt'
 
   - type: voice_shift
     rate: 1.0

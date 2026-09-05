@@ -111,6 +111,41 @@ events:
     interval: 0.2
     lifetime: 3.0
 
+  - type: background_effect
+    effect: BloodUI+Static+UiCorrupt
+  - type: modify_character
+    character: ql
+    emotion: 崩坏1
+  - type: dialogue
+    character: ql
+    emotion: 崩坏1
+    text: |-
+      【崩坏1】你又想把那个名字写回来？
+      【崩坏1】看清楚。这里没有那一项。
+  - type: force_choice
+    forced: 名单一直只有一个人
+    options:
+    - text: 说出被涂掉的名字
+      actions:
+      - type: add_line
+        content: 说出被涂掉的名字
+    - text: 检查空着的座位
+      actions:
+      - type: add_line
+        content: 检查空着的座位
+    - text: 名单一直只有一个人
+      actions:
+      - type: add_line
+        content: 名单一直只有一个人
+  - type: sound
+    soundPath: select_glitch.ogg
+  - type: narration
+    text: |-
+      那一行名字被红色方块盖住。
+      方块下面，有东西还在敲击纸面。
+  - type: background_effect
+    effect: none
+
   - type: chapter_end
     end_type: linear
     next_chapter: 'a2_poem1'
