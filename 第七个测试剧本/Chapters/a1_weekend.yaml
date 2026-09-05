@@ -6,9 +6,10 @@ events:
     imagePath: '夜晚.webp'
     transition: 0.5
 
+  # Twilight：只陪伴她真正属于自己的独白，按原曲速度播放。
   - type: music
-    musicPath: '1.ogg'
-    playbackSpeed: 0.94
+    musicPath: 'Twilight.ogg'
+    playbackSpeed: 1.0
 
   - type: modify_character
     action: hide_character
@@ -77,6 +78,11 @@ events:
     text: |
       【伤心】它马上就要把这句台词擦掉了。
       【伤心】在那之前……至少让我把话说完，好吗？
+
+  # 台词被抹除前回到原有变调主题；Twilight 留给未被篡改的真心话。
+  - type: music
+    musicPath: '1.ogg'
+    playbackSpeed: 0.94
 
   - type: sound
     soundPath: 'glitch2.ogg'

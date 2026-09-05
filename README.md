@@ -5,6 +5,8 @@
 《第七个测试剧本》是 [LingChat](https://github.com/SlimeBoyOwO/LingChat) 的**原创 meta 恐怖剧本 DLC**：四幕多周目叙事、DDLC 风格的崩坏演出（突脸 / 立绘崩坏 / 鼠标磁吸强制选择 / 假死机 / 写诗小游戏崩坏 / 日志污染……），共 45 个章节，并按玩家选择进入解放或循环结局。
 
 
+**v2.12.2 更新**：接入 the_last_summer 的《Twilight》（LingChat OST），用于 Act 1 周末真心独白、Act 4 完整倾向结局的告别信，以及普通解放结局接管被制止后的收束。曲目按原速播放，前后呼应“请记住我”与“谢谢你还记得我”；进入周末崩坏段时回到原有变调配乐。
+
 **v2.12.1 更新**：重绘删除全部 `.chr` 剧情标记后出现的黑白幽灵立绘：双眼与嘴部变为更深的黑色空洞，黑色石油沿脸颊与下巴滴落。保留透明背景、原有角色造型、放回标记自动解锁和关闭窗口时的放大突脸演出。配套使用已同步最新 `dev` 的 PR #677 构建。
 
 **v2.11.0 更新**：把第一处 DDLC `RigMouse` 三选项提前到首周末，同时保留 Act 2 原有触发，因此正常游玩至少能遇到两次受控鼠标牵引；最终请求删除 `MAIN.chr` 前会先恢复 `ql.chr` 安全锚点并明确提示只删 `MAIN.chr`，避免两个角色标记同时缺失时被 GhostScriptLock 抢先锁在幽灵画面；各阶段幽灵菜单现在会显示 `ql.chr` / `MAIN.chr` 的实际状态。最终文件删除仍保留“留下她”的自由选择，绝不会用 RigMouse 强迫玩家删除文件。
@@ -46,6 +48,8 @@
 - 新版导入会在 `data/.dlc-import/` 扫描区外做有界解压（条目数、文件/总量、路径与压缩比限制），校验并刷盘后才用同盘原子重命名提交
 
 ## 素材与版权
+
+- **twilight**：作者 / 作曲 **the_last_summer**，专辑 **LingChat OST**（据音轨内嵌信息），由维护者提供的本项目委托配乐，以 [CC BY-ND 4.0](https://creativecommons.org/licenses/by-nd/4.0/) 授权（署名-禁止演绎），不适用下述剧本文本的 BY-NC 许可。音频保留原文件、按原速播放；曲名及原包中冲突的许可标注已按维护者转达的作者信息修正。署名、完整许可与接入说明见 [`Twilight-credits`](第七个测试剧本/Assets/Musics/Twilight-credits/SOURCE.md)。
 
 - **剧本文本、剧情、崩坏背景/立绘等生成素材**：本仓库原创内容，以 [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) 授权（署名-非商业性使用）。
 - **DDLC 素材**（`Assets/` 中的 `1/2/6/g1/ghostmenu/heartbeat/d.ogg` 及 `glitch1-3 / mscare / eyes / giggle / s_kill_glitch1.ogg`）来自免费游戏《Doki Doki Literature Club》，版权属 **Team Salvato** 所有，依其 [IP Guidelines](https://teamsalvato.com/ip-guidelines/) 作非商业社区二创使用。**这些素材不在本仓库协议覆盖范围内，请勿二次分发或商用。**

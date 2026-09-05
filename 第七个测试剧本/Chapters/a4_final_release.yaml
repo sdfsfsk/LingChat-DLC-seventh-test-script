@@ -6,8 +6,16 @@ events:
   - type: background_effect
     effect: 'none'
 
+  # 普通分支先保留接管演出的配乐，残响制止后再回到 Twilight。
   - type: music
+    condition: poem_winner_act1 != her
     musicPath: '6.ogg'
+    playbackSpeed: 1.0
+
+  # 告别信呼应周末那句“请记住我”；这一分支只启动一次主题。
+  - type: music
+    condition: poem_winner_act1 == her
+    musicPath: 'Twilight.ogg'
     playbackSpeed: 1.0
 
   # ==================== 完整倾向结局：她的绝笔信 ====================
@@ -117,6 +125,12 @@ events:
   - type: background_effect
     effect: 'none'
     condition: poem_winner_act1 != her
+
+  # 接管被制止、撕裂效果结束后，回到她留给玩家的旋律。
+  - type: music
+    condition: poem_winner_act1 != her
+    musicPath: 'Twilight.ogg'
+    playbackSpeed: 1.0
 
   - type: dialogue
     character: ql

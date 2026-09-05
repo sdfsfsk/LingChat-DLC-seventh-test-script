@@ -1,8 +1,8 @@
 {
   "name": "第七个测试剧本",
-  "version": "2.12.1",
+  "version": "2.12.2",
   "author": "sdfsfsk",
-  "description": "欢迎来到文学测试部。v2.12.1：全部角色标记删除后的幽灵立绘更新——更深的空洞眼眶与嘴部，黑色石油从眼睛和嘴巴滴落；保留黑白透明立绘、幽灵锁定与退出突脸演出。继承 v2.12.0 的 DDLC 恐怖机制与音效。纯恐怖惊吓路线，无自杀/自残描写，建议 16 岁以上游玩。",
+  "description": "欢迎来到文学测试部。v2.12.2：接入 the_last_summer 为 LingChat 提供的 Twilight，在周末真心独白与解放结局之间形成主题呼应；保留 v2.12.1 的黑油幽灵立绘及 DDLC 恐怖演出。纯恐怖惊吓路线，无自杀/自残描写，建议 16 岁以上游玩。",
   "min_engine": "0.5.3",
   "homepage": "https://github.com/sdfsfsk/LingChat-DLC-seventh-test-script"
 }

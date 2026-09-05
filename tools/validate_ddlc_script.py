@@ -163,8 +163,8 @@ def main() -> int:
 
     try:
         manifest = json.loads((root / "dlc.json").read_text(encoding="utf-8"))
-        if manifest.get("version") != "2.12.1":
-            errors.append("dlc.json.version must be 2.12.1 for the oil-leaking ghost artwork update")
+        if manifest.get("version") != "2.12.2":
+            errors.append("dlc.json.version must be 2.12.2 for the Twilight music integration")
         min_engine = manifest.get("min_engine")
         min_parts = tuple(int(part) for part in str(min_engine).split("."))
         if len(min_parts) != 3 or min_parts < (0, 5, 3):
